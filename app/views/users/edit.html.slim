@@ -1,5 +1,15 @@
+= image_tag(@user.image)
+
 = form_for(@user) do |f|
   = f.label :email
   = f.text_field :email
   br/
   = f.submit "Sign in"
+
+p
+	| We value your privacy. Your email address is only collected for communications and will not be shared with third parties. View our <a href="/privacy">Privacy Policy</a> for more information.
+	
+javascript:
+	$(function () {
+		$('input[name]=email').focus()
+	})
