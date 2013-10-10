@@ -1,0 +1,252 @@
+Script started on Thu Oct 10 13:39:56 2013
+/Users/AmosStone/.rvm/scripts/initialize:42: __rvm_cleanse_variables: function definition file not found
+/Users/AmosStone/.rvm/scripts/initialize:44: command not found: rvm_error
+[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;AmosStone@hihosilver: ~/code/twalk]1;~/code/twalk[0m[27m[24m[J[01;31m➜ [01;32m [36mtwalk [01;34mgit:([31minitial_setup[34m) [33m✗[00m[00m[01;34m [00m[Krrails generate is_taggable_migration
+]2;rails generate is_taggable_migration]1;rails/Users/AmosStone/.rvm/gems/ruby-2.0.0-p247@twalk2/gems/activerecord-4.0.0/lib/active_record/dynamic_matchers.rb:22:in `method_missing': undefined method `named_scope' for #<Class:0x007fc71612bb70> (NoMethodError)
+	from /Users/AmosStone/.rvm/gems/ruby-2.0.0-p247@twalk2/gems/is_taggable-0.1.0/lib/tag.rb:13:in `<class:Tag>'
+	from /Users/AmosStone/.rvm/gems/ruby-2.0.0-p247@twalk2/gems/is_taggable-0.1.0/lib/tag.rb:1:in `<top (required)>'
+	from /Users/AmosStone/.rvm/gems/ruby-2.0.0-p247@twalk2/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `require'
+	from /Users/AmosStone/.rvm/gems/ruby-2.0.0-p247@twalk2/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `block in require'
+	from /Users/AmosStone/.rvm/gems/ruby-2.0.0-p247@twalk2/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:213:in `load_dependency'
+	from /Users/AmosStone/.rvm/gems/ruby-2.0.0-p247@twalk2/gems/activesupport-4.0.0/lib/active_support/dependencies.rb:228:in `require'
+	from /Users/AmosStone/.rvm/gems/ruby-2.0.0-p247@twalk2/gems/is_taggable-0.1.0/lib/is_taggable.rb:3:in `<top (required)>'
+	from /Users/AmosStone/.rvm/gems/ruby-2.0.0-p247@global/gems/bundler-1.3.5/lib/bundler/runtime.rb:72:in `require'
+	from /Users/AmosStone/.rvm/gems/ruby-2.0.0-p247@global/gems/bundler-1.3.5/lib/bundler/runtime.rb:72:in `block (2 levels) in require'
+	from /Users/AmosStone/.rvm/gems/ruby-2.0.0-p247@global/gems/bundler-1.3.5/lib/bundler/runtime.rb:70:in `each'
+	from /Users/AmosStone/.rvm/gems/ruby-2.0.0-p247@global/gems/bundler-1.3.5/lib/bundler/runtime.rb:70:in `block in require'
+	from /Users/AmosStone/.rvm/gems/ruby-2.0.0-p247@global/gems/bundler-1.3.5/lib/bundler/runtime.rb:59:in `each'
+	from /Users/AmosStone/.rvm/gems/ruby-2.0.0-p247@global/gems/bundler-1.3.5/lib/bundler/runtime.rb:59:in `require'
+	from /Users/AmosStone/.rvm/gems/ruby-2.0.0-p247@global/gems/bundler-1.3.5/lib/bundler.rb:132:in `require'
+	from /Users/AmosStone/code/twalk/config/application.rb:7:in `<top (required)>'
+	from /Users/AmosStone/.rvm/gems/ruby-2.0.0-p247@twalk2/gems/railties-4.0.0/lib/rails/commands.rb:44:in `require'
+	from /Users/AmosStone/.rvm/gems/ruby-2.0.0-p247@twalk2/gems/railties-4.0.0/lib/rails/commands.rb:44:in `<top (required)>'
+	from bin/rails:4:in `require'
+	from bin/rails:4:in `<main>'
+[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;AmosStone@hihosilver: ~/code/twalk]1;~/code/twalk[0m[27m[24m[J[01;31m➜ [01;32m [36mtwalk [01;34mgit:([31minitial_setup[34m) [33m✗[00m[00m[01;34m [00m[Ksscript/generate is_taggable_migration
+[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;AmosStone@hihosilver: ~/code/twalk]1;~/code/twalk[0m[27m[24m[J[01;31m➜ [01;32m [36mtwalk [01;34mgit:([31minitial_setup[34m) [33m✗[00m[00m[01;34m [00m[Kccd ..
+]2;cd ..]1;cd[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;AmosStone@hihosilver: ~/code]1;~/code[0m[27m[24m[J[01;31m➜ [01;32m [36mcode [01;34m[01;34m [00m[Kccd twalk[1m/[0m[0m 
+]2;cd twalk]1;cd[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;AmosStone@hihosilver: ~/code/twalk]1;~/code/twalk[0m[27m[24m[J[01;31m➜ [01;32m [36mtwalk [01;34mgit:([31minitial_setup[34m) [33m✗[00m[00m[01;34m [00m[Ksscript/generate is_taggable_migration
+]2;script/generate is_taggable_migration]1;script/generatezsh: no such file or directory: script/generate
+[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;AmosStone@hihosilver: ~/code/twalk]1;~/code/twalk[0m[27m[24m[J[01;31m➜ [01;32m [36mtwalk [01;34mgit:([31minitial_setup[34m) [33m✗[00m[00m[01;34m [00m[Kssc
+[0mSCREEN_NO        sc_usage         scandeps5.12.pl  schemagen        screen           script           scss                                                                                        
+[Jsc_auth          [Jscandeps.pl      [Jsched            [Jscp              [Jscreencapture    [Jscselect         [Jscutil           [J                                                                           [A[A[0m[27m[24m[31Csc[Kr
+[J[J[0mSCREEN_NO      [Jscreen         [Jscreencapture  [Jscript       [J[A[0m[27m[24m[31Cscr[Kipt/g 
+[J[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;AmosStone@hihosilver: ~/code/twalk]1;~/code/twalk[0m[27m[24m[J[01;31m➜ [01;32m [36mtwalk [01;34mgit:([31minitial_setup[34m) [33m✗[00m[00m[01;34m [00m[Kccd sc
+]2;cd sc]1;cdcd:cd:13: no such file or directory: sc
+[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;AmosStone@hihosilver: ~/code/twalk]1;~/code/twalk[0m[27m[24m[J[01;31m➜ [01;32m [36mtwalk [01;34mgit:([31minitial_setup[34m) [33m✗[00m[00m[01;34m [00m[Klll
+]2;ls -G -l]1;lltotal 56
+-rw-r--r--   1 AmosStone  staff   863 Oct 10 13:37 Gemfile
+-rw-r--r--   1 AmosStone  staff  5585 Oct 10 13:37 Gemfile.lock
+-rw-r--r--   1 AmosStone  staff   645 Oct  7 14:21 README.md
+-rw-r--r--   1 AmosStone  staff   251 Oct  7 12:53 Rakefile
+drwxr-xr-x   8 AmosStone  staff   272 Oct  7 12:53 [1m[36mapp[39;49m[0m
+drwxr-xr-x   5 AmosStone  staff   170 Oct  7 12:53 [1m[36mbin[39;49m[0m
+drwxr-xr-x  12 AmosStone  staff   408 Oct 10 13:35 [1m[36mconfig[39;49m[0m
+-rw-r--r--   1 AmosStone  staff   154 Oct  7 12:53 config.ru
+drwxr-xr-x   8 AmosStone  staff   272 Oct  7 14:09 [1m[36mdb[39;49m[0m
+-rw-r--r--   1 AmosStone  staff  3450 Oct 10 13:40 is_taggable_migration
+drwxr-xr-x   5 AmosStone  staff   170 Oct  7 12:59 [1m[36mlib[39;49m[0m
+drwxr-xr-x   4 AmosStone  staff   136 Oct  7 12:59 [1m[36mlog[39;49m[0m
+drwxr-xr-x   8 AmosStone  staff   272 Oct  7 13:00 [1m[36mpublic[39;49m[0m
+drwxr-xr-x   8 AmosStone  staff   272 Oct 10 11:53 [1m[36mspec[39;49m[0m
+drwxr-xr-x   6 AmosStone  staff   204 Oct  7 13:02 [1m[36mtmp[39;49m[0m
+drwxr-xr-x   3 AmosStone  staff   102 Oct  7 12:53 [1m[36mvendor[39;49m[0m
+[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;AmosStone@hihosilver: ~/code/twalk]1;~/code/twalk[0m[27m[24m[J[01;31m➜ [01;32m [36mtwalk [01;34mgit:([31minitial_setup[34m) [33m✗[00m[00m[01;34m [00m[Ksscs  sscript/generate is_taggable_migration
+[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;AmosStone@hihosilver: ~/code/twalk]1;~/code/twalk[0m[27m[24m[J[01;31m➜ [01;32m [36mtwalk [01;34mgit:([31minitial_setup[34m) [33m✗[00m[00m[01;34m [00m[Kbbundle
+]2;bundle]1;bundleUsing rake (10.1.0) 
+Using i18n (0.6.5) 
+Using minitest (4.7.5) 
+Using multi_json (1.8.1) 
+Using atomic (1.1.14) 
+Using thread_safe (0.1.3) 
+Using tzinfo (0.3.37) 
+Using activesupport (4.0.0) 
+Using builder (3.1.4) 
+Using erubis (2.7.0) 
+Using rack (1.5.2) 
+Using rack-test (0.6.2) 
+Using actionpack (4.0.0) 
+Using mime-types (1.25) 
+Using polyglot (0.3.3) 
+Using treetop (1.4.15) 
+Using mail (2.5.4) 
+Using actionmailer (4.0.0) 
+Using activemodel (4.0.0) 
+Using activerecord-deprecated_finders (1.0.3) 
+Using arel (4.0.0) 
+Using activerecord (4.0.0) 
+Using addressable (2.3.5) 
+Using coderay (1.1.0) 
+Using better_errors (1.0.1) 
+Using debug_inspector (0.0.2) 
+Using binding_of_caller (0.7.2) 
+Using sass (3.2.12) 
+Using bootstrap-sass (2.3.2.2) 
+Using cancan (1.6.10) 
+Using mini_portile (0.5.1) 
+Using nokogiri (1.6.0) 
+Using xpath (2.0.0) 
+Using capybara (2.1.0) 
+Using coffee-script-source (1.6.3) 
+Using execjs (2.0.2) 
+Using coffee-script (2.2.0) 
+Using thor (0.18.1) 
+Using railties (4.0.0) 
+Using coffee-rails (4.0.0) 
+Using database_cleaner (1.0.1) 
+Using diff-lcs (1.2.4) 
+Using launchy (2.3.0) 
+Using email_spec (1.5.0) 
+Using factory_girl (4.2.0) 
+Using factory_girl_rails (4.2.1) 
+Using bundler (1.3.5) 
+Using hike (1.2.3) 
+Using tilt (1.4.1) 
+Using sprockets (2.10.0) 
+Using sprockets-rails (2.0.0) 
+Using rails (4.0.0) 
+Using figaro (0.7.0) 
+Using friendly_id (5.0.0.rc2) 
+Using haml (4.0.3) 
+Using haml-rails (0.4) 
+Using sexp_processor (4.3.0) 
+Using ruby_parser (3.1.3) 
+Using haml2slim (0.4.7) 
+Using hashie (2.0.5) 
+Using hpricot (0.8.6) 
+Using html2haml (1.0.1) 
+Using is_taggable (0.1.0) 
+Using jbuilder (1.5.1) 
+Using jquery-rails (3.0.4) 
+Using method_source (0.8.2) 
+Using oauth (0.4.7) 
+Using omniauth (1.1.4) 
+Using omniauth-oauth (1.0.1) 
+Using omniauth-twitter (1.0.1) 
+Using slop (2.1.0) 
+Using pry (0.9.6) 
+Using quiet_assets (1.0.2) 
+Using rails_layout (0.1.4) 
+Using rolify (3.2.0) 
+Using rspec-core (2.14.5) 
+Using rspec-expectations (2.14.3) 
+Using rspec-mocks (2.14.3) 
+Using rspec-rails (2.14.0) 
+Using sass-rails (4.0.0) 
+Using simple_form (3.0.0) 
+Using temple (0.6.7) 
+Using slim (2.0.1) 
+Using sqlite3 (1.3.8) 
+Using turbolinks (1.3.0) 
+Using uglifier (2.2.1) 
+[32mYour bundle is complete![0m
+[32mGems in the group production were not installed.[0m
+[32mUse `bundle show [gemname]` to see where a bundled gem is installed.[0m
+[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;AmosStone@hihosilver: ~/code/twalk]1;~/code/twalk[0m[27m[24m[J[01;31m➜ [01;32m [36mtwalk [01;34mgit:([31minitial_setup[34m) [33m✗[00m[00m[01;34m [00m[Kbbundle
+]2;bundle]1;bundleFetching gem metadata from https://rubygems.org/.......
+Fetching gem metadata from https://rubygems.org/..
+Resolving dependencies...
+Using rake (10.1.0) 
+Using i18n (0.6.5) 
+Using minitest (4.7.5) 
+Using multi_json (1.8.1) 
+Using atomic (1.1.14) 
+Using thread_safe (0.1.3) 
+Using tzinfo (0.3.37) 
+Using activesupport (4.0.0) 
+Using builder (3.1.4) 
+Using erubis (2.7.0) 
+rails generate acts_as_taggable_on:migrationUsing rack (1.5.2) 
+Using rack-test (0.6.2) 
+Using actionpack (4.0.0) 
+Using mime-types (1.25) 
+Using polyglot (0.3.3) 
+Using treetop (1.4.15) 
+Using mail (2.5.4) 
+Using actionmailer (4.0.0) 
+Using activemodel (4.0.0) 
+Using activerecord-deprecated_finders (1.0.3) 
+Using arel (4.0.0) 
+Using activerecord (4.0.0) 
+Using bundler (1.3.5) 
+Using thor (0.18.1) 
+Using railties (4.0.0) 
+Using hike (1.2.3) 
+Using tilt (1.4.1) 
+Using sprockets (2.10.0) 
+Using sprockets-rails (2.0.0) 
+Using rails (4.0.0) 
+Installing acts-as-taggable-on (2.4.1) 
+Using addressable (2.3.5) 
+Using coderay (1.1.0) 
+Using better_errors (1.0.1) 
+Using debug_inspector (0.0.2) 
+Using binding_of_caller (0.7.2) 
+Using sass (3.2.12) 
+Using bootstrap-sass (2.3.2.2) 
+Using cancan (1.6.10) 
+Using mini_portile (0.5.1) 
+Using nokogiri (1.6.0) 
+Using xpath (2.0.0) 
+Using capybara (2.1.0) 
+Using coffee-script-source (1.6.3) 
+Using execjs (2.0.2) 
+Using coffee-script (2.2.0) 
+Using coffee-rails (4.0.0) 
+Using database_cleaner (1.0.1) 
+Using diff-lcs (1.2.4) 
+Using launchy (2.3.0) 
+Using email_spec (1.5.0) 
+Using factory_girl (4.2.0) 
+Using factory_girl_rails (4.2.1) 
+Using figaro (0.7.0) 
+Using friendly_id (5.0.0.rc2) 
+Using haml (4.0.3) 
+Using haml-rails (0.4) 
+Using sexp_processor (4.3.0) 
+Using ruby_parser (3.1.3) 
+Using haml2slim (0.4.7) 
+Using hashie (2.0.5) 
+Using hpricot (0.8.6) 
+Using html2haml (1.0.1) 
+Using jbuilder (1.5.1) 
+Using jquery-rails (3.0.4) 
+Using method_source (0.8.2) 
+Using oauth (0.4.7) 
+Using omniauth (1.1.4) 
+Using omniauth-oauth (1.0.1) 
+Using omniauth-twitter (1.0.1) 
+Using slop (2.1.0) 
+Using pry (0.9.6) 
+Using quiet_assets (1.0.2) 
+Using rails_layout (0.1.4) 
+Using rolify (3.2.0) 
+Using rspec-core (2.14.5) 
+Using rspec-expectations (2.14.3) 
+Using rspec-mocks (2.14.3) 
+Using rspec-rails (2.14.0) 
+Using sass-rails (4.0.0) 
+Using simple_form (3.0.0) 
+Using temple (0.6.7) 
+Using slim (2.0.1) 
+Using sqlite3 (1.3.8) 
+Using turbolinks (1.3.0) 
+Using uglifier (2.2.1) 
+[32mYour bundle is complete![0m
+[32mGems in the group production were not installed.[0m
+[32mUse `bundle show [gemname]` to see where a bundled gem is installed.[0m
+[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;AmosStone@hihosilver: ~/code/twalk]1;~/code/twalk[0m[27m[24m[J[01;31m➜ [01;32m [36mtwalk [01;34mgit:([31minitial_setup[34m) [33m✗[00m[00m[01;34m [00m[Krrails generate acts_as_taggable_on:migration
+]2;rails generate acts_as_taggable_on:migration]1;rails[1m[32m      create[0m  db/migrate/20131010204625_acts_as_taggable_on_migration.rb
+[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;AmosStone@hihosilver: ~/code/twalk]1;~/code/twalk[0m[27m[24m[J[01;31m➜ [01;32m [36mtwalk [01;34mgit:([31minitial_setup[34m) [33m✗[00m[00m[01;34m [00m[Krrake db:migrate
+]2;rake db:migrate]1;db:migrate==  ActsAsTaggableOnMigration: migrating ======================================
+-- create_table(:tags)
+   -> 0.0128s
+-- create_table(:taggings)
+   -> 0.0005s
+-- add_index(:taggings, :tag_id)
+   -> 0.0003s
+-- add_index(:taggings, [:taggable_id, :taggable_type, :context])
+   -> 0.0003s
+==  ActsAsTaggableOnMigration: migrated (0.0141s) =============================
+
+[1m[7m%[27m[1m[0m                                                                                                                                                                                                            ]2;AmosStone@hihosilver: ~/code/twalk]1;~/code/twalk[0m[27m[24m[J[01;31m➜ [01;32m [36mtwalk [01;34mgit:([31minitial_setup[34m) [33m✗[00m[00m[01;34m [00m[K

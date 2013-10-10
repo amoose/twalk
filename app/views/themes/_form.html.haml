@@ -1,0 +1,11 @@
+= simple_form_for(@theme) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :name
+    = f.input :description
+    = f.input :mustache
+    = f.input :css
+
+  .form-actions
+    = f.button :submit

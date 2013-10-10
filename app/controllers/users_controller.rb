@@ -7,11 +7,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
   end
   
   def update
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
     if @user.update_attributes(user_params)
       redirect_to @user
     else
@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 
 
   def show
-    @user = User.find(params[:id])
+    @user = User.friendly.find(params[:id])
   end
 
   private

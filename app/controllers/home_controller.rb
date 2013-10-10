@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @users = User.all
+    @presentations = Presentation.all.order(created_at: :desc)
   end
 end

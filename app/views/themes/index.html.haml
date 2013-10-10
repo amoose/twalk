@@ -1,0 +1,25 @@
+%h1 Listing themes
+
+%table
+  %tr
+    %th Name
+    %th Description
+    %th Mustache
+    %th Css
+    %th
+    %th
+    %th
+
+  - @themes.each do |theme|
+    %tr
+      %td= theme.name
+      %td= theme.description
+      %td= theme.mustache
+      %td= theme.css
+      %td= link_to 'Show', theme
+      %td= link_to 'Edit', edit_theme_path(theme)
+      %td= link_to 'Destroy', theme, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Theme', new_theme_path

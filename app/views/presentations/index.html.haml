@@ -1,0 +1,23 @@
+%h1 Listing presentations
+
+%table
+  %tr
+    %th Name
+    %th Slug
+    %th Description
+    %th
+    %th
+    %th
+
+  - @presentations.each do |presentation|
+    %tr
+      %td= presentation.name
+      %td= presentation.slug
+      %td= presentation.description
+      %td= link_to 'Show', presentation
+      %td= link_to 'Edit', edit_presentation_path(presentation)
+      %td= link_to 'Destroy', presentation, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Presentation', new_presentation_path

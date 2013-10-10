@@ -4,6 +4,9 @@ class User < ActiveRecord::Base
   # attr_accessible :provider, :uid, :name, :email
   validates_presence_of :name
 
+  extend FriendlyId
+  friendly_id :nickname, use: :slugged
+
   def to_param
     # nickname
     id

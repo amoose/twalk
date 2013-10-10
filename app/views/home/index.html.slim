@@ -1,4 +1,11 @@
-h3 Home
-- @users.each do |user|
-  p
-    | User: #{link_to user.name, user}
+h1 Latest Twalks...
+
+ul.pres-list
+	- @presentations.each do |pres|
+		li
+			= link_to pres.name, pres
+
+- if @presentations.empty?
+	p
+		| There are currently no new Twalks!
+		

@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @theme.name
+%p
+  %b Description:
+  = @theme.description
+%p
+  %b Mustache:
+  = @theme.mustache
+%p
+  %b Css:
+  = @theme.css
+
+= link_to 'Edit', edit_theme_path(@theme)
+\|
+= link_to 'Back', themes_path

@@ -1,0 +1,8 @@
+= simple_form_for([@presentation,@slide]) do |f|
+  = f.error_notification
+
+  /- if @slide.contents
+  .form-inputs
+
+  .form-actions
+    = f.button :submit

@@ -1,14 +1,22 @@
 Twalk2::Application.routes.draw do
+  
+  
+
+  resources :themes
+
+  resources :presentations do
+    resources :slides do
+      resources :contents
+    end
+  end
+
   root :to => "home#index"
   resources :users, :only => [:index, :show, :edit, :update ]
-  # 
-  # 
- #  map.with_options :controller => "users" do |user|
-	#   user.connect "/users/:nickname", :action => "show"
-	#   user.connect "/users/:nickname/edit", :action => "update"
-	# end
+  
   get '/auth/:provider/callback' => 'sessions#create'
   get '/signin' => 'sessions#new', :as => :signin
   get '/signout' => 'sessions#destroy', :as => :signout
   get '/auth/failure' => 'sessions#failure'
+
+  # get '/twalks/:presentation' => 'presentations#show'
 end
