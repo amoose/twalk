@@ -1,17 +1,14 @@
 class User < ActiveRecord::Base
   rolify
-  # attr_accessible :role_ids, :as => :admin
-  # attr_accessible :provider, :uid, :name, :email
-  validates_presence_of :name
+  
+  validates_presence_of :name, :nickname
+
+  has_many :presentations
 
   extend FriendlyId
   friendly_id :nickname, use: :slugged
 
-  def to_param
-    # nickname
-    id
-  end
-
+  validates_format_of :email, :with => /@/, :allow_blank => true
 
   def self.create_with_omniauth(auth)
     create! do |user|
@@ -19,7 +16,6 @@ class User < ActiveRecord::Base
       user.uid = auth['uid']
       if auth['info']
         user.name = auth['info']['name'] || ""
-        user.email = auth['info']['email'] || ""
         user.name = auth[:info][:name] || ""
         user.nickname = auth[:info][:nickname] || ""
         user.location = auth[:info][:location] || ""
@@ -28,14 +24,4 @@ class User < ActiveRecord::Base
       end
     end
   end
-
-  # def self.find(id)
-  #   if id.type_of? Integer
-  #     # super.find(id)
-  #     User.where(:id => id)
-  #   else
-  #     self.find_by_name(id)
-  #   end
-  # end
-
 end

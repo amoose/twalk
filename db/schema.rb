@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131010221128) do
+ActiveRecord::Schema.define(version: 20131011221527) do
 
   create_table "content_types", force: true do |t|
     t.string   "name"
@@ -24,7 +24,13 @@ ActiveRecord::Schema.define(version: 20131010221128) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "slide_id"
+    t.string   "slug"
+    t.integer  "sort_order"
+    t.integer  "content_type_id"
+    t.integer  "presentation_id"
   end
+
+  add_index "contents", ["slug"], name: "index_contents_on_slug"
 
   create_table "presentations", force: true do |t|
     t.string   "name"
@@ -32,9 +38,12 @@ ActiveRecord::Schema.define(version: 20131010221128) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.boolean  "is_public"
   end
 
   add_index "presentations", ["slug"], name: "index_presentations_on_slug", unique: true
+  add_index "presentations", ["user_id"], name: "index_presentations_on_user_id"
 
   create_table "roles", force: true do |t|
     t.string   "name"
@@ -51,7 +60,12 @@ ActiveRecord::Schema.define(version: 20131010221128) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "presentation_id"
+    t.integer  "theme_id"
+    t.integer  "sort_order"
+    t.string   "slug"
   end
+
+  add_index "slides", ["slug"], name: "index_slides_on_slug"
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"

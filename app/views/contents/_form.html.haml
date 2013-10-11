@@ -1,8 +1,11 @@
-= simple_form_for(@content) do |f|
+= simple_form_for([@presentation, @slide, @content]) do |f|
   = f.error_notification
 
   .form-inputs
     = f.input :body
 
+    = f.input :sort_order
+
+    = f.input :content_type_id, collection: @content_types
   .form-actions
     = f.button :submit

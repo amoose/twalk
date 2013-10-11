@@ -18,5 +18,5 @@ Twalk2::Application.routes.draw do
   get '/signout' => 'sessions#destroy', :as => :signout
   get '/auth/failure' => 'sessions#failure'
 
-  # get '/twalks/:presentation' => 'presentations#show'
+  get '/go/:id' => 'presentations#launch'
 end

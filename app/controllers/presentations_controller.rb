@@ -1,5 +1,6 @@
 class PresentationsController < ApplicationController
-  before_action :set_presentation, only: [:show, :edit, :update, :destroy]
+  before_action :set_presentation, only: [:show, :edit, :update, :destroy, :launch]
+  before_action :check_access
 
   # GET /presentations
   # GET /presentations.json
@@ -12,6 +13,9 @@ class PresentationsController < ApplicationController
   def show
   end
 
+  def launch
+    render :layout => "deck"
+  end
   # GET /presentations/new
   def new
     @presentation = Presentation.new
@@ -25,7 +29,8 @@ class PresentationsController < ApplicationController
   # POST /presentations.json
   def create
     @presentation = Presentation.new(presentation_params)
-
+    @presentation.user = current_user
+    
     respond_to do |format|
       if @presentation.save
         format.html { redirect_to @presentation, notice: 'Presentation was successfully created.' }
@@ -73,6 +78,11 @@ class PresentationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def presentation_params
-      params.require(:presentation).permit(:name, :slug, :description)
+      params.require(:presentation).permit(:name, :slug, :description, :is_public)
+    end
+
+    def check_access
+      cookies[:redirect_to] = request.fullpath
+      redirect_to signin_path, :notice => 'You must be logged in...' unless user_signed_in?
     end
 end

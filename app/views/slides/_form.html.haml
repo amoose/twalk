@@ -1,8 +1,11 @@
 = simple_form_for([@presentation,@slide]) do |f|
   = f.error_notification
 
-  /- if @slide.contents
+   
   .form-inputs
+    = f.input :theme_id, collection: @themes
+
+    = f.input :sort_order
 
   .form-actions
     = f.button :submit

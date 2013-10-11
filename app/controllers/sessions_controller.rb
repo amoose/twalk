@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
 # http://guides.rubyonrails.org/security.html#session-fixation-countermeasures
     reset_session
     session[:user_id] = user.id
+    session[:new_signup] = true
     user.add_role :admin if User.count == 1 # make the first user an admin
     user.name = auth[:info][:name]
     user.nickname = auth[:info][:nickname]
@@ -21,9 +22,13 @@ class SessionsController < ApplicationController
     user.image = auth[:info][:image]
     user.description = auth[:info][:description]
     if user.email.blank?
-      redirect_to edit_user_path(user), :alert => "Please enter your email address."
+      redirect_to edit_user_path(user), :notice => "Please enter your email address."
+    elsif cookies[:redirect_to]
+      path = cookies[:redirect_to]
+      cookies.delete(:redirect_to)
+      redirect_to path, :notice => "Welcome back, #{user.name}"
     else
-      redirect_to root_url, :notice => 'Signed in!'
+      redirect_to root_url, :notice => "Welcome back, #{user.name}"
     end
 
   end

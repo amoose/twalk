@@ -3,7 +3,7 @@ h1 Latest Twalks...
 ul.pres-list
 	- @presentations.each do |pres|
 		li
-			= link_to pres.name, pres
+			= link_to pres.name, "/go/#{pres.slug}/"
 
 - if @presentations.empty?
 	p

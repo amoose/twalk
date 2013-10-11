@@ -1,4 +1,4 @@
-%h1 Listing slides
+%h1 Current slides
 
 %table
   %tr
@@ -8,7 +8,11 @@
 
   - @slides.each do |slide|
     %tr
-      %td= slide.id
+      %td= slide.sort_order
+      / %td= link_to 'View', "/presentations/#{slide.presentation.slug}/slides/#{slide.sort_order}"
+      / # %td= link_to 'Edit', edit_presentation_slide_path([slide.presentation, slide])
+      %td= link_to 'View', presentation_slide_path(slide.presentation, slide)
+      / %td= link_to 'Edit', edit_presentation_slide_path(slide)
       / %td= link_to 'Show', slide
       / %td= link_to 'Edit', edit_presentation_slide_path(slide)
       / %td= link_to 'Destroy', slide, :method => :delete, :data => { :confirm => 'Are you sure?' }

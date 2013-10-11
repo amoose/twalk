@@ -1,0 +1,45 @@
+.presentation class="deck-container"
+	- @presentation.slides.each do |slide|
+		section class="slide"
+			- slide.contents.each do |content|
+				div class="slide-content #{content.content_type.name.downcase}"
+					= output_content(content)
+
+
+	a href="#" class="deck-prev-link" title="Previous"
+		| &#8592;
+	a href="#" class="deck-next-link" title="Next"
+		| &#8594;
+
+
+	/ # deck.status snippet
+	p class="deck-status"
+		span class="deck-status-current"
+			| /
+		span class="deck-status-total"
+
+	/ # deck.goto snippet
+	form action="." method="get" class="goto-form"
+		label for="goto-slide"
+			| Go to slide:
+		input type="text" name="slidenum" id="goto-slide" list="goto-datalist"
+			datalist id="goto-datalist"
+		input type="submit" value="Go"
+
+	/ # deck.hash snippet
+	a href="." title="Permalink to this slide" class="deck-permalink"
+		| #
+
+
+javascript:
+	$(function() {
+		$.deck('.slide');
+	})
+	
+
+/ hr/
+/ = debug @presentation
+/ - @presentation.slides.each do |slide|
+/ 	hr/
+/ 	- slide.contents.each do |content|
+/ 		= debug content

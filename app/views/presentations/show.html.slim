@@ -1,0 +1,25 @@
+p id=notice
+  = notice
+
+p
+  b 
+    | Name:
+  br/
+  = @presentation.name
+p
+  b 
+    | Slug:
+  br/
+  = @presentation.slug
+p
+  b 
+    | Description:
+  = @presentation.description
+
+= link_to 'Slides', presentation_slides_path(@presentation)
+| &nbsp;|&nbsp;
+= link_to 'Edit', edit_presentation_path(@presentation)
+| &nbsp;|&nbsp;
+= link_to 'Back', presentations_path
+
+

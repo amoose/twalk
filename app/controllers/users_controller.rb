@@ -13,7 +13,13 @@ class UsersController < ApplicationController
   def update
     @user = User.friendly.find(params[:id])
     if @user.update_attributes(user_params)
-      redirect_to @user
+      if session[:new_signup]
+        flash[:success] = "Welcome to Twalk.io!"
+        session.delete(:new_signup)
+        redirect_to root_url 
+      else
+        redirect_to @user
+      end
     else
       render :edit
     end

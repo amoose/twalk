@@ -4,6 +4,11 @@
   %b Body:
   = @content.body
 
-= link_to 'Edit', edit_content_path(@content)
+  %br
+  
+  %b Type:
+  = @content.content_type.name
+
+= link_to 'Edit', edit_presentation_slide_content_path(@presentation, @slide, @content)
 \|
-= link_to 'Back', contents_path
+= link_to 'Back', presentation_slide_contents_path(@presentation, @slide)

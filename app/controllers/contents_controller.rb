@@ -1,10 +1,10 @@
 class ContentsController < ApplicationController
   before_action :set_content, only: [:show, :edit, :update, :destroy]
-
+  before_action :set_presentation_and_slide
   # GET /contents
   # GET /contents.json
   def index
-    @contents = Content.all
+    @contents = @slide.contents
   end
 
   # GET /contents/1
@@ -28,7 +28,7 @@ class ContentsController < ApplicationController
 
     respond_to do |format|
       if @content.save
-        format.html { redirect_to @content, notice: 'Content was successfully created.' }
+        format.html { redirect_to presentation_slide_content_path(@presentation, @slide, @content), notice: 'Content was successfully created.' }
         format.json { render action: 'show', status: :created, location: @content }
       else
         format.html { render action: 'new' }
@@ -42,7 +42,7 @@ class ContentsController < ApplicationController
   def update
     respond_to do |format|
       if @content.update(content_params)
-        format.html { redirect_to @content, notice: 'Content was successfully updated.' }
+        format.html { redirect_to presentation_slide_content_path(@presentation, @slide, @content), notice: 'Content was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -56,7 +56,7 @@ class ContentsController < ApplicationController
   def destroy
     @content.destroy
     respond_to do |format|
-      format.html { redirect_to contents_url }
+      format.html { redirect_to presentation_slide_contents_url(@presentation, @slide) }
       format.json { head :no_content }
     end
   end
@@ -64,11 +64,17 @@ class ContentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_content
-      @content = Content.find(params[:id])
+      @content = Content.friendly.find(params[:id])
+      @content_types = ContentType.all
+    end
+
+    def set_presentation_and_slide
+      @presentation = Presentation.friendly.find(params[:presentation_id])
+      @slide = @presentation.slides.friendly.find(params[:slide_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def content_params
-      params.require(:content).permit(:body)
+      params.require(:content).permit(:body, :content_type_id, :sort_order)
     end
 end

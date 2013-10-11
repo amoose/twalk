@@ -1,15 +1,22 @@
 = image_tag(@user.image)
 
 = form_for(@user) do |f|
+  - unless session[:new_signup]
+    = f.label :name
+    = f.text_field :name
+
   = f.label :email
   = f.text_field :email
+
+
   br/
-  = f.submit "Sign in"
+  
+  = f.submit "Save"
 
 p
-	| We value your privacy. Your email address is only collected for communications and will not be shared with third parties. View our <a href="/privacy">Privacy Policy</a> for more information.
-	
+  | We value your privacy. Your email address is only collected for communications and will not be shared with third parties. View our <a href="/privacy">Privacy Policy</a> for more information.
+  
 javascript:
-	$(function () {
-		$('input[name]=email').focus()
-	})
+  $(function () {
+    $('input[name]=email').focus()
+  })

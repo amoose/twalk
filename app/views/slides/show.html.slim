@@ -1,0 +1,18 @@
+p#notice= notice
+
+table.hover
+	tr
+		th
+			| Body
+
+	- @contents.each do |content|
+		tr
+			td= content.body
+
+
+/ = debug @contents
+
+/\|
+= link_to 'Back', presentation_slides_path
+= link_to 'Contents', presentation_slide_contents_path(@presentation, @slide)
+/ = link_to 'Edit', edit_presentation_slide_path(@slide)

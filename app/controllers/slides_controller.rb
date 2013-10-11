@@ -4,17 +4,20 @@ class SlidesController < ApplicationController
   # GET /slides
   # GET /slides.json
   def index
-    @slides = @presentation.slides || Slide.new(:presentation => @presentation)
+    @presentation = Presentation.friendly.find(params[:presentation_id])
+    @slides = @presentation.slides.order(sort_order: :asc)
   end
 
   # GET /slides/1
   # GET /slides/1.json
   def show
+    @contents = @slide.contents
   end
 
   # GET /slides/new
   def new
     @slide = Slide.new
+    @themes = Theme.all
   end
 
   # GET /slides/1/edit
@@ -25,10 +28,11 @@ class SlidesController < ApplicationController
   # POST /slides.json
   def create
     @slide = Slide.new(slide_params)
+    @slide.presentation = @presentation
 
     respond_to do |format|
       if @slide.save
-        format.html { redirect_to @slide, notice: 'Slide was successfully created.' }
+        format.html { redirect_to location: presentation_slides_url(@presentation), notice: 'Slide was successfully created.' }
         format.json { render action: 'show', status: :created, location: @slide }
       else
         format.html { render action: 'new' }
@@ -64,7 +68,7 @@ class SlidesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_slide
-      @slide = Slide.find(params[:id])      
+      @slide = Slide.friendly.find(params[:id])      
     end
 
     def set_presentation
@@ -72,6 +76,8 @@ class SlidesController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def slide_params
-      params[:slide]
+      valid_params = params.require(:slide).permit(:theme_id, :sort_order)
+      valid_params[:presentation_id] = params[:presentation_id]
+      valid_params
     end
 end
