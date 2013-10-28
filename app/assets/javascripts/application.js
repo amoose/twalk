@@ -16,4 +16,20 @@
 //= require turbolinks
 //= require_tree .
 //= require websocket_rails/main
+	
 
+//   // $("#new_post").on("ajax:success", (e, data, status, xhr) ->
+//   //   $("#new_post").append xhr.responseText
+//   // ).bind "ajax:error", (e, xhr, status, error) ->
+//   //   $("#new_post").append "<p>ERROR</p>"
+
+
+// $(function() {
+	
+
+// 	$('div.loading').fadeOut('fast');
+
+// 	console.log( $('div.loading') )
+
+// 	console.log('loaded.')
+// })

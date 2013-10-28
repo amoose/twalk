@@ -8,6 +8,7 @@
     %th
     %th
     %th
+    %th Launch
 
   - @presentations.each do |presentation|
     %tr
@@ -17,6 +18,7 @@
       %td= link_to 'Show', presentation
       %td= link_to 'Edit', edit_presentation_path(presentation)
       %td= link_to 'Destroy', presentation, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to 'Launch', "/go/#{presentation.slug}/"
 
 %br
 

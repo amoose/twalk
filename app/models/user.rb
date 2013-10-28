@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   validates_presence_of :name, :nickname
 
   has_many :presentations
+  has_many :party_members
+  has_one :party
 
   extend FriendlyId
   friendly_id :nickname, use: :slugged
@@ -15,7 +17,6 @@ class User < ActiveRecord::Base
       user.provider = auth['provider']
       user.uid = auth['uid']
       if auth['info']
-        user.name = auth['info']['name'] || ""
         user.name = auth[:info][:name] || ""
         user.nickname = auth[:info][:nickname] || ""
         user.location = auth[:info][:location] || ""

@@ -1,12 +1,25 @@
-= link_to "Twalk.io", root_path, :class => 'brand'
-ul class="nav"
-  - if user_signed_in?
-    li
-      = link_to 'Logout', signout_path
-  - else
-    li
-      = link_to 'Login', signin_path
-  - if user_signed_in?
-    - if current_user.has_role? :admin
+nav role="navigation"
+  = link_to "Twalk.io", root_path, :class => 'brand'
+  ul class="nav navbar-nav navbar-left"
+    - if user_signed_in?
       li
-        = link_to 'Admin', users_path
+        = link_to 'Dashboard', root_url
+      li
+        = link_to 'Presentations', presentations_url
+      li
+        = link_to 'Logout', signout_path
+    - else
+      li
+        = link_to 'Login', signin_path, { 'data-no-turbolink' => true }
+    - if user_signed_in?
+      - if current_user.has_role? :admin
+        li
+          = link_to 'Admin', users_path
+
+  form class="navbar-form navbar-right" role="search"
+    div.form-group
+      input type="text" class="form-control" placeholder="Search"
+      button type="submit" class="btn btn-default"
+        | Submit
+
+

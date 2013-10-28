@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131011221527) do
+ActiveRecord::Schema.define(version: 20131024223712) do
 
   create_table "content_types", force: true do |t|
     t.string   "name"
@@ -32,6 +32,25 @@ ActiveRecord::Schema.define(version: 20131011221527) do
 
   add_index "contents", ["slug"], name: "index_contents_on_slug"
 
+  create_table "parties", force: true do |t|
+    t.integer  "presentation_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "slug"
+  end
+
+  create_table "party_members", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "presentation_id"
+    t.string   "role"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "party_id"
+  end
+
+  add_index "party_members", ["party_id"], name: "index_party_members_on_party_id"
+
   create_table "presentations", force: true do |t|
     t.string   "name"
     t.string   "slug"
@@ -40,6 +59,10 @@ ActiveRecord::Schema.define(version: 20131011221527) do
     t.datetime "updated_at"
     t.integer  "user_id"
     t.boolean  "is_public"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "geolocation_updated_at"
+    t.integer  "geolocation_accuracy"
   end
 
   add_index "presentations", ["slug"], name: "index_presentations_on_slug", unique: true

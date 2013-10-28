@@ -1,45 +1,65 @@
-.presentation class="deck-container"
+.presentation.deck-container
 	- @presentation.slides.each do |slide|
 		section class="slide"
 			- slide.contents.each do |content|
-				div class="slide-content #{content.content_type.name.downcase}"
+				div class="kkslide-content #{content.content_type.name.downcase}"
 					= output_content(content)
 
-
-	a href="#" class="deck-prev-link" title="Previous"
-		| &#8592;
-	a href="#" class="deck-next-link" title="Next"
-		| &#8594;
-
-
-	/ # deck.status snippet
-	p class="deck-status"
-		span class="deck-status-current"
-			| /
-		span class="deck-status-total"
-
-	/ # deck.goto snippet
-	form action="." method="get" class="goto-form"
-		label for="goto-slide"
-			| Go to slide:
-		input type="text" name="slidenum" id="goto-slide" list="goto-datalist"
-			datalist id="goto-datalist"
-		input type="submit" value="Go"
-
-	/ # deck.hash snippet
-	a href="." title="Permalink to this slide" class="deck-permalink"
-		| #
+.reveal
+	.state-background
+		.slides
+			- @presentation.slides.each do |slide|
+				section 
+					- slide.contents.each do |content|
+						div class="slide-content #{content.content_type.name.downcase}"
 
 
-javascript:
-	$(function() {
-		$.deck('.slide');
-	})
-	
 
-/ hr/
-/ = debug @presentation
-/ - @presentation.slides.each do |slide|
-/ 	hr/
-/ 	- slide.contents.each do |content|
-/ 		= debug content
+- if current_user.id == @presentation.user_id
+  javascript:
+
+    $(function() {
+    	console.log('-- YOU ARE PRESENTER')
+      
+
+    	var presentation_id = $('body').data('presentation_id');
+      // connect to server like normal
+      var dispatcher = new WebSocketRails('localhost:5000/websocket');
+    	var channel = dispatcher.subscribe('party_'+presentation_id);
+
+      // bind to a channel event
+      channel.bind('new_client', function(data) {
+        console.log('channel event received: ' + data);
+        console.log(data)
+      });
+
+
+    });
+
+		$(document).ready(function() {
+			// $.deck('.slide');
+		});
+
+	//	$(document).bind('deck.change', function(event, from, to) {
+	//  	console.log('Moving from slide ' + from + ' to ' + to);
+	//	});
+    
+
+- else
+  javascript:
+    $(function() {
+			// $.deck('.slide');
+
+      var dispatcher = new WebSocketRails('localhost:5000/websocket');
+
+      // subscribe to the channel
+      var channel = dispatcher.subscribe('party_'+presentation_id);
+
+      console.log(channel)
+      // bind to a channel event
+      channel.bind('party_'+presentation_id, function(data) {
+        console.log('channel event received: ' + data);
+        //$('.debug').append(data)
+        //$('#goto-slide').val(data.slide)
+      });
+    })

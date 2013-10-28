@@ -13,21 +13,50 @@
 */
 
 .content {
-  background-color: #eee;
-  padding: 20px;
-  margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
-  -webkit-border-radius: 0 0 6px 6px;
-  -moz-border-radius: 0 0 6px 6px;
-  border-radius: 0 0 6px 6px;
+  
+}
+
+.semi-trans-bg,
+.content {
+  padding: 10px 20px;
+  color: #FFFFFF;
+  background: -moz-linear-gradient(top,  rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.65)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.65) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.65) 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.65) 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
   -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
   box-shadow: 0 1px 2px rgba(0,0,0,.15);
 }
 
+.main-login {
+  display: block;
+  margin: 0 auto;
+  width: 360px;
+  padding: 40px 80px;
+}
+
+#main {
+  float: right;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: normal !important;
+}
+
 .brand,
+.navbar,
 .merri {
 	font-family: 'Merriweather Sans', sans-serif;
 }
+
 
 .content,
 .cinzel {
@@ -35,7 +64,20 @@
 }
 
 body {
-	background: image-url('bg01.jpg') no-repeat center center;
+	// background: image-url('bg01.jpg') no-repeat center center;
 	background-size: cover;
 	background-attachment: fixed;
+  position: relative;
+  z-index: 1;
 }
+
+.login-box {
+  margin: 0 auto;
+  width: 360px;
+}
+
+.navbar-right {
+  float: right;
+}
+
+.alert { border-radius: 0 !important; }

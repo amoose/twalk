@@ -2,6 +2,6 @@
 
 = render 'form'
 
-= link_to 'Show', @slide
-\|
-= link_to 'Back', slides_path
+= link_to 'Show', presentation_slide_path(@presentation, @slide)
+&nbsp;|&nbsp;
+= link_to 'Back', presentation_slides_path(@presentation)

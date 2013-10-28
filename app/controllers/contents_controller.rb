@@ -25,7 +25,9 @@ class ContentsController < ApplicationController
   # POST /contents.json
   def create
     @content = Content.new(content_params)
-
+    @content.presentation_id = @presentation.id
+    @content.slide_id = @slide.id
+    
     respond_to do |format|
       if @content.save
         format.html { redirect_to presentation_slide_content_path(@presentation, @slide, @content), notice: 'Content was successfully created.' }

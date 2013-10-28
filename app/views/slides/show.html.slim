@@ -1,18 +1,16 @@
-p#notice= notice
-
 table.hover
-	tr
-		th
-			| Body
+  tr
+    th
+      | Body
 
-	- @contents.each do |content|
-		tr
-			td= content.body
+  - @contents.each do |content|
+    tr
+      td= content.body
 
 
-/ = debug @contents
-
-/\|
+- if @presentation.user_id == current_user.id or current_user.has_role? :admin
+  = link_to 'Contents', presentation_slide_contents_path(@presentation, @slide)
+  |&nbsp;|&nbsp;
+  = link_to 'Edit', edit_presentation_slide_path(@presentation, @slide)
+  |&nbsp;|&nbsp;
 = link_to 'Back', presentation_slides_path
-= link_to 'Contents', presentation_slide_contents_path(@presentation, @slide)
-/ = link_to 'Edit', edit_presentation_slide_path(@slide)

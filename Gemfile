@@ -19,6 +19,7 @@ gem 'acts-as-taggable-on'
 gem 'friendly_id', '5.0.0.rc2'
 gem 'websocket-rails'
 gem 'redis-rails'
+gem 'resque', '~> 2.0.0.pre.1', github: 'resque/resque'
 gem 'geocoder'
 
 group :development do
