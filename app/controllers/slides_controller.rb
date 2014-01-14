@@ -1,6 +1,7 @@
 class SlidesController < ApplicationController
-  before_action :set_slide, only: [:show, :edit, :update, :destroy]
   before_action :set_presentation
+  before_action :set_slide, only: [:show, :edit, :update, :destroy]
+  
   # GET /slides
   # GET /slides.json
   def index
@@ -68,7 +69,7 @@ class SlidesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_slide
-      @slide = Slide.friendly.find(params[:id])      
+      @slide = @presentation.slides.friendly.find(params[:id])      
     end
 
     def set_presentation

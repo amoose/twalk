@@ -16,16 +16,12 @@ html
       - else 
         javascript:
           var username = ""
-  // TODO: set layout via JS (landscape vs portrait)
-  body class=("#{controller_name} #{action_name} landscape") 
-    = render 'layouts/navigation'
-    .overlay.loading
-      h1
-        | Loading...
+
+  body class=("#{controller_name} #{action_name}")
+    header
+      = render 'layouts/navigation'
     #main role="main" 
-      .content
-        = render 'layouts/messages'
-        = yield
-      footer
-        | &copy; 2013 Twalk.io
-        = debug current_user
+      = render 'layouts/messages'
+      = yield
+    footer
+      | &copy; 2013 Twalk.io

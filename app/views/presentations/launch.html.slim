@@ -1,20 +1,37 @@
-.presentation.deck-container
-	- @presentation.slides.each do |slide|
-		section class="slide"
-			- slide.contents.each do |content|
-				div class="kkslide-content #{content.content_type.name.downcase}"
-					= output_content(content)
+/ .presentation.deck-container
+/ 	- @presentation.slides.each do |slide|
+/ 		section class="slide"
+/ 			- slide.contents.each do |content|
+/ 				div class="slide-content #{content.content_type.name.downcase}"
+/ 					= output_content(content)
 
 .reveal
-	.state-background
-		.slides
-			- @presentation.slides.each do |slide|
-				section 
-					- slide.contents.each do |content|
-						div class="slide-content #{content.content_type.name.downcase}"
+  .state-background
+  .slides
+    section class="slide"
+      p align="center"
+        h3= @presentation.name
+        h4= "http://twitter.com/#{@presentation.user.nickname}"
+    - @presentation.slides.each do |slide|
+      section
+        - slide.contents.each do |content|
+          //div class="slide-content #{content.content_type.name.downcase}"
+          = output_content(content)
+  aside class="controls"
+    a class="left" href="#"
+      | &#x25C4;
+    a class="right" href="#"
+      | &#x25BA;
+    a class="up" href="#"
+      | &#x25B2;
+    a class="down" href="#"
+      | &#x25BC;
 
+  .progress
+    span
+  
 
-
+= javascript_include_tag "reveal.min"
 - if current_user.id == @presentation.user_id
   javascript:
 
@@ -29,24 +46,31 @@
 
       // bind to a channel event
       channel.bind('new_client', function(data) {
-        console.log('channel event received: ' + data);
-        console.log(data)
+        $('#debug').append('channel event received: ' + data + '\n');
       });
 
-
+      Reveal.initialize({
+          controls: true,
+          progress: true,
+          history: true,
+          
+          theme: Reveal.getQueryHash().theme || 'default', // available themes are in /css/theme
+          transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
+  
+          // Optional libraries used to extend on reveal.js
+          dependencies: [
+                        { src: 'http://amoose.github.io/presentations/lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+                        { src: 'http://amoose.github.io/presentations/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                        { src: 'http://amoose.github.io/presentations/lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                        { src: 'http://amoose.github.io/presentations/lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          ]
+        });
     });
-
-		$(document).ready(function() {
-			// $.deck('.slide');
-		});
-
-	//	$(document).bind('deck.change', function(event, from, to) {
-	//  	console.log('Moving from slide ' + from + ' to ' + to);
-	//	});
     
 
 - else
   javascript:
+    var presentation_id = $('body').data('presentation_id');
     $(function() {
 			// $.deck('.slide');
 
@@ -58,8 +82,26 @@
       console.log(channel)
       // bind to a channel event
       channel.bind('party_'+presentation_id, function(data) {
-        console.log('channel event received: ' + data);
-        //$('.debug').append(data)
+        //console.log('channel event received: ' + data);
+        $('#debug').append(data)
         //$('#goto-slide').val(data.slide)
       });
+
+      // REVEAL
+      Reveal.initialize({
+          controls: false,
+          progress: true,
+          history: true,
+          
+          theme: Reveal.getQueryHash().theme || 'default', // available themes are in /css/theme
+          transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
+  
+          // Optional libraries used to extend on reveal.js
+          dependencies: [
+                        { src: 'http://amoose.github.io/presentations/lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+                        { src: 'http://amoose.github.io/presentations/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                        { src: 'http://amoose.github.io/presentations/lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                        { src: 'http://amoose.github.io/presentations/lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          ]
+        });
     })

@@ -9,6 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ += require bootstrap
  *= require_tree .
 */
 
@@ -19,21 +20,22 @@
 .semi-trans-bg,
 .content {
   padding: 10px 20px;
-  color: #FFFFFF;
-  background: -moz-linear-gradient(top,  rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6+ */
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.65)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
-  background: -webkit-linear-gradient(top,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10+,Safari5.1+ */
-  background: -o-linear-gradient(top,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.65) 100%); /* Opera 11.10+ */
-  background: -ms-linear-gradient(top,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.65) 100%); /* IE10+ */
-  background: linear-gradient(to bottom,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.65) 100%); /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
+  font-family: Arial;
+  // color: #FFFFFF;
+  // background: -moz-linear-gradient(top,  rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6+ */
+  // background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(0,0,0,0.65)), color-stop(100%,rgba(0,0,0,0.65))); /* Chrome,Safari4+ */
+  // background: -webkit-linear-gradient(top,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10+,Safari5.1+ */
+  // background: -o-linear-gradient(top,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.65) 100%); /* Opera 11.10+ */
+  // background: -ms-linear-gradient(top,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.65) 100%); /* IE10+ */
+  // background: linear-gradient(to bottom,  rgba(0,0,0,0.65) 0%,rgba(0,0,0,0.65) 100%); /* W3C */
+  // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#a6000000',GradientType=0 ); /* IE6-9 */
 
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px;
-  -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-  -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
-  box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  // -webkit-border-radius: 8px;
+  // -moz-border-radius: 8px;
+  // border-radius: 8px;
+  // -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  // -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+  // box-shadow: 0 1px 2px rgba(0,0,0,.15);
 }
 
 .main-login {
@@ -43,24 +45,24 @@
   padding: 40px 80px;
 }
 
-#main {
-  float: right;
-}
+// #main {
+//   float: right;
+// }
 
 h1, h2, h3, h4, h5 {
-  font-weight: normal !important;
+  font-weight: bold !important;
 }
 
 .brand,
 .navbar,
 .merri {
-	font-family: 'Merriweather Sans', sans-serif;
+	// font-family: 'Merriweather Sans', sans-serif;
 }
 
 
 .content,
 .cinzel {
-	font-family: 'Cinzel', serif;
+	// font-family: 'Cinzel', serif;
 }
 
 body {
@@ -77,7 +79,11 @@ body {
 }
 
 .navbar-right {
-  float: right;
+  // float: right;
 }
 
 .alert { border-radius: 0 !important; }
+
+body {
+  padding-top: 50px;
+}

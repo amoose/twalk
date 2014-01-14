@@ -45,7 +45,7 @@ class PresentationsController < ApplicationController
   end
 
   def mine
-    @presentations = Presentation.mine
+    @presentations = Presentation.for(current_user.id)
   end
 
   # GET /presentations/new

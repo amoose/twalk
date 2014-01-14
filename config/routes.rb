@@ -17,7 +17,7 @@ Twalk2::Application.routes.draw do
   get '/signout' => 'sessions#destroy', :as => :signout
   get '/auth/failure' => 'sessions#failure'
 
-  get '/go/:id/' => 'presentations#launch'
+  get '/go/:id/' => 'presentations#launch', :as => :presentation_launch
 
   get '/sessions/update_geolocation'
   

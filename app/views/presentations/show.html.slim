@@ -1,6 +1,3 @@
-/ p id=notice
-/   = notice
-
 p
   b 
     | Name:
@@ -17,6 +14,8 @@ p
   = @presentation.description
 
 - if @presentation.user_id == current_user.id or current_user.has_role? :admin
+  = link_to 'Launch', presentation_launch_path(@presentation)
+  | &nbsp;|&nbsp;
   = link_to 'Slides', presentation_slides_path(@presentation)
   | &nbsp;|&nbsp;
   = link_to 'Edit', edit_presentation_path(@presentation)

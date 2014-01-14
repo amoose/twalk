@@ -12,25 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap
 //= require websocket_rails/main
-	
 
-// Full list of configuration options available here:
-// https://github.com/hakimel/reveal.js#configuration
-Reveal.initialize({
-	controls: true,
-	progress: true,
-	history: true,
-	
-	theme: Reveal.getQueryHash().theme || 'default', // available themes are in /css/theme
-	transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
 
-	// Optional libraries used to extend on reveal.js
-	dependencies: [
-		{ src: 'http://infamousamos.github.io/presentations/lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
-    { src: 'http://infamousamos.github.io/presentations/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-    { src: 'http://infamousamos.github.io/presentations/lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-    { src: 'http://infamousamos.github.io/presentations/lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-	]
-});
+//   // $("#new_post").on("ajax:success", (e, data, status, xhr) ->
+//   //   $("#new_post").append xhr.responseText
+//   // ).bind "ajax:error", (e, xhr, status, error) ->
+//   //   $("#new_post").append "<p>ERROR</p>"

@@ -1,25 +1,24 @@
 - if user_signed_in?
-	.semi-trans-bg
-		h1
-			| My Presentations
-		- if @presentations.any?
-			ul.nearby
-				- @presentations.each do |pres|
-					li
-						= link_to pres.name, pres
-		- else
-			p
-				| You have no presentations.
-		h2
-			| Nearby Presentations
-		- if @nearby_presentations.any?
-			ul.nearby
-				- @nearby_presentations.each do |pres|
-					li
-						= link_to pres.name, "/go/#{pres.slug}/"
-		- else
-			p
-				| No presentations nearby.
+	h1
+		| My Presentations
+	- if @presentations.any?
+		ul.nearby
+			- @presentations.each do |pres|
+				li
+					= link_to pres.name, pres
+	- else
+		p
+			| You have no presentations.
+	h2
+		| Nearby Presentations
+	- if @nearby_presentations.any?
+		ul.nearby
+			- @nearby_presentations.each do |pres|
+				li
+					= link_to pres.name, "/go/#{pres.slug}/"
+	- else
+		p
+			| No presentations nearby.
 - else
 	.main-login.semi-trans-bg
 		= render :partial => 'login'
@@ -30,8 +29,3 @@
 					li
 						= link_to pres.name, "/go/#{pres.slug}/"
 		
-
-= debug session[:geolocation]
-
-
-
