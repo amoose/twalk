@@ -1,9 +1,9 @@
 - if user_signed_in?
 	h1
 		| My Presentations
-	- if @presentations.any?
+	- if @my_presentations.any?
 		ul.nearby
-			- @presentations.each do |pres|
+			- @my_presentations.each do |pres|
 				li
 					= link_to pres.name, pres
 	- else

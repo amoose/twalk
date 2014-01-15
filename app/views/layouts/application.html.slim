@@ -12,10 +12,17 @@ html
       = yield(:head)
       - if user_signed_in?
         javascript:
-          var username = "#{current_user.nickname}"
+          $(function() {
+            $('body').data("username","#{current_user.nickname}")
+            $('body').data("presentation_id","#{current_user.id}")
+          })
+          
       - else 
         javascript:
-          var username = ""
+          $(function() {
+            $('body').data("username","");
+            $('body').data("presentation_id","");
+          });
 
   body class=("#{controller_name} #{action_name}")
     header
@@ -25,3 +32,5 @@ html
       = yield
     footer
       | &copy; 2013 Twalk.io
+
+= debug current_user_latlon

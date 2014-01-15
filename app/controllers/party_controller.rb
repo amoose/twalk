@@ -9,31 +9,29 @@ class PartyController <  WebsocketRails::BaseController
 
   def client_connected
     controller_store[:connected_clients] = controller_store[:connected_clients]+1
-    # binding.pry
+    WebsocketRails["party_#{@presentation.id}"].trigger(:new_client, { :user_id => current_user.id, :nickname => current_user.nickname })
+    send_message :new_client, { :message => "!!new user connected!"}
   end
 
   def client_disconnected
     controller_store[:connected_clients] = controller_store[:connected_clients]-1
-    current_user.presentations.each do |pres|
-      pres.latitude = nil
-      pres.longitude = nil
-      pres.geolocation_updated_at = nil
-      pres.save
-    end
-    # WebsocketRails["party_#{@presentation.id}"].trigger(:new_client, { :user_id => current_user.id, :nickname => current_user.nickname })
+    # current_user.presentations.each do |pres|
+    #   pres.latitude = nil
+    #   pres.longitude = nil
+    #   pres.geolocation_updated_at = nil
+    #   pres.save
+    # end
+    WebsocketRails["party_#{@presentation.id}"].trigger(:lost_client, { :user_id => current_user.id, :nickname => current_user.nickname })
     # WebsocketRails[]
   end
 
-  def control_show
-    # binding.pry
-    WebsocketRails["party_#{@presentation.id}"].trigger(:move_deck, { :slide => to_slide })
+  def control_show(msg)
+    # WebsocketRails["party_#{@presentation.id}"].trigger(:move_deck, { :slide => to_slide })
+    logger.info msg
+    send_message :move_deck, { :message => "deck moved!"}
   end
 
   def ensure_logged_in!
-  	if current_user.nil?
-  		return nil
-  	else
-  		return current_user
-  	end
+  	current_user
   end
 end

@@ -1,22 +1,15 @@
-/ .presentation.deck-container
-/ 	- @presentation.slides.each do |slide|
-/ 		section class="slide"
-/ 			- slide.contents.each do |content|
-/ 				div class="slide-content #{content.content_type.name.downcase}"
-/ 					= output_content(content)
-
 .reveal
   .state-background
   .slides
-    section class="slide"
+    section class="slide" data-slide-num="0"
       p align="center"
         h3= @presentation.name
         h4= "http://twitter.com/#{@presentation.user.nickname}"
-    - @presentation.slides.each do |slide|
-      section
+    - @presentation.slides.each_with_index do |slide,i|
+      section data-slide-num="#{i+1}"
         - slide.contents.each do |content|
-          //div class="slide-content #{content.content_type.name.downcase}"
-          = output_content(content)
+          div class="slide-content #{content.content_type.name.downcase}"
+            = output_content(content)
   aside class="controls"
     a class="left" href="#"
       | &#x25C4;
@@ -32,6 +25,8 @@
   
 
 = javascript_include_tag "reveal.min"
+
+
 - if current_user.id == @presentation.user_id
   javascript:
 
@@ -44,6 +39,14 @@
       var dispatcher = new WebSocketRails('localhost:5000/websocket');
     	var channel = dispatcher.subscribe('party_'+presentation_id);
 
+
+      $('body').click(function() {
+        dispatcher.trigger('control_show', {"slide": 1})
+        console.log("dispatcher.trigger('control_show', {'slide': 1})")
+      })
+
+
+      console.log(channel)
       // bind to a channel event
       channel.bind('new_client', function(data) {
         $('#debug').append('channel event received: ' + data + '\n');
@@ -65,6 +68,17 @@
                         { src: 'http://amoose.github.io/presentations/lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
           ]
         });
+
+      Reveal.addEventListener( 'slidechanged', function( event ) {
+          // event.previousSlide, event.currentSlide, event.indexh, event.indexv
+        // new_slide = event.currentSlide
+        //console.log(event.currentSlide)
+        $slide = $(event.currentSlide)
+        message = $slide.data('slide-num');
+        console.log($slide)
+        dispatcher.trigger('control_show', message);
+        console.log('slide changed to: '+message)
+      });
     });
     
 
@@ -73,7 +87,7 @@
     var presentation_id = $('body').data('presentation_id');
     $(function() {
 			// $.deck('.slide');
-
+      var presentation_id = $('body').data('presentation_id');
       var dispatcher = new WebSocketRails('localhost:5000/websocket');
 
       // subscribe to the channel
@@ -81,11 +95,15 @@
 
       console.log(channel)
       // bind to a channel event
-      channel.bind('party_'+presentation_id, function(data) {
+      channel.bind('control_show', function(data) {
         //console.log('channel event received: ' + data);
         $('#debug').append(data)
         //$('#goto-slide').val(data.slide)
       });
+
+      channel.bind('move_deck', function(data) {
+        $('#debug').append(data)
+      })
 
       // REVEAL
       Reveal.initialize({
