@@ -15,7 +15,7 @@
 //= require bootstrap
 //= require turbolinks
 //= require websocket_rails/main
-	
+//= require geolocation
 
 //   // $("#new_post").on("ajax:success", (e, data, status, xhr) ->
 //   //   $("#new_post").append xhr.responseText

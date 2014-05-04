@@ -37,10 +37,6 @@ class PartyController <  WebsocketRails::BaseController
     # send_message :move_deck, { :message => "deck moved!"}
   end
 
-  def join
-    logger.info "JOINED!"
-  end
-
   def ensure_logged_in!
   	current_user
   end

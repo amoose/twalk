@@ -1,5 +1,6 @@
 // these are super ugly global functions taken from stackoverflow
 function getLocation() {
+	enu = true;
   if(enu) {
 		navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
 	} else {
