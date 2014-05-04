@@ -20,7 +20,7 @@ class PresentationsController < ApplicationController
         current_user.party.destroy
       end
       @party = Party.create(:user => current_user, :presentation => @presentation)
-
+      @presentation_mode = "boss"
       if session[:geolocation]
         @presentation.longitude = session[:geolocation][:longitude].to_f
         @presentation.latitude = session[:geolocation][:latitude].to_f
@@ -30,6 +30,7 @@ class PresentationsController < ApplicationController
       end
       @presenter_mode = @presentation.id
     else
+      @presentation_mode = "kibitz"
       if @presentation.has_party?
         # need user to join CORRECT party.
         # TODO figure out how to join correct party.

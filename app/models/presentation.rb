@@ -6,7 +6,7 @@ class Presentation < ActiveRecord::Base
   has_many :parties, :dependent => :destroy
 
   validates_presence_of :slug
-  
+
   belongs_to :user
   friendly_id :name, :use => :slugged
 

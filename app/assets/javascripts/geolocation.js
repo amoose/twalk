@@ -1,6 +1,6 @@
 // these are super ugly global functions taken from stackoverflow
 function getLocation() {
-  if(navigator.geolocation) {
+  if(enu) {
 		navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
 	} else {
 		console.log('not supported.')

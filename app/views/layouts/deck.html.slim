@@ -5,6 +5,9 @@ html
       title= content_for?(:title) ? yield(:title) : "Twalk.io"
       meta content=(content_for?(:description) ? yield(:description) : "Twalk.io") name="description" 
       meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
+      = javascript_include_tag "//amoose.github.com/presentations/lib/js/head.min.js"
+      / = javascript_include_tag "//amoose.github.io/presentations/javascripts/reveal.min.js"
+      = javascript_include_tag "reveal.min.new"
       = javascript_include_tag "deck"
       = stylesheet_link_tag "deck", :media => "all"
       meta name="apple-mobile-web-app-capable" content="yes"
@@ -13,7 +16,6 @@ html
       <!--[if lt IE 9]>
         <script src="lib/html5shiv.js"></script>
       <![endif]-->
-      = javascript_include_tag "https://amoose.github.com/presentations/lib/js/head.min.js"
 
       = csrf_meta_tags
       = yield(:head)
@@ -31,7 +33,7 @@ html
             $('body').data("presentation_id","");
           });
 
-  body class=("#{controller_name} #{action_name}") 
+  body class="#{controller_name} #{action_name} #{@presentation_mode}"
     //= render 'layouts/navigation'
     //#main role="main" 
     //  = render 'layouts/messages'
@@ -43,4 +45,4 @@ html
   //  = debug current_user
   
 
-= debug current_user_latlon
+/ = debug current_user_latlon

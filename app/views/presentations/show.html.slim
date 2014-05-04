@@ -14,7 +14,7 @@ p
   = @presentation.description
 
 - if @presentation.user_id == current_user.id or current_user.has_role? :admin
-  = link_to 'Launch', presentation_launch_path(@presentation)
+  = link_to 'Launch', presentation_launch_path(@presentation), :data => { 'no-turbolink' => true }
   | &nbsp;|&nbsp;
   = link_to 'Slides', presentation_slides_path(@presentation)
   | &nbsp;|&nbsp;

@@ -24,32 +24,23 @@
     span
   
 
-= javascript_include_tag "reveal.min"
+// = javascript_include_tag "reveal.min"
 
 
 - if current_user.id == @presentation.user_id
   javascript:
 
     $(function() {
-    	console.log('-- YOU ARE PRESENTER')
-      
-
     	var presentation_id = $('body').data('presentation_id');
       // connect to server like normal
       var dispatcher = new WebSocketRails('localhost:5000/websocket');
     	var channel = dispatcher.subscribe('party_'+presentation_id);
 
 
-      $('body').click(function() {
-        dispatcher.trigger('control_show', {"slide": 1})
-        console.log("dispatcher.trigger('control_show', {'slide': 1})")
-      })
-
-
-      console.log(channel)
       // bind to a channel event
-      channel.bind('new_client', function(data) {
-        $('#debug').append('channel event received: ' + data + '\n');
+      channel.bind('client_connected', function(data) {
+        //$('#debug').append('channel event received: ' + data + '\n');
+        console.log(data)
       });
 
       Reveal.initialize({
@@ -70,23 +61,21 @@
         });
 
       Reveal.addEventListener( 'slidechanged', function( event ) {
-          // event.previousSlide, event.currentSlide, event.indexh, event.indexv
-        // new_slide = event.currentSlide
-        //console.log(event.currentSlide)
-        $slide = $(event.currentSlide)
-        message = $slide.data('slide-num');
-        console.log($slide)
-        dispatcher.trigger('control_show', message);
-        console.log('slide changed to: '+message)
+        var _$slide = $(event.currentSlide);
+        var _message = {
+          party: presentation_id,
+          slide: _$slide.data('slide-num')
+        }
+        dispatcher.trigger('control_show', _message);
       });
     });
-    
+
 
 - else
   javascript:
     var presentation_id = $('body').data('presentation_id');
     $(function() {
-			// $.deck('.slide');
+
       var presentation_id = $('body').data('presentation_id');
       var dispatcher = new WebSocketRails('localhost:5000/websocket');
 
@@ -96,30 +85,58 @@
       console.log(channel)
       // bind to a channel event
       channel.bind('control_show', function(data) {
-        //console.log('channel event received: ' + data);
-        $('#debug').append(data)
+        console.log('channel event received: ' + data);
+        // $('#debug').append(data)
         //$('#goto-slide').val(data.slide)
       });
 
-      channel.bind('move_deck', function(data) {
-        $('#debug').append(data)
-      })
+      // dispatcher.trigger('party.join',"herro")
+
 
       // REVEAL
-      Reveal.initialize({
-          controls: false,
-          progress: true,
-          history: true,
-          
-          theme: Reveal.getQueryHash().theme || 'default', // available themes are in /css/theme
-          transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
-  
-          // Optional libraries used to extend on reveal.js
-          dependencies: [
-                        { src: 'http://amoose.github.io/presentations/lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
-                        { src: 'http://amoose.github.io/presentations/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-                        { src: 'http://amoose.github.io/presentations/lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-                        { src: 'http://amoose.github.io/presentations/lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          ]
-        });
-    })
+      var reveal = Reveal.initialize({
+        controls: false,
+        progress: true,
+        history: true,
+        
+        theme: Reveal.getQueryHash().theme || 'default', // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+                      { src: '//amoose.github.io/presentations/lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
+                      { src: '//amoose.github.io/presentations/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                      { src: '//amoose.github.io/presentations/lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                      { src: '//amoose.github.io/presentations/lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        ]
+      });
+
+      var currentSlide = 0;
+      Reveal.addEventListener( 'ready', function( event ) {
+        currentSlide = event.currentSlide;
+      });
+
+      Reveal.addEventListener( 'slidechanged', function( event ) {
+        currentSlide = event.currentSlide;
+      });
+
+      channel.bind('move_deck', function(data) {
+        var _new_slide = data['slide'];
+        var _cur_slide = currentSlide;
+        //console.log(_$cur_slide.data('slide-num'));
+        //console.log(_cur_slide);
+        Reveal.slide(_new_slide,0,0);
+        /*
+        if (_cur_slide < _new_slide) {
+          for (var _i = _cur_slide; _i < _new_slide; _i++) {
+            Reveal.right();
+          }
+        } else {
+          for (var _i = _cur_slide; _i > _new_slide; _i--) {
+            reveal.left();
+          }
+        }
+        */
+      });
+
+    });

@@ -8,6 +8,11 @@ WebsocketRails::EventMap.describe do
   subscribe :client_disconnected, :to => PartyController, :with_method => :client_disconnected
 
   subscribe :control_show, :to => PartyController, :with_method => :control_show
+
+  namespace :party do
+    subscribe :join, :to => PartyController, :with_method => :join
+  end
+
   #
   # Here is an example of mapping namespaced events:
   #   namespace :product do
