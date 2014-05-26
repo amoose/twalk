@@ -22,9 +22,6 @@
 
   .progress
     span
-  
-
-// = javascript_include_tag "reveal.min"
 
 
 - if current_user.id == @presentation.user_id
@@ -123,20 +120,7 @@
       channel.bind('move_deck', function(data) {
         var _new_slide = data['slide'];
         var _cur_slide = currentSlide;
-        //console.log(_$cur_slide.data('slide-num'));
-        //console.log(_cur_slide);
         Reveal.slide(_new_slide,0,0);
-        /*
-        if (_cur_slide < _new_slide) {
-          for (var _i = _cur_slide; _i < _new_slide; _i++) {
-            Reveal.right();
-          }
-        } else {
-          for (var _i = _cur_slide; _i > _new_slide; _i--) {
-            reveal.left();
-          }
-        }
-        */
       });
 
     });
