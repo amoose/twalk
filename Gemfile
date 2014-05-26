@@ -23,8 +23,7 @@ gem 'resque', '~> 2.0.0.pre.1', github: 'resque/resque'
 gem 'geocoder'
 gem 'rails-backbone'
 
-group :development do
-  gem 'better_errors'
+group :development do gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
   gem 'haml-rails'
   gem 'haml2slim'

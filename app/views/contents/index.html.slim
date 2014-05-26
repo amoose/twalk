@@ -1,0 +1,11 @@
+/ %h1 Listing contents
+h1 Content for #{@presentation.name}
+
+.slide-contents
+- @contents.each do |content|
+  .slide-content
+    = content.body.html_safe
+    = link_to 'Edit', edit_presentation_slide_content_path(@presentation, @slide, content)
+    = link_to 'Destroy', presentation_slide_content_path(@presentation, @slide, content), :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+= link_to 'New Content', new_presentation_slide_content_path

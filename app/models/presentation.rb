@@ -5,6 +5,7 @@ class Presentation < ActiveRecord::Base
   has_many :contents, :dependent => :destroy, through: :slides
   has_many :parties, :dependent => :destroy
 
+  validates_presence_of :name
   validates_presence_of :slug
 
   belongs_to :user

@@ -3,10 +3,10 @@
 
   .form-inputs
     = f.input :name
-    / = f.input :slug
+
     = f.input :description
 
-    = f.input :is_public
-    
+    = f.input :is_public, :label => "Make publicly viewable"
+
   .form-actions
     = f.button :submit

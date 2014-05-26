@@ -6,12 +6,15 @@ $navbar-default-bg: #312312;
 $light-orange: #ff8c00;
 $navbar-default-color: $light-orange;
 
+
 @import "bootstrap";
 
 #debug {
-	position: static:
+	position: static;
 	left: 0;
 	bottom: 0;
 	width: 500px;
 	height: 200px;
 }
+
+

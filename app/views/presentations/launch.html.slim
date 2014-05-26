@@ -30,7 +30,7 @@
     $(function() {
     	var presentation_id = $('body').data('presentation_id');
       // connect to server like normal
-      var dispatcher = new WebSocketRails('localhost:5000/websocket');
+      var dispatcher = new WebSocketRails("#{websocket_path}");
     	var channel = dispatcher.subscribe('party_'+presentation_id);
 
 

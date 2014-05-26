@@ -1,24 +1,26 @@
-.container
-  nav.navbar.navbar-default role="navigation"
-    / = link_to "Twalk.io", root_path, :class => 'brand'
-    ul class="nav navbar-nav navbar-left"
+.container-fluid
+  nav role="navigation"
+    ul class="nav"
       - if user_signed_in?
+        li.brand
+          = link_to 'Twalk.io', root_url
         li
-          = link_to 'Dashboard', root_url
+          = link_to 'Account', user_path(current_user)
         li
-          = link_to 'Presentations', presentations_url
-        li
-          = link_to 'Logout', signout_path
+          = link_to 'Sign out', signout_path
       - else
         li
-          = link_to 'Login', signin_path, { 'data-no-turbolink' => true }
+          = link_to 'Sign in', signin_path, { 'data-no-turbolink' => true }
       - if user_signed_in?
         - if current_user.has_role? :admin
           li
             = link_to 'Admin', users_path
 
-    form class="navbar-form navbar-right" role="search" method="get" action="/"
-      div.form-group
-        input type="text" class="form-control" placeholder="Keywords.." name="q"
-        button type="submit" class="btn btn-default"
-          | Search
+
+- if user_signed_in?
+  .container-fluid
+    nav role="navigation"
+      ul class="nav secondary"
+        - unless request.path == new_presentation_path
+          li
+            = link_to 'New Twalk', new_presentation_path

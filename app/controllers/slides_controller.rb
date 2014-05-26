@@ -7,6 +7,7 @@ class SlidesController < ApplicationController
   def index
     @presentation = Presentation.friendly.find(params[:presentation_id])
     @slides = @presentation.slides.order(sort_order: :asc)
+    redirect_to new_presentation_slide_path(@presentation) unless @slides.any?
   end
 
   # GET /slides/1

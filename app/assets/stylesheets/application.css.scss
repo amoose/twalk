@@ -12,6 +12,7 @@
  += require bootstrap
 */
 
+$default-text-color: #545454;
 .content {
   
 }
@@ -55,21 +56,26 @@ h1, h2, h3, h4, h5 {
 .brand,
 .navbar,
 .merri {
-	// font-family: 'Merriweather Sans', sans-serif;
+	font-family: 'Merriweather Sans', sans-serif;
+  // font-family: 'Cinzel', serif;
 }
 
-
+.brand {
+  font-size: 3.0em;
+  font-weight: 900;
+}
 .content,
 .cinzel {
 	// font-family: 'Cinzel', serif;
 }
 
 body {
-	// background: image-url('bg01.jpg') no-repeat center center;
+	// background: image-url('bg05.jpg') no-repeat center center;
 	background-size: cover;
 	background-attachment: fixed;
   position: relative;
   z-index: 1;
+  margin: 1.5em 2.0em !important;
 }
 
 .login-box {
@@ -83,6 +89,61 @@ body {
 
 .alert { border-radius: 0 !important; }
 
+.profile {
+  h3 {
+    margin: 0;
+    padding: 0 0 10px 0;
+  }
+  .twitter-info {
+    img {
+      width: 32px;
+      margin: 0 10px;
+    }
+  }
+}
 body {
-  padding-top: 50px;
+  font-family: 'Merriweather Sans', sans-serif !important;
+  padding: 10px 15px;
+  #main {
+    padding: 10px 15px;
+    background: -moz-linear-gradient(top,  rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.18) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.18)), color-stop(100%,rgba(255,255,255,0.18))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,0.18) 0%,rgba(255,255,255,0.18) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(255,255,255,0.18) 0%,rgba(255,255,255,0.18) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(255,255,255,0.18) 0%,rgba(255,255,255,0.18) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(255,255,255,0.18) 0%,rgba(255,255,255,0.18) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2effffff', endColorstr='#2effffff',GradientType=0 ); /* IE6-9 */
+    border: 1px solid #e1e1e1;
+    border-radius: 15px;
+    color: $default-text-color;
+  }
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Merriweather Sans', sans-serif !important;
+}
+
+.new_presentation {
+  textarea {
+    width: 100%;
+    min-height: 200px;
+  }
+  input[type=text] {
+    width: 100%;
+  }
+  .presentation_is_public {
+
+  }
+}
+
+.simple_form {
+  .control-group {
+    margin: 0 0 20px 0;
+  }
+}
+
+input, textarea, select {
+  font-size: 16px;
+  font-family: 'Merriweather Sans', sans-serif !important;
+  padding: 5px 9px;
 }
