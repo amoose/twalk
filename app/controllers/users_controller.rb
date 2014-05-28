@@ -18,6 +18,7 @@ class UsersController < ApplicationController
         session.delete(:new_signup)
         redirect_to root_url 
       else
+        flash[:success] = "Successfully updated your account!"
         redirect_to @user
       end
     else

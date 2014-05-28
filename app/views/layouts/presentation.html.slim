@@ -7,11 +7,11 @@ html
       meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
       = javascript_include_tag "//amoose.github.com/presentations/lib/js/head.min.js"
       = javascript_include_tag "reveal.min.new"
-      = javascript_include_tag "deck"
-      = stylesheet_link_tag "deck", :media => "all"
+      = javascript_include_tag "presentation"
+      = stylesheet_link_tag "presentation", :media => "all"
       meta name="apple-mobile-web-app-capable" content="yes"
       meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"
-      = stylesheet_link_tag "http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
+      = stylesheet_link_tag "//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
       <!--[if lt IE 9]>
         <script src="lib/html5shiv.js"></script>
       <![endif]-->
@@ -33,13 +33,14 @@ html
           });
 
   body class="#{controller_name} #{action_name} #{@presentation_mode}"
+    = render 'layouts/presentation_navigation'
     //= render 'layouts/navigation'
     //#main role="main" 
     //  = render 'layouts/messages'
     //  = yield
     //footer
     //  | &copy; 2013 Twalk.io
-    = yield
+    == yield
 
 / #debug
  / # = debug current_user_latlon

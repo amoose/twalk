@@ -30,7 +30,7 @@
     $(function() {
     	var presentation_id = $('body').data('presentation_id');
       // connect to server like normal
-      var dispatcher = new WebSocketRails("#{websocket_path}");
+      var dispatcher = new WebSocketRails("#{@websocket_path}");
     	var channel = dispatcher.subscribe('party_'+presentation_id);
 
 
@@ -74,7 +74,7 @@
     $(function() {
 
       var presentation_id = $('body').data('presentation_id');
-      var dispatcher = new WebSocketRails('localhost:5000/websocket');
+      var dispatcher = new WebSocketRails("#{@websocket_path}");
 
       // subscribe to the channel
       var channel = dispatcher.subscribe('party_'+presentation_id);
@@ -114,13 +114,25 @@
       });
 
       Reveal.addEventListener( 'slidechanged', function( event ) {
-        currentSlide = event.currentSlide;
+        var _$slide = $(event.currentSlide);
+        var _message = {
+          party: presentation_id,
+          slide: _$slide.data('slide-num')
+        }
+        if ($('body').hasClass('kibitz')) {
+          $('body').removeClass('kibitz');
+        } else {
+
+        }
       });
 
       channel.bind('move_deck', function(data) {
         var _new_slide = data['slide'];
         var _cur_slide = currentSlide;
-        Reveal.slide(_new_slide,0,0);
+        var _$body = $('body');
+        if (_$body.hasClass('kibitz')) {
+          Reveal.slide(_new_slide,0,0);
+        }
       });
 
     });

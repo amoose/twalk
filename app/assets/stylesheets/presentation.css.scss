@@ -17,3 +17,23 @@
 #main {
 	// height: 100%
 }
+
+
+body.boss {
+  nav {
+  	background: green;
+  }
+}
+body.kibitz {
+  nav {
+  	background: red;
+  }
+}
+body.boss, body.kibitz {
+	nav {
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 20px;
+	}
+}

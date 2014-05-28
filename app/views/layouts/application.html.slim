@@ -27,6 +27,7 @@ html
   body class=("#{controller_name} #{action_name}")
     header
       = render 'layouts/navigation'
+      = render 'layouts/presentation_navigation'
     #main role="main" 
       = render 'layouts/messages'
       = yield

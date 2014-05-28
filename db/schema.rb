@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131110155641) do
+ActiveRecord::Schema.define(version: 20140528025509) do
 
   create_table "content_types", force: true do |t|
     t.string   "name"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20131110155641) do
     t.string   "name"
     t.string   "slug"
     t.integer  "user_id"
+    t.integer  "slide_num"
   end
 
   create_table "party_members", force: true do |t|

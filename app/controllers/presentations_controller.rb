@@ -14,6 +14,7 @@ class PresentationsController < ApplicationController
   end
 
   def launch
+    @websocket_path = Rails.env == "development" ? "localhost:5000#{websocket_path}" : websocket_path
     # TODO: cleanup this logic. Create model methods for some of this shit
     if @presentation.user_id == current_user.id
       if current_user.party
@@ -28,7 +29,6 @@ class PresentationsController < ApplicationController
         @presentation.geolocation_accuracy = session[:geolocation][:accuracy]
         @presentation.save
       end
-      @presenter_mode = @presentation.id
     else
       @presentation_mode = "kibitz"
       if @presentation.has_party?
@@ -42,7 +42,7 @@ class PresentationsController < ApplicationController
       end
       WebsocketRails["party_#{@presentation.id}"].trigger(:new_client, { :user_id => current_user.id, :nickname => current_user.nickname })
     end
-    render :layout => "deck"
+    render :layout => "presentation"
   end
 
   def mine
@@ -117,7 +117,7 @@ class PresentationsController < ApplicationController
     def check_access
       unless user_signed_in?
         cookies[:redirect_to] = request.fullpath
-        redirect_to signin_path, :notice => 'You must be logged in...'
+        redirect_to signin_path, :notice => 'You must be logged in to launch a presentation.'
       end
     end
 end

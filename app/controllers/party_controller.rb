@@ -12,7 +12,6 @@ class PartyController <  WebsocketRails::BaseController
     # WebsocketRails["party_#{@presentation.id}"].trigger(:new_client, { :user_id => current_user.id, :nickname => current_user.nickname })
     # WebsocketRails["party_#{@presentation.id}"].trigger(:client_connected, { :user_id => current_user.id, :nickname => current_user.nickname })
     # puts "client_connected"
-    send_message :new_client, { :message => "!!new user connected!"}
   end
 
   def client_disconnected
@@ -30,9 +29,11 @@ class PartyController <  WebsocketRails::BaseController
 
   def control_show
     if message[:slide] and message[:party]
-      party = "party_#{message[:party]}"
+      party_str = "party_#{message[:party]}"
+      party = Party.find(message[:party])
       slide = message[:slide]
-      WebsocketRails[party].trigger(:move_deck, { :slide => slide })
+      party.current_slide = slide
+      WebsocketRails[party_str].trigger(:move_deck, { :slide => slide })
     end
     # send_message :move_deck, { :message => "deck moved!"}
   end
