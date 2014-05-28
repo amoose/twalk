@@ -95,7 +95,7 @@
         controls: false,
         progress: true,
         history: true,
-        
+        keyboard: false,
         theme: Reveal.getQueryHash().theme || 'default', // available themes are in /css/theme
         transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
 
@@ -115,18 +115,15 @@
 
       Reveal.addEventListener( 'slidechanged', function( event ) {
         var _$slide = $(event.currentSlide);
-        var _message = {
-          party: presentation_id,
-          slide: _$slide.data('slide-num')
-        }
         if ($('body').hasClass('kibitz')) {
-          $('body').removeClass('kibitz');
+          // $('body').addClass('kibitz');
         } else {
 
         }
       });
 
       channel.bind('move_deck', function(data) {
+        console.log(data)
         var _new_slide = data['slide'];
         var _cur_slide = currentSlide;
         var _$body = $('body');

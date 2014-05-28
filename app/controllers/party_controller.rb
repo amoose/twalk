@@ -30,9 +30,10 @@ class PartyController <  WebsocketRails::BaseController
   def control_show
     if message[:slide] and message[:party]
       party_str = "party_#{message[:party]}"
-      party = Party.find(message[:party])
+      party = Party.where(:presentation_id => message[:party]).last
       slide = message[:slide]
-      party.current_slide = slide
+      party.slide_num = slide
+      party.save
       WebsocketRails[party_str].trigger(:move_deck, { :slide => slide })
     end
     # send_message :move_deck, { :message => "deck moved!"}
