@@ -9,6 +9,7 @@ class Presentation < ActiveRecord::Base
   validates_presence_of :slug
 
   belongs_to :user
+  belongs_to :theme
   friendly_id :name, :use => :slugged
 
   acts_as_taggable

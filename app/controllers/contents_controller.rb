@@ -6,6 +6,7 @@ class ContentsController < ApplicationController
   # GET /contents.json
   def index
     @contents = @slide.contents
+    add_breadcrumb "Slide #{@slide.sort_order} Contents"
   end
 
   # GET /contents/1

@@ -47,6 +47,7 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.0.2.1)
       sass (~> 3.2)
+    breadcrumbs_on_rails (2.3.0)
     builder (3.1.4)
     cancan (1.6.10)
     capybara (2.1.0)
@@ -266,6 +267,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass (~> 3.0.2.0)
+  breadcrumbs_on_rails
   cancan
   capybara
   coffee-rails (~> 4.0.0)

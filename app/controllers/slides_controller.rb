@@ -8,6 +8,7 @@ class SlidesController < ApplicationController
     @presentation = Presentation.friendly.find(params[:presentation_id])
     @slides = @presentation.slides.order(sort_order: :asc)
     redirect_to new_presentation_slide_path(@presentation) unless @slides.any?
+    add_breadcrumb @presentation.name, presentation_slides_path(@presentation)
   end
 
   # GET /slides/1
@@ -18,8 +19,8 @@ class SlidesController < ApplicationController
 
   # GET /slides/new
   def new
-    @slide = Slide.new
-    @themes = Theme.all
+    @slide = Slide.create(:presentation_id => @presentation.id, :sort_order => @presentation.slides.count + 1)
+    redirect_to new_presentation_slide_content_path(@presentation,@slide)
   end
 
   # GET /slides/1/edit
