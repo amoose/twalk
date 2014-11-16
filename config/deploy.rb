@@ -7,6 +7,7 @@ set :repo_url, 'git@github.com:amoose/twalk.git'
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
+set :branch, 'feature/deploy'
 # Default deploy_to directory is /var/www/my_app
 # set :deploy_to, '/var/www/my_app'
 
@@ -32,7 +33,14 @@ set :linked_files, %w{config/database.yml}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 # Default value for keep_releases is 5
-# set :keep_releases, 5
+set :keep_releases, 5
+
+set :rbenv_type, :user # or :system, depends on your rbenv setup
+set :rbenv_ruby, '2.1.3'
+set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
+set :rbenv_map_bins, %w{rake gem bundle ruby rails}
+set :rbenv_roles, :all # default value
+
 
 namespace :deploy do
 
