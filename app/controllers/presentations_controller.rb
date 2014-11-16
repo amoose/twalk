@@ -2,12 +2,13 @@ class PresentationsController < ApplicationController
   before_action :set_presentation, only: [:show, :edit, :update, :destroy, :launch]
   before_action :check_access
 
-  add_breadcrumb "home", :root_path
+  add_breadcrumb "Home", :root_path
+
   # GET /presentations
   # GET /presentations.json
   def index
     @presentations = Presentation.all
-    add_breadcrumb "Twalks"
+    add_breadcrumb "All Twalks"
   end
 
   # GET /presentations/1

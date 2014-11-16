@@ -14,7 +14,7 @@ module Casein
   
     def show
       @casein_page_title = 'View presentation'
-      @presentation = Presentation.find params[:id]
+      @presentation = Presentation.friendly.find params[:id]
     end
   
     def new

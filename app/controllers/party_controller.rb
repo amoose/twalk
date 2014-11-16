@@ -12,11 +12,13 @@ class PartyController <  WebsocketRails::BaseController
     # WebsocketRails["party_#{@presentation.id}"].trigger(:new_client, { :user_id => current_user.id, :nickname => current_user.nickname })
     # WebsocketRails["party_#{@presentation.id}"].trigger(:client_connected, { :user_id => current_user.id, :nickname => current_user.nickname })
     # puts "client_connected"
+    # binding.pry
   end
 
   def client_disconnected
     controller_store[:connected_clients] = controller_store[:connected_clients]-1
     # WebsocketRails["party_#{@presentation.id}"].trigger(:client_disconnected, { :user_id => current_user.id, :nickname => current_user.nickname })
+    # binding.pry
     # current_user.presentations.each do |pres|
     #   pres.latitude = nil
     #   pres.longitude = nil
@@ -36,7 +38,6 @@ class PartyController <  WebsocketRails::BaseController
       party.save
       WebsocketRails[party_str].trigger(:move_deck, { :slide => slide })
     end
-    # send_message :move_deck, { :message => "deck moved!"}
   end
 
   def ensure_logged_in!

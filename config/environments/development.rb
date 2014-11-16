@@ -38,4 +38,6 @@ Twalk2::Application.configure do
   }
 
   config.middleware.delete Rack::Lock
+
+  config.ember.variant = :development
 end

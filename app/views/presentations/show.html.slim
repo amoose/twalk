@@ -1,17 +1,20 @@
-p
-  b 
-    | Name:
-  br/
-  = @presentation.name
-p
-  b 
-    | Slug:
-  br/
-  = @presentation.slug
-p
-  b 
-    | Description:
-  = @presentation.description
+.container-fluid.presentation-show
+  .row
+    .col-md-4
+      | Name:
+    
+    .col-md-6
+      = @presentation.name
+  .row
+    .col-md-4
+      | Slug:
+    .col-md-8
+      = @presentation.slug
+  .row
+    .col-md-4
+      | Description:
+    .col-md-8
+      = @presentation.description
 
 - if @presentation.user_id == current_user.id or current_user.has_role? :admin
   = link_to 'Launch', presentation_launch_path(@presentation), :data => { 'no-turbolink' => true }
