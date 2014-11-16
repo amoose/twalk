@@ -1,4 +1,4 @@
-// these are super ugly global functions taken from stackoverflow
+// [TODO] move to ember
 function getLocation() {
 	enu = true;
   if(enu) {

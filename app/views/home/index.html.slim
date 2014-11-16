@@ -17,7 +17,7 @@
 				li
 					= link_to pres.name, "/go/#{pres.slug}/"
 - else
-	.main-login.semi-trans-bg
+	.main-login
 		= render :partial => 'login'
 		br/
 		- if @nearby_presentations.any?

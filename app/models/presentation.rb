@@ -16,6 +16,10 @@ class Presentation < ActiveRecord::Base
 
   geocoded_by :ip_address
 
+  def mine?(who)
+    user_id == who.id
+  end
+
   def should_generate_new_friendly_id?
     name_changed?
   end

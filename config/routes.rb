@@ -1,6 +1,5 @@
 Twalk2::Application.routes.draw do
 
-	#Casein routes
 	namespace :casein do
 		resources :users
 		resources :presentations

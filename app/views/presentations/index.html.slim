@@ -1,0 +1,18 @@
+= link_to 'New Presentation', new_presentation_path
+
+table.table.table-hover
+  tr
+    th Name
+    th
+    th
+
+  - @presentations.each do |presentation|
+    tr
+      td= link_to presentation.name, presentation
+      - if presentation.mine?(current_user)
+        td= link_to 'Edit', edit_presentation_path(presentation)
+        td= link_to 'Destroy', presentation, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      - else
+        td &nbsp;
+        td &nbsp;
+

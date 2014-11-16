@@ -9,7 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- += require bootstrap
+ *= require bootstrap
 */
 
 $default-text-color: #545454;
@@ -70,7 +70,7 @@ h1, h2, h3, h4, h5 {
 }
 
 body {
-	// background: image-url('bg05.jpg') no-repeat center center;
+	background: image-url('bg05.jpg') no-repeat center center;
 	background-size: cover;
 	background-attachment: fixed;
   position: relative;
@@ -105,17 +105,17 @@ body {
   font-family: 'Merriweather Sans', sans-serif !important;
   padding: 10px 15px;
   #main {
-    padding: 10px 15px;
-    background: -moz-linear-gradient(top,  rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.18) 100%); /* FF3.6+ */
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.18)), color-stop(100%,rgba(255,255,255,0.18))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  rgba(255,255,255,0.18) 0%,rgba(255,255,255,0.18) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  rgba(255,255,255,0.18) 0%,rgba(255,255,255,0.18) 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  rgba(255,255,255,0.18) 0%,rgba(255,255,255,0.18) 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  rgba(255,255,255,0.18) 0%,rgba(255,255,255,0.18) 100%); /* W3C */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2effffff', endColorstr='#2effffff',GradientType=0 ); /* IE6-9 */
-    border: 1px solid #e1e1e1;
-    border-radius: 15px;
-    color: $default-text-color;
+    // padding: 10px 15px;
+    // background: -moz-linear-gradient(top,  rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.18) 100%); /* FF3.6+ */
+    // background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.18)), color-stop(100%,rgba(255,255,255,0.18))); /* Chrome,Safari4+ */
+    // background: -webkit-linear-gradient(top,  rgba(255,255,255,0.18) 0%,rgba(255,255,255,0.18) 100%); /* Chrome10+,Safari5.1+ */
+    // background: -o-linear-gradient(top,  rgba(255,255,255,0.18) 0%,rgba(255,255,255,0.18) 100%); /* Opera 11.10+ */
+    // background: -ms-linear-gradient(top,  rgba(255,255,255,0.18) 0%,rgba(255,255,255,0.18) 100%); /* IE10+ */
+    // background: linear-gradient(to bottom,  rgba(255,255,255,0.18) 0%,rgba(255,255,255,0.18) 100%); /* W3C */
+    // filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2effffff', endColorstr='#2effffff',GradientType=0 ); /* IE6-9 */
+    // border: 1px solid #e1e1e1;
+    // border-radius: 15px;
+    // color: $default-text-color;
   }
 }
 
@@ -148,3 +148,25 @@ input, textarea, select {
   padding: 5px 9px;
 }
 
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+// @media (min-width: @screen-sm-min) {
+
+// }
+
+// /* Medium devices (desktops, 992px and up) */
+// @media (min-width: @screen-md-min) {
+
+// }
+
+// /* Large devices (large desktops, 1200px and up) */
+// @media (min-width: @screen-lg-min) {
+
+// }
+// @media (max-width: @screen-xs-max) { }
+// @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { }
+// @media (min-width: @screen-md-min) and (max-width: @screen-md-max) { } 
+// @media (min-width: @screen-lg-min) { }
