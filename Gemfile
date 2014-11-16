@@ -26,6 +26,7 @@ gem 'breadcrumbs_on_rails'
 gem 'ember-rails'
 gem 'ember-source', '1.8.0'
 gem 'casein', '5.0.0'
+gem 'therubyracer'
 
 group :development do gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
