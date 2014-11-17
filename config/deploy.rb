@@ -24,7 +24,7 @@ set :branch, 'feature/deploy'
 # set :pty, true
 
 # Default value for :linked_files is []
-set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/database.yml config/application.yml config/thin.yml}
 
 # Default value for linked_dirs is []
 # set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
@@ -49,6 +49,7 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       # Your restart mechanism here, for example:
       # execute :touch, release_path.join('tmp/restart.txt')
+      execute :thin, "restart -C config/thin.yml"
     end
   end
 
@@ -60,6 +61,20 @@ namespace :deploy do
       # within release_path do
       #   execute :rake, 'cache:clear'
       # end
+    end
+  end
+
+  desc "Starts Thin"
+  task :start_thin do
+    on roles(:app), in: :sequence, wait: 5 do
+      execute :thin, "start -C config/thin.yml"
+    end
+  end
+
+  desc "Stops Thin"
+  task :stop_thin do
+    on roles(:app), in: :sequence, wait: 5 do
+      execute :thin, "stop"
     end
   end
 
