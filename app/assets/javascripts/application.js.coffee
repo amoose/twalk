@@ -5,7 +5,7 @@
 #= require turbolinks
 #= require websocket_rails/main
 #= require geolocation
-
+#= require jquery
 #= require handlebars
 #= require ember
 #= require ember-data
@@ -14,5 +14,3 @@
 
 # for more details see: http://emberjs.com/guides/application/
 window.Twalk2 = Ember.Application.create()
-
-

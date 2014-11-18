@@ -9,12 +9,12 @@ module Casein
   
     def index
       @casein_page_title = 'Users'
-  		@users = Users.order(sort_order(:name)).paginate :page => params[:page]
+  		@users = User.order(sort_order(:name)).paginate :page => params[:page]
     end
   
     def show
       @casein_page_title = 'View users'
-      @users = Users.find params[:id]
+      @users = User.find params[:id]
     end
   
     def new

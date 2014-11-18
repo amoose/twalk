@@ -1,18 +1,17 @@
 .container-fluid
   nav role="navigation"
-    ul class="nav navbar navbar-collapse collapse"
+    ul.nav.navbar.navbar-collapse.collapse
       - if user_signed_in?
         li.brand
           = link_to 'Twalk.io', root_url
+        - if current_user.has_role? :admin
+          li
+            = link_to 'Admin', "/admin"
         li
           = link_to 'Account', user_path(current_user)
         li
           = link_to 'Sign out', signout_path
+
       - else
         li
           = link_to 'Sign in', signin_path, { 'data-no-turbolink' => true }
-      - if user_signed_in?
-        - if current_user.has_role? :admin
-          li
-            = link_to 'Admin', users_path
-

@@ -47,9 +47,11 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      # Your restart mechanism here, for example:
-      # execute :touch, release_path.join('tmp/restart.txt')
-      execute :thin, "restart -C config/thin.yml"
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :bundle, :exec, :thin, "restart -C config/thin.yml"
+        end
+      end
     end
   end
 
@@ -67,14 +69,22 @@ namespace :deploy do
   desc "Starts Thin"
   task :start_thin do
     on roles(:app), in: :sequence, wait: 5 do
-      execute :thin, "start -C config/thin.yml"
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :bundle, :exec, :thin, "start -C config/thin.yml"
+        end
+      end
     end
   end
 
   desc "Stops Thin"
   task :stop_thin do
     on roles(:app), in: :sequence, wait: 5 do
-      execute :thin, "stop"
+      within release_path do
+        with rails_env: fetch(:rails_env) do
+          execute :bundle, :exec, :thin, "stop -C config/thin.yml2"
+        end
+      end
     end
   end
 
