@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
 	before_action :set_presentations
 
+  add_breadcrumb "Home", :root_path
+  
   def index
   end
 

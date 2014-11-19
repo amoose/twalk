@@ -13,6 +13,8 @@ Twalk2::Application.routes.draw do
     end
   end
 
+  get '/nearby' => 'presentations#nearby'
+
   get '/dashboard' => 'presentations#mine'
 
   root :to => "home#index"

@@ -7,7 +7,7 @@ set :repo_url, 'git@github.com:amoose/twalk.git'
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
-set :branch, 'feature/deploy'
+set :branch, 'master'
 # Default deploy_to directory is /var/www/my_app
 # set :deploy_to, '/var/www/my_app'
 

@@ -3,12 +3,12 @@ class PresentationsController < ApplicationController
   before_action :check_access
 
   add_breadcrumb "Home", :root_path
+  add_breadcrumb "All Twalks", :presentations_url
 
   # GET /presentations
   # GET /presentations.json
   def index
-    @presentations = Presentation.all
-    add_breadcrumb "All Twalks"
+    @presentations = Presentation.all  
   end
 
   # GET /presentations/1
@@ -51,6 +51,11 @@ class PresentationsController < ApplicationController
 
   def mine
     @presentations = Presentation.for(current_user.id)
+  end
+
+  def nearby
+    add_breadcrumb "Nearby", "/nearby"
+    @presentations = Presentation.near(current_user_latlon)
   end
 
   # GET /presentations/new

@@ -9,8 +9,11 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require bootstrap
 */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
 
 $default-text-color: #000;
 
@@ -28,9 +31,10 @@ h1, h2, h3, h4, h5 {
 }
 
 
-.brand {
+.navbar-brand {
   font-size: 3.0em;
   font-family: 'Chango', cursive;
+  letter-spacing: -3px;
 }
 
 body {
@@ -40,6 +44,14 @@ body {
   position: relative;
   margin: 0;
   font-family: 'Voces', cursive !important;
+
+  nav {
+    li {
+      i {
+        font-size: 12em !important;
+      }
+    }
+  }
 }
 
 .login-box {

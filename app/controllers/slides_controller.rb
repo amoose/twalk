@@ -1,14 +1,19 @@
 class SlidesController < ApplicationController
   before_action :set_presentation
   before_action :set_slide, only: [:show, :edit, :update, :destroy]
-  
+
+  add_breadcrumb "Home", :root_url
+  add_breadcrumb "All Twalks", :presentations_url
   # GET /slides
   # GET /slides.json
   def index
     @presentation = Presentation.friendly.find(params[:presentation_id])
     @slides = @presentation.slides.order(sort_order: :asc)
     redirect_to new_presentation_slide_path(@presentation) unless @slides.any?
-    add_breadcrumb @presentation.name, presentation_slides_path(@presentation)
+
+    add_breadcrumb @presentation.name, presentation_path(@presentation)
+    add_breadcrumb 'Slides', presentation_slides_path(@presentation)
+
   end
 
   # GET /slides/1

@@ -184,6 +184,8 @@ GEM
     modernizr-rails (2.7.1)
     mono_logger (1.1.0)
     multi_json (1.10.1)
+    nav_lynx (1.1.1)
+      rails (>= 3.1.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
@@ -362,6 +364,7 @@ DEPENDENCIES
   jbuilder (~> 1.2)
   jquery-rails
   modernizr-rails
+  nav_lynx
   omniauth
   omniauth-twitter
   pg

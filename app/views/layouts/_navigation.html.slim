@@ -1,17 +1,70 @@
-.container-fluid
-  nav role="navigation"
-    ul.nav.navbar.navbar-collapse.collapse
-      - if user_signed_in?
-        li.brand
-          = link_to 'Twalk.io', root_url
-        - if current_user.has_role? :admin
-          li
-            = link_to 'Admin', "/admin"
-        li
-          = link_to 'Account', user_path(current_user)
-        li
-          = link_to 'Sign out', signout_path
+/ .container-fluid
+/   nav role="navigation"
+/     ul.nav.navbar.navbar-collapse.collapse
+/       - if user_signed_in?
+/         li.brand
+/           = link_to 'twalk', root_url
+/         - if current_user.has_role? :admin
+/           li
+/             = link_to 'Admin', "/admin"
+/         li= nav_link_to raw("<i class=\"fa fa-location-arrow\"></i>"), nearby_path
+/         li
+/           = link_to 'Account', user_path(current_user)
+/         li
+/           = link_to 'Sign out', signout_path
 
-      - else
-        li
-          = link_to 'Sign in', signin_path, { 'data-no-turbolink' => true }
+/       - else
+/         li
+/           = link_to 'Sign in', signin_path, { 'data-no-turbolink' => true }
+
+
+nav.navbar.navbar-default role="navigation"
+  .container-fluid
+    .navbar-header
+      button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target=".navbar-collapse"
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      = nav_link_to 'twalk', root_url, :class => 'navbar-brand'
+
+    .collapse.navbar-collapse
+      / ul.nav.navbar-nav
+      /   <li class="active"><a href="#">Link</a></li>
+      /   <li><a href="#">Link</a></li>
+      /   <li class="dropdown">
+      /     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <span class="caret"></span></a>
+      /     <ul class="dropdown-menu" role="menu">
+      /       <li><a href="#">Action</a></li>
+      /       <li><a href="#">Another action</a></li>
+      /       <li><a href="#">Something else here</a></li>
+      /       <li class="divider"></li>
+      /       <li><a href="#">Separated link</a></li>
+      /       <li class="divider"></li>
+      /       <li><a href="#">One more separated link</a></li>
+      /     </ul>
+      /   </li>
+
+      / form class="navbar-form navbar-left" role="search"
+      /   .form-group
+      /     input type="text" class="form-control" placeholder="Find products..."
+      /     button type="submit" class="btn btn-default" Search
+
+      ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          li= nav_link_to raw("<i class=\"fa fa-location-arrow\"></i>"), nearby_path
+
+          li.dropdown
+            a href="#" class="dropdown-toggle" data-toggle="dropdown"= current_user.nickname
+              span.caret
+            ul.dropdown-menu role="menu"
+              li= nav_link_to 'Account', user_path(current_user)
+              
+              li.divider
+
+              li= link_to 'Sign out', signout_path
+
+        - else
+          li= link_to 'Sign in', signin_path, { 'data-no-turbolink' => true }
+          
+
