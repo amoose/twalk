@@ -106,6 +106,16 @@ input, textarea, select {
 }
 
 
+.main-nav {
+  list-style: none;
+  li {
+    list-style: none;
+  }
+  a {
+    font-size: 3.0em;  
+  }
+  
+}
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
 

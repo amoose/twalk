@@ -8,7 +8,7 @@ class PresentationsController < ApplicationController
   # GET /presentations
   # GET /presentations.json
   def index
-    @presentations = Presentation.all  
+    @presentations = Presentation.all
   end
 
   # GET /presentations/1

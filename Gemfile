@@ -25,7 +25,6 @@ gem 'geocoder'
 gem 'breadcrumbs_on_rails'
 gem 'ember-rails'
 gem 'ember-source', '1.8.0'
-gem 'casein', '5.0.0'
 gem 'therubyracer'
 gem 'nav_lynx'
 

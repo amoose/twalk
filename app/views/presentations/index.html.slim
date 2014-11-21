@@ -8,7 +8,7 @@ table.table.table-hover
 
   - @presentations.each do |presentation|
     tr
-      td= link_to presentation.name, presentation
+      td= link_to presentation.name, "/go/#{presentation.slug}", { 'data-no-turbolink' => true }
       - if presentation.mine?(current_user)
         td= link_to 'Edit', edit_presentation_path(presentation)
         td= link_to 'Destroy', presentation, :method => :delete, :data => { :confirm => 'Are you sure?' }

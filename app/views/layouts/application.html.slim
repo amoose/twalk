@@ -25,7 +25,7 @@ html
       = render 'layouts/presentation_navigation'
     #main role="main" 
       = render 'layouts/messages'
-      = render_breadcrumbs :tag => :li, :separator => ""
+      / = render_breadcrumbs :tag => :li, :separator => ""
       = yield
     footer
       | &copy; #{Time.now.year} Twalk.io

@@ -1,28 +1,26 @@
-- if user_signed_in?
-	h1
-		| My presentations
-	- if @my_presentations.any?
-		ul.nearby
-			- @my_presentations.each do |pres|
-				li
-					= link_to pres.name, pres
-	- else
-		p
-			| Create a <a href="/presentations/new">new presentation</a> now!
-	h2
-		| Nearby presentations
-	- if @nearby_presentations.any?
-		ul.nearby
-			- @nearby_presentations.each do |pres|
-				li
-					= link_to pres.name, "/go/#{pres.slug}/"
-- else
-	.main-login
-		= render :partial => 'login'
-		br/
-		- if @nearby_presentations.any?
-			ul.nearby
-				- @nearby_presentations.each do |pres|
-					li
-						= link_to pres.name, "/go/#{pres.slug}/"
+/ p= link_to 'All Presentations', presentations_path
+/ - if user_signed_in?
+/ 	h1
+/ 		| My presentations
+/ 	- if @my_presentations.any?
+/ 		ul.nearby
+/ 			- @my_presentations.each do |pres|
+/ 				li
+/ 					= link_to pres.name, pres
+/ 	h2
+/ 		| Nearby presentations
+/ 	- if @nearby_presentations.any?
+/ 		ul.nearby
+/ 			- @nearby_presentations.each do |pres|
+/ 				li
+/ 					= link_to pres.name, "/go/#{pres.slug}/"
+/ - else
+/ 	.main-login
+/ 		= render :partial => 'login'
+/ 		br/
+/ 		- if @nearby_presentations.any?
+/ 			ul.nearby
+/ 				- @nearby_presentations.each do |pres|
+/ 					li
+/ 						= link_to pres.name, "/go/#{pres.slug}/"
 		
