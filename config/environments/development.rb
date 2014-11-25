@@ -40,4 +40,6 @@ Twalk2::Application.configure do
   config.middleware.delete Rack::Lock
 
   config.ember.variant = :development
+
+  config.assets.precompile += %w( jquery-1.7.js )
 end

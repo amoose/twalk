@@ -27,13 +27,20 @@ gem 'ember-rails'
 gem 'ember-source', '1.8.0'
 gem 'therubyracer'
 gem 'nav_lynx'
+gem 'mercury-rails', github: 'jejacks0n/mercury'
 
-group :development do gem 'better_errors'
+group :development do
+  gem 'guard-bundler'
+  gem 'guard-rails'
+  gem 'guard-rspec'
+  gem 'guard-spring'
+  gem 'letter_opener'
+  gem 'quiet_assets'
+  gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
   gem 'haml-rails'
   gem 'haml2slim'
   gem 'html2haml'
-  gem 'quiet_assets'
   gem 'rails_layout'
   gem 'pry'
   gem 'capistrano', '~> 3.2.0'
@@ -55,3 +62,4 @@ group :test do
   gem 'database_cleaner', '1.0.1'
   gem 'email_spec'
 end
+gem 'paperclip'

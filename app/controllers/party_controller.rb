@@ -25,8 +25,9 @@ class PartyController <  WebsocketRails::BaseController
     #   pres.geolocation_updated_at = nil
     #   pres.save
     # end
-    # WebsocketRails["party_#{@presentation.id}"].trigger(:lost_client, { :user_id => current_user.id, :nickname => current_user.nickname })
+    WebsocketRails["party_#{@presentation.id}"].trigger(:lost_client, { :user_id => current_user.id, :nickname => current_user.nickname })
     # WebsocketRails[]
+    # binding.pry
   end
 
   def control_show

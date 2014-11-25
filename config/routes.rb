@@ -1,10 +1,9 @@
 Twalk2::Application.routes.draw do
-
-	namespace :casein do
-		resources :users
-		resources :presentations
-	end
-
+  mount Mercury::Engine => '/'
+  namespace :mercury do
+    resources :images
+  end
+  Mercury::Engine.routes
   resources :themes
 
   resources :presentations do

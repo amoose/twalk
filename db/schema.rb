@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140614181751) do
+ActiveRecord::Schema.define(version: 20141122004723) do
 
   create_table "content_types", force: true do |t|
     t.string   "name"
@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(version: 20140614181751) do
   end
 
   add_index "contents", ["slug"], name: "index_contents_on_slug"
+
+  create_table "mercury_images", force: true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "parties", force: true do |t|
     t.integer  "presentation_id"
