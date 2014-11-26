@@ -10,8 +10,8 @@ class Presentation < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :theme
-  friendly_id :name, :use => :slugged
-
+  friendly_id :slug_candidates, use: :slugged
+  
   acts_as_taggable
 
   geocoded_by :ip_address
@@ -31,8 +31,21 @@ class Presentation < ActiveRecord::Base
   def has_party?
     self.parties.any?
   end
+
+  def short_description
+    description.split.first(10).join(' ')
+  end
   
   def self.for(user_id)
     Presentation.where(:user_id => user_id)
+  end
+
+  def slug_candidates
+    [
+      :name,
+      [:name, :short_description],
+      [:name, :short_description, Time.now.strftime('%y%m%d')],
+      [:name, :short_description, Time.now.strftime('%y%m%d-%H%M')]
+    ]
   end
 end
