@@ -19,6 +19,7 @@ html
           })
 
   body class="#{controller_name} #{action_name}"
+    / = render partial: 'video'
     header
       = render 'layouts/navigation'
       = render 'layouts/presentation_navigation'
@@ -27,7 +28,15 @@ html
 
       = yield
     footer
-      | &copy; #{Time.now.year} Twalk.io
+      .container-fluid
+        .row
+          .col-md-12
+            | &copy; #{Time.now.year} <span class="brand" style="font-size: 1.0em">twalk</span>.io LLC
+            .git.pull-right
+              | r 
+              = link_to(Git::REVISION, 'https://github.com/amoose/twalk/commit/' + Git::REVISION)
+              |&nbsp;|&nbsp;v 
+              = link_to(Git::VERSION, 'https://github.com/amoose/twalk/releases/tag/' + Git::VERSION)
 
     / GEOLOCATION
     - if current_user && current_user.geolocate_me?

@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     if @user.update_attributes(user_params)
       if session[:new_signup]
-        flash[:success] = "Welcome to Twalk.io!"
+        flash[:success] = "Welcome to Twalk!"
         session.delete(:new_signup)
         redirect_to root_url 
       else

@@ -6,6 +6,8 @@ class ContentsController < ApplicationController
   # GET /contents.json
   def index
     @contents = @slide.contents
+    redirect_to new_presentation_slide_content_path(@presentation, @slide) unless @contents.any?
+
     add_breadcrumb "Slide #{@slide.sort_order} Contents"
   end
 
@@ -16,11 +18,27 @@ class ContentsController < ApplicationController
 
   # GET /contents/new
   def new
-    @content = Content.new
+    # @content = Content.new
+    @content = Content.new(
+        :body => 'New Content',
+        :sort_order => @slide.contents.size + 1,
+        :presentation_id => @presentation.id,
+        :slide_id => @slide.id,
+        :content_type => ContentType.default
+      )
+    # binding.pry
+
+    if @content.save
+      edit
+    else
+      flash[:error] = "ERROR"
+    end
+    # redirect_to "/editor" + presentation_slide_content_path(@presentation, @slide, @content)
   end
 
   # GET /contents/1/edit
   def edit
+    redirect_to "/editor" + presentation_slide_content_path(@presentation, @slide, @content)
   end
 
   # POST /contents
@@ -73,7 +91,7 @@ class ContentsController < ApplicationController
     end
 
     def set_presentation_and_slide
-      @presentation = Presentation.friendly.find(params[:presentation_id])
+      @presentation = current_user.presentations.friendly.find(params[:presentation_id])
       @slide = @presentation.slides.friendly.find(params[:slide_id])
     end
 

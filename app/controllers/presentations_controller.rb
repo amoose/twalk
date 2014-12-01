@@ -1,4 +1,5 @@
 class PresentationsController < ApplicationController
+  before_action :require_auth
   before_action :set_presentation, only: [:show, :edit, :update, :destroy, :launch]
   before_action :check_access, only: [:launch, :create, :update, :destroy, :edit, :new]
 
@@ -8,7 +9,7 @@ class PresentationsController < ApplicationController
   # GET /presentations
   # GET /presentations.json
   def index
-    @presentations = current_user.presentations
+    @presentations = Presentation.for(current_user.id)
   end
 
   # GET /presentations/1
@@ -18,7 +19,7 @@ class PresentationsController < ApplicationController
   end
 
   def launch
-    @websocket_path = Rails.env == "development" ? "localhost:5000#{websocket_path}" : websocket_path
+    @websocket_path = Rails.env == "development" ? "localhost:#{ENV['PORT']}#{websocket_path}" : websocket_path
     # TODO: cleanup this logic. Create model methods for some of this shit
     if @presentation.user_id == current_user.id
       if current_user.party
@@ -49,10 +50,6 @@ class PresentationsController < ApplicationController
     render :layout => "presentation"
   end
 
-  def mine
-    @presentations = Presentation.for(current_user.id)
-  end
-
   def nearby
     add_breadcrumb "Nearby", "/nearby"
     @presentations = Presentation.near(current_user_latlon)
@@ -65,7 +62,9 @@ class PresentationsController < ApplicationController
 
   # GET /presentations/1/edit
   def edit
+    # redirect_to "/editor/dashboard/#{@presentation.slug}"
   end
+
 
   # POST /presentations
   # POST /presentations.json
@@ -98,6 +97,28 @@ class PresentationsController < ApplicationController
     end
   end
 
+  def save_presentation
+    @presentation = current_user.presentations.friendly.find(params[:presentation_id])
+    @presentation.name = params[:content][:presentation_name][:value]
+    @presentation.description = params[:content][:presentation_description][:value]
+
+    @presentation.slides.each do |slide|
+      unless slide.nil?
+        slide.contents.each do |content|
+          unless content.nil?
+            content.body = params[:content]["presentation_slide_#{slide.slug}_content_#{content.slug}"][:value]
+          end
+        end
+      end
+    end
+
+    if @presentation.save!
+      render text: ''
+    else
+      render text: 'ERROR'
+    end
+  end
+
   # DELETE /presentations/1
   # DELETE /presentations/1.json
   def destroy
@@ -112,7 +133,7 @@ class PresentationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_presentation
       begin
-        @presentation = Presentation.friendly.find(params[:id])
+        @presentation = current_user.presentations.friendly.find(params[:id])
       rescue ActiveRecord::RecordNotFound
         redirect_to '/404.html'
       end
@@ -120,13 +141,10 @@ class PresentationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def presentation_params
-      params.require(:presentation).permit(:name, :slug, :description, :is_public, :latitude, :longitude)
+      params.require(:presentation).permit(:name, :slug, :description, :is_public, :latitude, :longitude, :theme_id)
     end
 
     def check_access
-      unless user_signed_in?
-        cookies[:redirect_to] = request.fullpath
-        redirect_to signin_path, :notice => 'You must be logged in to do that.'
-      end
+      # current_user.has_role?(:collaborator, @presentation)
     end
 end

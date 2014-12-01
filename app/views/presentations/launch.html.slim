@@ -2,9 +2,9 @@
   .state-background
   .slides
     section class="slide" data-slide-num="0"
-      p align="center"
-        h3= @presentation.name
-        h4= "http://twitter.com/#{@presentation.user.nickname}"
+      h1= @presentation.name
+      / h4= "http://twitter.com/#{@presentation.user.nickname}"
+
     - @presentation.slides.each_with_index do |slide,i|
       section data-slide-num="#{i+1}"
         - slide.contents.each do |content|

@@ -7,7 +7,6 @@ class SlidesController < ApplicationController
   # GET /slides
   # GET /slides.json
   def index
-    @presentation = Presentation.friendly.find(params[:presentation_id])
     @slides = @presentation.slides.order(sort_order: :asc)
     redirect_to new_presentation_slide_path(@presentation) unless @slides.any?
 
@@ -80,12 +79,12 @@ class SlidesController < ApplicationController
     end
 
     def set_presentation
-      @presentation = Presentation.friendly.find(params[:presentation_id])
+      @presentation = current_user.presentations.friendly.find(params[:presentation_id])
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def slide_params
       valid_params = params.require(:slide).permit(:theme_id, :sort_order)
-      valid_params[:presentation_id] = params[:presentation_id]
+      valid_params[:presentation_id] = @presentation.id
       valid_params
     end
 end

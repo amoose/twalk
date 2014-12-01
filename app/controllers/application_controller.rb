@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  helper_method :require_auth
   helper_method :current_user
   helper_method :user_signed_in?
   helper_method :correct_user?
@@ -46,6 +47,13 @@ class ApplicationController < ActionController::Base
       redirect_to root_url, :alert => "Access denied."
     end
 
+    def require_auth
+      unless user_signed_in?
+        cookies[:redirect_to] = request.fullpath
+        redirect_to signin_path, :notice => 'You must be logged in to do that.'
+      end
+    end
+    
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, :alert => exception.message
   end

@@ -8,7 +8,7 @@ class CreatePresentations < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :presentations, :slug, unique: true
+    add_index :presentations, :slug, unique: false
     add_index :users, :nickname, unique: true
   end
 end

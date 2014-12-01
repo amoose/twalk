@@ -1,28 +1,37 @@
-.container-fluid.presentation-show
-  .row
-    .col-md-4
-      | Name:
-    
-    .col-md-6
-      = @presentation.name
-  .row
-    .col-md-4
-      | Slug:
-    .col-md-8
-      = @presentation.slug
-  .row
-    .col-md-4
-      | Description:
-    .col-md-8
-      = @presentation.description
+.row
+  .container-fluid
+    .col-md-12
+      - if @presentation.user_id == current_user.id or current_user.has_role? :admin
+        = link_to 'Launch', presentation_launch_path(@presentation), :data => { 'no-turbolink' => true }
+        | &nbsp;|&nbsp;
+        = link_to 'Slides', presentation_slides_path(@presentation)
+        | &nbsp;|&nbsp;
+        = link_to 'Edit', edit_presentation_path(@presentation), :data => { 'no-turbolink' => true }
+        | &nbsp;|&nbsp;
+      = link_to 'Back', presentations_path
 
-- if @presentation.user_id == current_user.id or current_user.has_role? :admin
-  = link_to 'Launch', presentation_launch_path(@presentation), :data => { 'no-turbolink' => true }
-  | &nbsp;|&nbsp;
-  = link_to 'Slides', presentation_slides_path(@presentation)
-  | &nbsp;|&nbsp;
-  = link_to 'Edit', edit_presentation_path(@presentation)
-  | &nbsp;|&nbsp;
-= link_to 'Back', presentations_path
+.row
+  .container-fluid
+    .col-md-5
+
+      h3= "Presentation Information"
+      .panel.panel-default
+        .panel-body
+          fieldset
+
+            h2 data-mercury="simple" id="presentation_name"= @presentation.name.html_safe
+
+            .presentation-description data-mercury="full" id="presentation_description"= @presentation.description.html_safe
 
 
+
+    .col-md-5.col-md-offset-1
+      - @presentation.slides.each do |slide|
+        h3= "Slide #{slide.sort_order}"
+        .panel.panel-default
+          .panel-body
+            fieldset
+              / = link_to 'Edit', edit_presentation_slide_path(@presentation, slide), :data => { 'no-turbolink' => true }
+
+              - slide.contents.each do |content|
+                .editable data-mercury="full" id="presentation_slide_#{slide.sort_order}_content_#{content.sort_order}"= content.body.html_safe

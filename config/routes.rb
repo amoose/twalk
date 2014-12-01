@@ -15,6 +15,7 @@ Twalk2::Application.routes.draw do
     resources :slides do
       resources :contents
     end
+    put '/', to: 'presentations#save_presentation'
   end
 
 

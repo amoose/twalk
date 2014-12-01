@@ -1,0 +1,6 @@
+- if @content.content_type.name == "HTML"
+  div id="presentation_#{@presentation.id}_slide_#{@slide.id}_content_#{@content.id}_body" data-mercury="full"= @content.body.html_safe
+- else
+ h2 Unable to display
+
+= link_to 'Back', presentation_slide_contents_path(@presentation, @slide)

@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :nickname, use: :slugged
 
-  validates_format_of :email, :with => /@/, :allow_blank => false
+  validates_format_of :email, :with => /@/, :allow_blank => true
 
   def self.create_with_omniauth(auth)
     create! do |user|
