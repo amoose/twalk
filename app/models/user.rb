@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   rolify
-  
+  after_create :set_default_role
+
   validates_presence_of :name, :nickname
 
   has_many :presentations
@@ -10,7 +11,7 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :nickname, use: :slugged
 
-  validates_format_of :email, :with => /@/, :allow_blank => true
+  validates_format_of :email, :with => /@/, :allow_blank => false
 
   def self.create_with_omniauth(auth)
     create! do |user|
@@ -24,5 +25,9 @@ class User < ActiveRecord::Base
         user.description = auth[:info][:description] || ""
       end
     end
+  end
+
+  def set_default_role
+    add_role :user
   end
 end

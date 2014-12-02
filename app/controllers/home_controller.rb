@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   add_breadcrumb "Home", :root_path
   
   def index
+    redirect_to presentations_path if user_signed_in?
   end
 
   private

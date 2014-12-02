@@ -1,11 +1,8 @@
 // [TODO] move to ember
 function getLocation() {
 	enu = true;
-  if(enu) {
+  if(enu)
 		navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
-	} else {
-		console.log('not supported.')
-	}
 }
 
 function geoSuccess(position) {
@@ -13,7 +10,7 @@ function geoSuccess(position) {
     var lng = position.coords.longitude;
     $.ajax({
 		  url: "/sessions/update_geolocation",
-		  // context: document.body,
+		  context: document.body,
 		  data: position.coords
 		}).done(function(response) {
 		  console.log(response);
@@ -24,7 +21,4 @@ function geoError() {
   console.log("error: Geocoder failed.");
 }
 
-$(function() {
-	if ($('body').data('username') != "")	getLocation()
-})
 	

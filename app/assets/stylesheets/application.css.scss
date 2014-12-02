@@ -14,7 +14,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-
 $default-text-color: #000;
 
 .main-login {
@@ -35,6 +34,11 @@ h1, h2, h3, h4, h5 {
   font-size: 3.0em;
   font-family: 'Chango', cursive;
   letter-spacing: -3px;
+}
+.brand {
+  font-family: 'Chango', cursive;
+  letter-spacing: -1px;
+  font-size: 2.0em;
 }
 
 body {

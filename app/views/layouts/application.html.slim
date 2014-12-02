@@ -18,13 +18,20 @@ html
             $('body').data("presentation_id","#{current_user.id}")
           })
 
-  body class=("#{controller_name} #{action_name}")
+  body class="#{controller_name} #{action_name}"
     header
       = render 'layouts/navigation'
       = render 'layouts/presentation_navigation'
     #main role="main" 
       = render 'layouts/messages'
-      / = render_breadcrumbs :tag => :li, :separator => ""
+
       = yield
     footer
       | &copy; #{Time.now.year} Twalk.io
+
+    / GEOLOCATION
+    - if current_user && current_user.geolocate_me?
+      javascript:
+        $(function() {
+          getLocation()
+        })

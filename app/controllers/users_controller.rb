@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :check_admin_access, :only => [:index]
   before_filter :correct_user?, :except => [:index]
 
   def index
@@ -33,6 +34,6 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:id, :email, :role_ids)
+      params.require(:user).permit(:id, :email, :role_ids, :geolocate_me)
     end
 end

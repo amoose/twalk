@@ -8,8 +8,7 @@ class PresentationsController < ApplicationController
   # GET /presentations
   # GET /presentations.json
   def index
-    # @presentations = Presentation.all
-    @presentations = Presentation.for(current_user.id)
+    @presentations = current_user.presentations
   end
 
   # GET /presentations/1
@@ -127,7 +126,7 @@ class PresentationsController < ApplicationController
     def check_access
       unless user_signed_in?
         cookies[:redirect_to] = request.fullpath
-        redirect_to signin_path, :notice => 'You must be logged in to launch a presentation.'
+        redirect_to signin_path, :notice => 'You must be logged in to do that.'
       end
     end
 end

@@ -1,6 +1,7 @@
 class Presentation < ActiveRecord::Base
 	extend FriendlyId
-
+  resourcify
+  
   has_many :slides, :dependent => :destroy
   has_many :contents, :dependent => :destroy, through: :slides
   has_many :parties, :dependent => :destroy
