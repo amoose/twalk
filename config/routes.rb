@@ -1,20 +1,22 @@
 Twalk2::Application.routes.draw do
+  
   mount Mercury::Engine => '/'
   namespace :mercury do
     resources :images
   end
   Mercury::Engine.routes
-  resources :themes
 
-  resources :presentations do
+  namespace :admin do
+    resources :themes
+  end
+  
+
+  resources :presentations, :path => "dashboard" do
     resources :slides do
       resources :contents
     end
   end
 
-  get '/nearby' => 'presentations#nearby'
-
-  get '/dashboard' => 'presentations#mine'
 
   root :to => "home#index"
   resources :users, :only => [:index, :show, :edit, :update ]

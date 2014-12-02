@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141122004723) do
+ActiveRecord::Schema.define(version: 20141130103313) do
 
   create_table "content_types", force: true do |t|
     t.string   "name"
@@ -139,6 +139,7 @@ ActiveRecord::Schema.define(version: 20141122004723) do
     t.string   "image"
     t.text     "description"
     t.string   "slug"
+    t.boolean  "geolocate_me", default: false, null: false
   end
 
   add_index "users", ["nickname"], name: "index_users_on_nickname", unique: true
