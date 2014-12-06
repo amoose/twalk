@@ -3,8 +3,6 @@ class PresentationsController < ApplicationController
   before_action :set_presentation, only: [:show, :edit, :update, :destroy, :launch]
   before_action :check_access, only: [:launch, :create, :update, :destroy, :edit, :new]
 
-  add_breadcrumb "Home", :root_path
-  add_breadcrumb "All Twalks", :presentations_url
 
   # GET /presentations
   # GET /presentations.json

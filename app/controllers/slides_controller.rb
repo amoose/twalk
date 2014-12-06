@@ -2,22 +2,17 @@ class SlidesController < ApplicationController
   before_action :set_presentation
   before_action :set_slide, only: [:show, :edit, :update, :destroy]
 
-  add_breadcrumb "Home", :root_url
-  add_breadcrumb "All Twalks", :presentations_url
   # GET /slides
   # GET /slides.json
   def index
     @slides = @presentation.slides.order(sort_order: :asc)
     redirect_to new_presentation_slide_path(@presentation) unless @slides.any?
-
-    add_breadcrumb @presentation.name, presentation_path(@presentation)
-    add_breadcrumb 'Slides', presentation_slides_path(@presentation)
-
   end
 
   # GET /slides/1
   # GET /slides/1.json
   def show
+    render :layout => 'presentation'
     @contents = @slide.contents
   end
 
@@ -52,7 +47,9 @@ class SlidesController < ApplicationController
   # PATCH/PUT /slides/1.json
   def update
     respond_to do |format|
-      if @slide.update(slide_params)
+      @content = @slide.contents.first
+      @content.body = slide_params[:mercury_content][:value]
+      if @content.save
         format.html { redirect_to presentation_slide_url(@presentation, @slide), notice: 'Slide was successfully updated.' }
         format.json { head :no_content }
       else
@@ -76,14 +73,18 @@ class SlidesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_slide
       @slide = @presentation.slides.friendly.find(params[:id])      
+      add_breadcrumb @slide.slug, presentation_slide_path(@presentation, @slide)
     end
 
     def set_presentation
       @presentation = current_user.presentations.friendly.find(params[:presentation_id])
+      add_breadcrumb "Dashboard", :presentations_url
+      add_breadcrumb @presentation.name, presentation_path(@presentation)
+      add_breadcrumb 'Slides', presentation_slides_path(@presentation)
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def slide_params
-      valid_params = params.require(:slide).permit(:theme_id, :sort_order)
+      valid_params = params.require(:content).permit(:mercury_content => [:value, :snippets, :data, :type])
       valid_params[:presentation_id] = @presentation.id
       valid_params
     end

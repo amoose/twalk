@@ -1,9 +1,9 @@
 - if user_signed_in?
-  / .container-fluid
-  /   nav role="navigation"
-  /     ul class="nav secondary"
-  /       - unless request.path == new_presentation_path
-  /         li
-  /           = link_to 'New Twalk', new_presentation_path
+  .container-fluid
+    nav role="navigation"
+      = link_to 'twalk', root_url, class: 'brand'
+      = render_breadcrumbs
+
+
   handlebars:
     {{ party-info }}

@@ -6,7 +6,8 @@ class ApplicationController < ActionController::Base
   helper_method :correct_user?
   helper_method :current_user_latlon
   helper_method :check_admin_access
-
+  include Mercury::Authentication
+  
   private
     def current_user
       begin

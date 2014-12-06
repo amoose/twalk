@@ -3,34 +3,38 @@ html
   head
     meta content="width=device-width, initial-scale=1.0" name="viewport" 
       title= content_for?(:title) ? yield(:title) : "Twalk.io"
-      meta content=(content_for?(:description) ? yield(:description) : "Twalk.io") name="description" 
-      meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
-      = javascript_include_tag "//amoose.github.com/presentations/lib/js/head.min.js"
-      = javascript_include_tag "reveal.min.new"
-      = javascript_include_tag "presentation"
-      = stylesheet_link_tag "presentation", :media => "all"
-      meta name="apple-mobile-web-app-capable" content="yes"
-      meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"
-      = stylesheet_link_tag "//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
-      <!--[if lt IE 9]>
-        <script src="lib/html5shiv.js"></script>
-      <![endif]-->
+    meta content=(content_for?(:description) ? yield(:description) : "Twalk.io") name="description" 
+    meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
+    = stylesheet_link_tag    'mercury'
+    = javascript_include_tag 'jquery-1.7', 'mercury'
 
-      = csrf_meta_tags
-      = yield(:head)
-      - if user_signed_in?
-        javascript:
-          $(function() {
-            $('body').data("username","#{current_user.nickname}")
-            $('body').data("presentation_id","#{@presentation.id}")
-          })
-          
-      - else 
-        javascript:
-          $(function() {
-            $('body').data("username","");
-            $('body').data("presentation_id","");
-          });
+    = javascript_include_tag "//amoose.github.com/presentations/lib/js/head.min.js"
+    = javascript_include_tag "reveal.min.new"
+    = javascript_include_tag "presentation"
+    = stylesheet_link_tag "presentation", :media => "all"
+    = stylesheet_link_tag '//fonts.googleapis.com/css?family=Voces|Chango'
+    meta name="apple-mobile-web-app-capable" content="yes"
+    meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"
+    = stylesheet_link_tag "//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
+    <!--[if lt IE 9]>
+      <script src="lib/html5shiv.js"></script>
+    <![endif]-->
+
+    = csrf_meta_tags
+    = yield(:head)
+    - if user_signed_in?
+      javascript:
+        $(function() {
+          $('body').data("username","#{current_user.nickname}")
+          $('body').data("presentation_id","#{@presentation.id}")
+        })
+        
+    - else 
+      javascript:
+        $(function() {
+          $('body').data("username","");
+          $('body').data("presentation_id","");
+        });
 
   body class="#{controller_name} #{action_name} #{@presentation_mode}"
     = render 'layouts/presentation_navigation'
