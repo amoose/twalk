@@ -21,8 +21,8 @@ theme = Theme.create(:name => 'Default')
 
 # TEST ONE
 pres = Presentation.create(:name => 'What is Twalk?', :description => "An in-depth explanation of Twalk.")
-Slide.create(:sort_order => 1, :theme => theme, :presentation: pres)
-Slide.create(:sort_order => 2, :theme => theme, :presentation: pres)
+Slide.create(:sort_order => 1, :theme => theme, :presentation => pres)
+Slide.create(:sort_order => 2, :theme => theme, :presentation => pres)
 
 pres.slides.each do |slide|
 	slide.contents << Content.create(:body => '<img src="http://lorempixel.com/600/300/" />', :sort_order => 1, :content_type => html_content)
