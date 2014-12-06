@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
         user.name = auth[:info][:name] || ""
         user.nickname = auth[:info][:nickname] || ""
         user.location = auth[:info][:location] || ""
-        user.image = auth[:info][:image] || ""
+        user.image = auth[:info][:image].gsub('http:','https:') || ""
         user.description = auth[:info][:description] || ""
       end
     end
