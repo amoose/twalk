@@ -5,12 +5,14 @@
     - if @presentations.any?
       table.table
         tr
+          th
           th Name
           th
           th
 
         - @presentations.each do |presentation|
           tr
+            td= image_tag(presentation.image)
             td= link_to presentation.name, presentation_path(presentation)
             - if presentation.mine?(current_user)
               td= link_to 'Edit', edit_presentation_path(presentation), :data => { 'no-turbolink' => true }

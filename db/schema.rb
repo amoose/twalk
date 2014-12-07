@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141206005618) do
+ActiveRecord::Schema.define(version: 20141206213209) do
 
   create_table "content_types", force: true do |t|
     t.string   "name"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 20141206005618) do
     t.integer  "geolocation_accuracy"
     t.integer  "theme_id"
     t.string   "hashtag"
+    t.text     "image"
   end
 
   add_index "presentations", ["hashtag"], name: "index_presentations_on_hashtag"

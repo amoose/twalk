@@ -1,22 +1,21 @@
-%h1 Current slides
-
-%table
-  %tr
-    %th
-    %th
-    %th
+h2= "#{@presentation.name} slides"
+table
+  tr
+    th
+    th
+    th
 
   - @slides.each do |slide|
-    %tr
-      %td= slide.sort_order
+    tr
+      td= slide.sort_order
       / %td= link_to 'View', "/presentations/#{slide.presentation.slug}/slides/#{slide.sort_order}"
       / # %td= link_to 'Edit', edit_presentation_slide_path([slide.presentation, slide])
-      %td= link_to 'View', presentation_slide_path(slide.presentation, slide)
+      td= link_to 'View', presentation_slide_path(slide.presentation, slide), { 'data-no-turbolink' => true }
       / %td= link_to 'Edit', edit_presentation_slide_path(slide)
       / %td= link_to 'Show', slide
       / %td= link_to 'Edit', edit_presentation_slide_path(slide)
       / %td= link_to 'Destroy', slide, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-%br
+br
 
-= link_to 'New Slide', new_presentation_slide_path
+= link_to 'New Slide', new_presentation_slide_path, { 'data-no-turbolink' => true }

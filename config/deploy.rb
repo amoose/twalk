@@ -5,9 +5,9 @@ set :application, 'twalk'
 set :repo_url, 'git@github.com:amoose/twalk.git'
 
 # Default branch is :master
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
+ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
-set :branch, 'master'
+# set :branch, 'feature/creation'
 # Default deploy_to directory is /var/www/my_app
 # set :deploy_to, '/var/www/my_app'
 
@@ -82,7 +82,7 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       within release_path do
         with rails_env: fetch(:rails_env) do
-          execute :bundle, :exec, :thin, "stop -C config/thin.yml2"
+          execute :bundle, :exec, :thin, "stop -C config/thin.yml"
         end
       end
     end

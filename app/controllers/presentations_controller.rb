@@ -55,7 +55,7 @@ class PresentationsController < ApplicationController
 
   # GET /presentations/new
   def new
-    @presentation = Presentation.new
+    @presentation = Presentation.new :image => current_user.image
   end
 
   # GET /presentations/1/edit
@@ -139,7 +139,7 @@ class PresentationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def presentation_params
-      params.require(:presentation).permit(:name, :slug, :description, :is_public, :latitude, :longitude, :theme_id)
+      params.require(:presentation).permit(:name, :slug, :description, :is_public, :latitude, :longitude, :theme_id, :image)
     end
 
     def check_access
