@@ -17,7 +17,7 @@ class PresentationsController < ApplicationController
   end
 
   def launch
-    @websocket_path = Rails.env == "development" ? "localhost:#{ENV['PORT']}#{websocket_path}" : websocket_path
+    @websocket_path = Rails.env == "development" ? "localhost:#{ENV['PORT']}#{websocket_path}" : "https://twalk.io#{websocket_path}"
     # TODO: cleanup this logic. Create model methods for some of this shit
     if @presentation.user_id == current_user.id
       if current_user.party
