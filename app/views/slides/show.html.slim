@@ -30,15 +30,7 @@ javascript:
       history: true,
       keyboard: false,
       theme: Reveal.getQueryHash().theme || 'default', // available themes are in /css/theme
-      transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
-
-      // Optional libraries used to extend on reveal.js
-      dependencies: [
-                    { src: '//amoose.github.io/presentations/lib/js/highlight.js', async: true, callback: function() { window.hljs.initHighlightingOnLoad(); } },
-                    { src: '//amoose.github.io/presentations/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-                    { src: '//amoose.github.io/presentations/lib/js/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-                    { src: '//amoose.github.io/presentations/lib/js/data-markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-      ]
+      transition: Reveal.getQueryHash().transition || 'default' // default/cube/page/concave/linear(2d)
     });
 
     var currentSlide = 0;

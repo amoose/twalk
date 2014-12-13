@@ -29,6 +29,7 @@ gem 'therubyracer'
 gem 'nav_lynx'
 gem 'mercury-rails', github: 'jejacks0n/mercury'
 gem 'font-awesome-rails'
+gem 'owlcarousel-rails'
 
 group :development do
   gem 'guard-bundler'

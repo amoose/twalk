@@ -9,9 +9,9 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require reveal-main
- *= require zenburn
- += require themes/default
+ *= require revealjs/reveal.min
+ *= require revealjs/theme/default
+ *= require revealjs/lib/css/zenburn
 */
 
 #main {
@@ -38,6 +38,14 @@ body.boss, body.kibitz {
 	}
 }
 
+body {
+  nav {
+    color: grey;
+    a {
+      color: white;
+    }
+  }
+}
 .brand {
   font-family: 'Chango', cursive !important;
   text-transform: lowercase !important;

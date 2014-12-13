@@ -8,6 +8,8 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require owl.carousel
+ *= require owl.theme
  *= require_self
 */
 
@@ -136,6 +138,16 @@ input, textarea, select {
     font-size: 3.0em;  
   }
   
+}
+
+.owl-carousel .item{
+  margin: 20px 30px;
+  width: 475px;
+}
+.owl-carousel .item img{
+  display: block;
+  width: 100%;
+  height: auto;
 }
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */

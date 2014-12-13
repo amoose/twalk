@@ -1,26 +1,18 @@
-/ p= link_to 'All Presentations', presentations_path
-/ - if user_signed_in?
-/ 	h1
-/ 		| My presentations
-/ 	- if @my_presentations.any?
-/ 		ul.nearby
-/ 			- @my_presentations.each do |pres|
-/ 				li
-/ 					= link_to pres.name, pres
-/ 	h2
-/ 		| Nearby presentations
-/ 	- if @nearby_presentations.any?
-/ 		ul.nearby
-/ 			- @nearby_presentations.each do |pres|
-/ 				li
-/ 					= link_to pres.name, "/go/#{pres.slug}/"
-/ - else
-/ 	.main-login
-/ 		= render :partial => 'login'
-/ 		br/
-/ 		- if @nearby_presentations.any?
-/ 			ul.nearby
-/ 				- @nearby_presentations.each do |pres|
-/ 					li
-/ 						= link_to pres.name, "/go/#{pres.slug}/"
-		
+.screen-pane
+  .container-fluid
+    .row
+      .col-md-10.col-md-offset-1
+        .owl-carousel
+          .item= image_tag 'revealjs-grey.png'
+          .item= image_tag 'impressjs-grey.png'
+          .item= image_tag 'glyphicons-grey.png'
+          .item= image_tag 'mercury-grey.png'
+
+javascript:
+  $(function () {
+    $(".owl-carousel").owlCarousel({
+      autoPlay: 5000, //Set AutoPlay to 3 seconds
+      items : 2
+    });
+  });
+  

@@ -4,14 +4,11 @@
     %meta{:name => "viewport", :content => "width=device-width, maximum-scale=1.0, initial-scale=1.0"}
     = csrf_meta_tags
     %title Twalk.io Editor
+    = javascript_include_tag 'jquery-1.7', 'mercury', 'reveal.min.new'
     = stylesheet_link_tag    'mercury'
-    / = javascript_include_tag 'jquery-1.7', 'mercury'
-    = javascript_include_tag "presentation"
-    = javascript_include_tag 'jquery-1.7', 'mercury'
 
-    = javascript_include_tag "//amoose.github.com/presentations/lib/js/head.min.js"
-    = javascript_include_tag "reveal.min.new"
-    = javascript_include_tag "presentation"
+    = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/headjs/1.0.3/head.core.min.js'
+
     = stylesheet_link_tag "presentation", :media => "all"
     = stylesheet_link_tag "//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
     <!--[if lt IE 9]><script src="lib/html5shiv.js"></script><![endif]-->

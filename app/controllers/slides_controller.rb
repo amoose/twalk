@@ -12,7 +12,7 @@ class SlidesController < ApplicationController
   # GET /slides/1
   # GET /slides/1.json
   def show
-    add_breadcrumb 'Edit', edit_presentation_slide_content_path(@presentation, @slide, @slide.contents.first) unless params[:mercury_frame]
+    add_breadcrumb 'Edit', edit_presentation_slide_path(@presentation, @slide) unless params[:mercury_frame]
     add_breadcrumb 'New Slide', new_presentation_slide_path(@presentation)
     render :layout => 'presentation'
     @contents = @slide.contents
@@ -26,6 +26,7 @@ class SlidesController < ApplicationController
 
   # GET /slides/1/edit
   def edit
+    redirect_to "/editor" + presentation_slide_path(@presentation, @slide)
   end
 
   # POST /slides
