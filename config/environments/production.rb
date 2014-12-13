@@ -79,4 +79,8 @@ Twalk2::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.ember.variant = :production
+
+  config.assets.precompile += %w( jquery-1.7.js )
+
+  config.time_zone = 'Pacific Time (US & Canada)'
 end
