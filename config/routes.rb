@@ -18,7 +18,7 @@ Twalk2::Application.routes.draw do
     put '/', to: 'presentations#save_presentation'
   end
 
-
+  get '/nearby' => 'presentations#nearby'
   root :to => "home#index"
   resources :users, :only => [:index, :show, :edit, :update ]
   
