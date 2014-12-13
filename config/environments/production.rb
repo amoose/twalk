@@ -80,7 +80,7 @@ Twalk2::Application.configure do
 
   config.ember.variant = :production
 
-  config.assets.precompile += %w( jquery-1.7.js )
+  config.assets.precompile += %w( jquery-1.7.js reveal.min.js presentations.js presentation.css )
 
   config.time_zone = 'Pacific Time (US & Canada)'
 end
