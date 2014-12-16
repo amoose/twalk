@@ -18,7 +18,7 @@ gem 'simple_form'
 gem 'slim'
 gem 'acts-as-taggable-on'
 gem 'friendly_id'
-gem 'websocket-rails'
+gem 'websocket-rails', github: 'depili/websocket-rails'
 gem 'redis', :require => ["redis", "redis/connection/hiredis"]
 gem 'resque', '~> 2.0.0.pre.1', github: 'resque/resque'
 gem 'geocoder'
