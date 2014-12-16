@@ -28,16 +28,6 @@ GIT
       coffee-rails (>= 3.2.2)
       railties (>= 3.0)
 
-GIT
-  remote: git://github.com/resque/resque.git
-  revision: 8f13ad5b61a2c68dcf9f92980920008184359099
-  specs:
-    resque (2.0.0.pre.1)
-      json
-      mono_logger (~> 1.0)
-      redis-namespace (>= 1.3.0)
-      thor (~> 0.17)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -225,7 +215,6 @@ GEM
     mini_portile (0.6.0)
     minitest (5.5.0)
     modernizr-rails (2.7.1)
-    mono_logger (1.1.0)
     multi_json (1.10.1)
     nav_lynx (1.1.1)
       rails (>= 3.1.0)
@@ -282,8 +271,6 @@ GEM
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     redis (3.1.0)
-    redis-namespace (1.5.1)
-      redis (~> 3.0, >= 3.0.4)
     redis-objects (1.0.1)
       redis (>= 3.0.2)
     ref (1.0.5)
@@ -413,7 +400,6 @@ DEPENDENCIES
   rails (= 4.1.6)
   rails_layout
   redis
-  resque (~> 2.0.0.pre.1)!
   rolify
   rspec-rails
   sass-rails (>= 3.2)
