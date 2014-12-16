@@ -268,26 +268,10 @@ GEM
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     redis (3.1.0)
-    redis-actionpack (4.0.0)
-      actionpack (~> 4)
-      redis-rack (~> 1.5.0)
-      redis-store (~> 1.1.0)
-    redis-activesupport (4.0.0)
-      activesupport (~> 4)
-      redis-store (~> 1.1.0)
     redis-namespace (1.5.1)
       redis (~> 3.0, >= 3.0.4)
     redis-objects (1.0.0)
       redis (>= 3.0.2)
-    redis-rack (1.5.0)
-      rack (~> 1.5)
-      redis-store (~> 1.1.0)
-    redis-rails (4.0.0)
-      redis-actionpack (~> 4)
-      redis-activesupport (~> 4)
-      redis-store (~> 1.1.0)
-    redis-store (1.1.4)
-      redis (>= 2.2)
     ref (1.0.5)
     rolify (3.4.0)
     rspec (3.0.0)
@@ -421,7 +405,7 @@ DEPENDENCIES
   quiet_assets
   rails (= 4.1.6)
   rails_layout
-  redis-rails
+  redis
   resque (~> 2.0.0.pre.1)!
   rolify
   rspec-rails
