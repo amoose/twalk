@@ -60,7 +60,6 @@ class ContentsController < ApplicationController
   # PATCH/PUT /contents/1
   # PATCH/PUT /contents/1.json
   def update
-    binding.pry
     respond_to do |format|
       if @content.update(content_params)
         format.html { redirect_to presentation_slide_content_path(@presentation, @slide, @content), notice: 'Content was successfully updated.' }
