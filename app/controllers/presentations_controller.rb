@@ -8,6 +8,7 @@ class PresentationsController < ApplicationController
   # GET /presentations.json
   def index
     @presentations = Presentation.for(current_user.id)
+    @nearby = Presentation.near(current_user_latlon)
   end
 
   # GET /presentations/1

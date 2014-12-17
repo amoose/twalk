@@ -2,6 +2,7 @@
 
 .row
   .col-md-6
+    h2 My Twalks
     - if @presentations.any?
       table.table
         tr
@@ -23,3 +24,22 @@
     - else
 
       h3 You have no <span class="brand">twalk</span>s.
+
+
+  .col-md-6
+    h2 Twalks Nearby
+    - if @nearby.any?
+      table.table
+        tr
+          th
+          th Name
+          th
+          th
+
+        - @nearby.each do |presentation|
+          tr
+            td= image_tag(presentation.image)
+            td= link_to presentation.name, presentation_launch_path(presentation), { 'data-no-turbolink' => true }
+    - else
+
+      h3 Nothing going on nearby.
