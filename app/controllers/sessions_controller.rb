@@ -1,12 +1,12 @@
 class SessionsController < ApplicationController
 
   def new
-    # if user = User.find_by_nickname(cookies.signed[:nickname])
-    #   setup_signed_in_session(user)
-    #   redirect_to root_url, :notice => "Welcome back, #{user.name}"
-    # else
-    redirect_to '/auth/twitter'
-    # end
+    if user = User.find_by_nickname(cookies.signed[:nickname])
+      setup_signed_in_session(user)
+      redirect_to root_url, :notice => "Welcome back, #{user.name}"
+    else
+      redirect_to '/auth/twitter'
+    end
   end
 
 
