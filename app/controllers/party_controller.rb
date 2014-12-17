@@ -37,7 +37,9 @@ class PartyController <  WebsocketRails::BaseController
       slide = message[:slide]
       party.slide_num = slide
       party.save
-      WebsocketRails[party_str].trigger(:move_deck, { :slide => slide })
+      Fiber.new{ 
+        WebsocketRails[party_str].trigger(:move_deck, { :slide => slide })
+      }.resume
     end
   end
 

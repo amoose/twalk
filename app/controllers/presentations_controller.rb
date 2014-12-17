@@ -43,7 +43,9 @@ class PresentationsController < ApplicationController
       else
 
       end
-      WebsocketRails["party_#{@presentation.id}"].trigger(:new_client, { :user_id => current_user.id, :nickname => current_user.nickname })
+      Fiber.new{
+        WebsocketRails["party_#{@presentation.id}"].trigger(:new_client, { :user_id => current_user.id, :nickname => current_user.nickname })
+      }.resume
     end
     render :layout => "presentation"
   end
