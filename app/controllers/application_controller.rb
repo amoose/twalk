@@ -50,7 +50,7 @@ class ApplicationController < ActionController::Base
 
     def require_auth
       unless user_signed_in?
-        cookies[:redirect_to] = request.fullpath
+        cookies[:redirect_to] = "/#{request.fullpath}"
         redirect_to signin_path, :notice => 'You must be logged in to do that.'
       end
     end

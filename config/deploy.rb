@@ -55,8 +55,6 @@ namespace :deploy do
     end
   end
 
-  after :publishing, :restart
-
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
       # Here we can do anything such as:
@@ -88,4 +86,16 @@ namespace :deploy do
     end
   end
 
+
+  desc "build missing paperclip styles"
+  task :build_missing_paperclip_styles do
+    on roles(:app) do
+      execute "cd #{current_path}; RAILS_ENV=production bundle exec rake paperclip:refresh:missing_styles"
+    end
+  end
+
 end
+
+
+after :publishing, :restart
+after("deploy:compile_assets", "deploy:build_missing_paperclip_styles")

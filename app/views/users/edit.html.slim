@@ -1,20 +1,19 @@
-= image_tag(@user.image)
+= simple_form_for(@user, {:multipart => true}) do |f|
+  = f.error_notification
+  .form-inputs
+    - unless session[:new_signup]
+      = f.input :name
 
-= form_for(@user) do |f|
-  - unless session[:new_signup]
-    = f.label :name
-    = f.text_field :name
+    = f.input :email
 
-  = f.label :email
-  = f.text_field :email
+    = f.input :geolocate_me
 
-  = f.label :geolocate_me
-  = f.check_box :geolocate_me, checked: true
+    = image_tag(@user.image(:thumb))
+    = f.input :image, as: :file
 
-
-  br/
-  
-  = f.submit "Save"
+    br/
+    
+    = f.submit "Save"
 
 p
   | We value your privacy. Your email address is only collected for communications and will not be shared with third parties. View our <a href="/privacy">Privacy Policy</a> for more information.

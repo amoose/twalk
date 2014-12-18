@@ -29,6 +29,9 @@ gem 'nav_lynx'
 gem 'mercury-rails', github: 'jejacks0n/mercury'
 gem 'font-awesome-rails'
 gem 'owlcarousel-rails'
+gem 'sucker_punch', '~> 1.0'
+gem 'paperclip', '~> 4.2'
+gem 'aws-sdk', '~> 1.5.7'
 
 group :development do
   gem 'guard-bundler'
@@ -63,4 +66,3 @@ group :test do
   gem 'database_cleaner', '1.0.1'
   gem 'email_spec'
 end
-gem 'paperclip'

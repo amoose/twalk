@@ -46,12 +46,14 @@ h1, h2, h3, h4, h5 {
 }
 
 body {
+  background: #f2f2f2;
 	background-size: cover;
 	background-attachment: fixed;
   position: relative;
   margin: 0;
   font-family: 'Voces', cursive !important;
-
+  padding: 0;
+  margin: 0;
   a, a:link {
 
     &:hover {
@@ -59,11 +61,10 @@ body {
     }
   }
 
-  nav {
-    li {
-      i {
-        font-size: 12em !important;
-      }
+  header {
+    nav.navbar-default {
+      background: white;
+      border-radius: 0;
     }
   }
 
@@ -72,6 +73,7 @@ body {
     bottom: 0;
     color: #E9E9E9;
     width: 100%;
+    background: white;
   }
 
 
@@ -101,7 +103,7 @@ body {
   }
 }
 body {
-  padding: 10px 15px;
+  padding-bottom: 30px;
 }
 
 .new_presentation {
@@ -149,6 +151,25 @@ input, textarea, select {
   width: 100%;
   height: auto;
 }
+
+.media {
+  .media-left {
+    width: 250px;
+    height: 125px;
+    img {
+      max-width: 250px;
+    }
+  }
+  .media-body {
+
+  }
+  .media-footer {
+    font-size: 0.8em;
+    a {
+      color: #c1c1c1;
+    }
+  }
+}
 /* Extra small devices (phones, less than 768px) */
 /* No media query since this is the default in Bootstrap */
 
@@ -170,3 +191,8 @@ input, textarea, select {
 // @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { }
 // @media (min-width: @screen-md-min) and (max-width: @screen-md-max) { } 
 // @media (min-width: @screen-lg-min) { }
+
+.radio input[type="radio"], .radio-inline input[type="radio"], .checkbox input[type="checkbox"], .checkbox-inline input[type="checkbox"] {
+  position: relative;
+  margin-left: 20px;
+}

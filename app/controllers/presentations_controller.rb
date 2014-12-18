@@ -58,7 +58,7 @@ class PresentationsController < ApplicationController
 
   # GET /presentations/new
   def new
-    @presentation = Presentation.new :image => current_user.image
+    @presentation = Presentation.new
   end
 
   # GET /presentations/1/edit
@@ -134,7 +134,12 @@ class PresentationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_presentation
       begin
-        @presentation = Presentation.friendly.find(params[:id])
+        if params[:nickname]
+          @user = User.friendly.find(params[:nickname])
+        else
+          @user = current_user
+        end
+        @presentation = @user.presentations.friendly.find(params[:id])
       rescue ActiveRecord::RecordNotFound
         redirect_to '/404.html'
       end

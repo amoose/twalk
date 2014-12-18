@@ -5,14 +5,25 @@ class Presentation < ActiveRecord::Base
   has_many :slides, :dependent => :destroy
   has_many :contents, :dependent => :destroy, through: :slides
   has_many :parties, :dependent => :destroy
-
+  
   validates_presence_of :name
   validates_presence_of :slug
 
   belongs_to :user
   belongs_to :theme
   friendly_id :slug_candidates, :use => [:history, :scoped], :scope => :user
-  
+  has_attached_file :image,
+    :storage => :s3,
+    :s3_credentials => { 
+        :access_key_id => ENV['ACCESS_KEY_ID'],
+        :secret_access_key => ENV['SECRET_ACCESS_KEY']
+      },
+    :bucket => ENV['S3_BUCKET'],
+    :url => ":s3_domain_url",
+    :path => "/:class/images/:id_:basename.:style.:extension",
+    :styles => { :medium => "1024x768>", :thumb => "512x512>" }
+  validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
+
   acts_as_taggable
 
   geocoded_by :ip_address
@@ -37,6 +48,10 @@ class Presentation < ActiveRecord::Base
 
   def short_description
     description.to_s.split.first(10).join(' ')
+  end
+
+  def safe_description
+    description.try(:html_safe)
   end
   
   def self.for(user_id)

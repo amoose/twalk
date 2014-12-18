@@ -1,45 +1,21 @@
-= render :partial => 'nav'
 
-.row
-  .col-md-6
-    h2 My Twalks
-    - if @presentations.any?
-      table.table
-        tr
-          th
-          th Name
-          th
-          th
-
+.container-fluid
+  = render :partial => 'nav'
+  .row
+    .col-md-6
+      h2 My Twalks
+      - if @presentations.any?
         - @presentations.each do |presentation|
-          tr
-            td= image_tag(presentation.image)
-            td= link_to presentation.name, presentation_path(presentation)
-            - if presentation.mine?(current_user)
-              td= link_to 'Edit', edit_presentation_path(presentation), :data => { 'no-turbolink' => true }
-              td= link_to 'Destroy', presentation, :method => :delete, :data => { :confirm => 'Are you sure?' }
-            - else
-              td &nbsp;
-              td &nbsp;
-    - else
-
-      h3 You have no <span class="brand">twalk</span>s.
+          = render partial: 'small_detail', locals: { presentation: presentation }
+      - else
+        h3 You have no <span class="brand">twalk</span>s.
 
 
-  .col-md-6
-    h2 Twalks Nearby
-    - if @nearby.any?
-      table.table
-        tr
-          th
-          th Name
-          th
-          th
+    .col-md-6
+      h2 Twalks Nearby
+      - if @nearby.any?
 
-        - @nearby.each do |presentation|
-          tr
-            td= image_tag(presentation.image)
-            td= link_to presentation.name, presentation_launch_path(presentation), { 'data-no-turbolink' => true }
-    - else
-
-      h3 Nothing going on nearby.
+          - @nearby.each do |nearby_presentation|
+            = render partial: 'small_detail', locals: { presentation: nearby_presentation }
+      - else
+        h3 Nothing going on nearby.

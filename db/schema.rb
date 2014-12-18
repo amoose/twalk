@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141206213209) do
+ActiveRecord::Schema.define(version: 20141218221825) do
 
   create_table "content_types", force: true do |t|
     t.string   "name"
@@ -89,7 +89,10 @@ ActiveRecord::Schema.define(version: 20141206213209) do
     t.integer  "geolocation_accuracy"
     t.integer  "theme_id"
     t.string   "hashtag"
-    t.text     "image"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "presentations", ["hashtag"], name: "index_presentations_on_hashtag"
@@ -153,10 +156,13 @@ ActiveRecord::Schema.define(version: 20141206213209) do
     t.datetime "updated_at"
     t.string   "nickname"
     t.string   "location"
-    t.string   "image"
     t.text     "description"
     t.string   "slug"
-    t.boolean  "geolocate_me", default: false, null: false
+    t.boolean  "geolocate_me",       default: false, null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   add_index "users", ["nickname"], name: "index_users_on_nickname", unique: true

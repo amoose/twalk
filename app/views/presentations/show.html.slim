@@ -2,7 +2,7 @@
   .container-fluid
     .col-md-12
       - if @presentation.user_id == current_user.id or current_user.has_role? :admin
-        = link_to 'Launch', presentation_launch_path(@presentation), :data => { 'no-turbolink' => true }
+        = link_to 'Launch', presentation_launch_path(@presentation.user, @presentation), :data => { 'no-turbolink' => true }
         | &nbsp;|&nbsp;
         = link_to 'Slides', presentation_slides_path(@presentation)
         | &nbsp;|&nbsp;
@@ -21,7 +21,7 @@
 
             h2 data-mercury="simple" id="presentation_name"= @presentation.name.html_safe
 
-            .presentation-description data-mercury="full" id="presentation_description"= @presentation.description.html_safe
+            .presentation-description data-mercury="full" id="presentation_description"= @presentation.safe_description
 
 
 
@@ -34,4 +34,4 @@
               / = link_to 'Edit', edit_presentation_slide_path(@presentation, slide), :data => { 'no-turbolink' => true }
 
               - slide.contents.each do |content|
-                .editable data-mercury="full" id="presentation_slide_#{slide.sort_order}_content_#{content.sort_order}"= content.body.html_safe
+                .editable data-mercury="full" id="presentation_slide_#{slide.sort_order}_content_#{content.sort_order}"= content.safe_body

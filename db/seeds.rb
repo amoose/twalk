@@ -15,6 +15,7 @@ YAML.load(ENV['ROLES']).each do |role|
 end
 
 html_content = ContentType.create(:name => 'HTML')
+image = ContentType.create(:name => 'image')
 
 # DEFAULT THEME
 theme = Theme.create(:name => 'Default')

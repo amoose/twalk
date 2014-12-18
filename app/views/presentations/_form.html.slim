@@ -1,4 +1,4 @@
-= simple_form_for(@presentation) do |f|
+= simple_form_for(@presentation, {:multipart => true}) do |f|
   = f.error_notification
 
   .form-inputs
@@ -6,8 +6,10 @@
 
     = f.input :description
 
-    / = f.input :is_public, :label => "Make publicly viewable"
-    = f.input :image, as: :hidden
+    = image_tag(@presentation.image(:thumb))
+    = f.input :image, as: :file
+
+    = f.input :hashtag
 
   .form-actions
     = f.button :submit

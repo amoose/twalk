@@ -1,11 +1,13 @@
 .profile
-	h3 #{@user.name}
-
-	.twitter-info
-		= image_tag('twitter-logo.png', :class => 'twitter-logo')
-		span= link_to @user.nickname, "http://twitter.com/#{@user.nickname}", :target => "_blank"
-	p
-	  | Email: #{@user.email if @user.email}
+  = image_tag(@user.image(:thumb))
 
 
-	= link_to 'Edit', edit_user_path(current_user)
+  h3 #{@user.name}
+  
+  p= @user.nickname
+  
+  p
+    | Email: #{@user.email if @user.email}
+
+
+  = link_to 'Edit', edit_user_path(current_user)
