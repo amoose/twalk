@@ -2,16 +2,19 @@ class Mercury::Image < ActiveRecord::Base
 
   self.table_name = :mercury_images
   
+  has_attached_file :image,
+    :storage => :s3,
+    :s3_credentials => { 
+        :access_key_id => ENV['ACCESS_KEY_ID'],
+        :secret_access_key => ENV['SECRET_ACCESS_KEY']
+      },
+    :bucket => ENV['S3_BUCKET'],
+    :url => ":s3_domain_url",
+    :path => "/:attachment/images/:id_:basename.:style.:extension",
+    :styles => { :medium => "1024x768>", :thumb => "512x512>" }
 
-  # has_attached_file :image, :styles => { :medium => "300x300>", :thumb => "100x100>" },
-  #       :path => ":rails_root/public/system/:attachment/:id/:style/:filename",
-  #       :url => "/system/:attachment/:id/:style/:filename"
 
-
-  has_attached_file :download,
-                    :storage => :s3,
-                    :styles => { :medium => "300x300>", :thumb => "100x100>" }
-                     }
+  
 
   delegate :url, :to => :image
 
