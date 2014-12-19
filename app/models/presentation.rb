@@ -20,6 +20,7 @@ class Presentation < ActiveRecord::Base
       },
     :bucket => ENV['S3_BUCKET'],
     :url => ":s3_domain_url",
+    :s3_protocol => :https,
     :path => "/:class/images/:id_:basename.:style.:extension",
     :styles => { :medium => "1024x768>", :thumb => "512x512>" }
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
