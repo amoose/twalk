@@ -28,7 +28,7 @@ class ContentsController < ApplicationController
       )
 
     if @content.save
-      edit
+      redirect_to "/editor" + presentation_slide_path(@presentation, @slide)
     else
       flash[:error] = "ERROR"
     end

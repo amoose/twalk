@@ -455,3 +455,25 @@ window.Mercury = {
 $(window).bind('mercury:saved', function() {
   window.location = window.location.href.replace(/\/editor\//i, '/');
 });
+
+// jQuery(window).on('mercury:ready', function() {
+//   alert("ready?")
+// });
+
+jQuery.fn.selectText = function(){
+    var doc = document
+        , element = this[0]
+        , range, selection
+    ;
+    if (doc.body.createTextRange) {
+        range = document.body.createTextRange();
+        range.moveToElementText(element);
+        range.select();
+    } else if (window.getSelection) {
+        selection = window.getSelection();        
+        range = document.createRange();
+        range.selectNodeContents(element);
+        selection.removeAllRanges();
+        selection.addRange(range);
+    }
+};

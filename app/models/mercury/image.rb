@@ -12,7 +12,7 @@ class Mercury::Image < ActiveRecord::Base
     :url => ":s3_domain_url",
     :path => "/:attachment/images/:id_:basename.:style.:extension",
     :styles => { :medium => "1024x768>", :thumb => "512x512>" }
-
+  validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
   
 

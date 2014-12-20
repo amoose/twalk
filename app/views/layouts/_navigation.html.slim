@@ -45,7 +45,7 @@ nav.navbar.navbar-default role="navigation"
               li= link_to 'Sign out', signout_path
 
         - else
-          li= link_to 'Sign in', signin_path, { 'data-no-turbolink' => true }
+          li= link_to 'Sign in', signin_path, data: { 'no-turbolink' => true }
           
 
 

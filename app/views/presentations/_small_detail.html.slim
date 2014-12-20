@@ -1,15 +1,7 @@
 
-/ .small-detail
-/   = link_to image_tag(presentation.image), presentation_path(presentation)
-/   = link_to presentation.name, presentation_path(presentation)
-/   - if presentation.mine?(current_user)
-/     td
-/   br clear="both"
-
 .media
   = link_to image_tag(presentation.image(:thumb)), presentation_path(presentation), class: 'media-left'
   .media-body
     h4.media-heading= link_to presentation.name, presentation_path(presentation)
     p= presentation.description
   .media-footer
-    = link_to 'Destroy', presentation, :method => :delete, :data => { :confirm => 'Are you sure?' }

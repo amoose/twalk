@@ -13,6 +13,7 @@ gem 'cancan'
 gem 'figaro'
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'omniauth-github'
 gem 'rolify'
 gem 'simple_form'
 gem 'slim'
@@ -51,6 +52,7 @@ group :development do
   gem 'capistrano-bundler', '~> 1.1.2'
   gem 'capistrano-rails', '~> 1.1.1'
   gem 'capistrano-rbenv', github: "capistrano/rbenv"
+  gem 'byebug'
 end
 group :development, :test do
   gem 'factory_girl_rails'

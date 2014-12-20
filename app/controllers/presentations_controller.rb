@@ -14,6 +14,7 @@ class PresentationsController < ApplicationController
   # GET /presentations/1
   # GET /presentations/1.json
   def show
+    render :layout => "presentation"
     add_breadcrumb @presentation.name
   end
 
@@ -58,7 +59,14 @@ class PresentationsController < ApplicationController
 
   # GET /presentations/new
   def new
-    @presentation = Presentation.new
+    @presentation = Presentation.create(
+        :name => "A New Twalk by #{current_user.nickname}",
+        :description => "created #{Time.zone.now.strftime('%Y-%m-%d - %H:%M')}",
+        :user => current_user,
+        :theme => Theme.default,
+        :image => current_user.image
+      )
+    redirect_to "/editor" + presentation_path(@presentation)
   end
 
   # GET /presentations/1/edit
@@ -100,6 +108,7 @@ class PresentationsController < ApplicationController
 
   def save_presentation
     @presentation = current_user.presentations.friendly.find(params[:presentation_id])
+    binding.pry
     @presentation.name = params[:content][:presentation_name][:value]
     @presentation.description = params[:content][:presentation_description][:value]
 

@@ -6,7 +6,10 @@
       h2 My Twalks
       - if @presentations.any?
         - @presentations.each do |presentation|
-          = render partial: 'small_detail', locals: { presentation: presentation }
+          .small-detail
+            = render partial: 'small_detail', locals: { presentation: presentation }
+            .nav
+              = link_to 'Destroy', presentation, :method => :delete, :data => { :confirm => 'Are you sure?' }
       - else
         h3 You have no <span class="brand">twalk</span>s.
 

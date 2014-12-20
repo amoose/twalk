@@ -12,5 +12,7 @@ ADMIN_EMAIL: email
 ADMIN_PASSWORD: changeme
 TWITTER_KEY: changeme
 TWITTER_SECRET: changeme
+GITHUB_KEY: changeme
+GITHUB_SECRET: changeme
 ROLES: [admin, user, member]
 PORT: 3000

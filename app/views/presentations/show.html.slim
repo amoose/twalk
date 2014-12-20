@@ -1,37 +1,43 @@
-.row
-  .container-fluid
-    .col-md-12
-      - if @presentation.user_id == current_user.id or current_user.has_role? :admin
-        = link_to 'Launch', presentation_launch_path(@presentation.user, @presentation), :data => { 'no-turbolink' => true }
-        | &nbsp;|&nbsp;
-        = link_to 'Slides', presentation_slides_path(@presentation)
-        | &nbsp;|&nbsp;
-        = link_to 'Edit', edit_presentation_path(@presentation), :data => { 'no-turbolink' => true }
-        | &nbsp;|&nbsp;
-      = link_to 'Back', presentations_path
 
-.row
-  .container-fluid
-    .col-md-5
+.reveal
+  .state-background
+  .slides
+    section class="slide" data-slide-num="0"
+      img id="mercury_image" data-mercury="image" src="#{@presentation.image.url || 'http://lorempixum.com/400/400'}"
+      h1 id="mercury_name" data-mercury="full"= @presentation.name
+      div id="mercury_content" data-mercury="full"= @presentation.safe_description
 
-      h3= "Presentation Information"
-      .panel.panel-default
-        .panel-body
-          fieldset
+  
+  aside class="controls"
+    a class="left" href="#"
+      | &#x25C4;
+    a class="right" href="#"
+      | &#x25BA;
+    a class="up" href="#"
+      | &#x25B2;
+    a class="down" href="#"
+      | &#x25BC;
 
-            h2 data-mercury="simple" id="presentation_name"= @presentation.name.html_safe
+  .progress
+    span
 
-            .presentation-description data-mercury="full" id="presentation_description"= @presentation.safe_description
+javascript:
+  var presentation_id = $('body').data('presentation_id');
+  $(function() {
 
+    // REVEAL
+    var reveal = Reveal.initialize({
+      controls: false,
+      progress: true,
+      history: true,
+      keyboard: false,
+      theme: Reveal.getQueryHash().theme || 'default', // available themes are in /css/theme
+      transition: Reveal.getQueryHash().transition || 'default' // default/cube/page/concave/linear(2d)
+    });
 
+    var currentSlide = 0;
+    Reveal.addEventListener( 'ready', function( event ) {
+      currentSlide = event.currentSlide;
+    });
 
-    .col-md-5.col-md-offset-1
-      - @presentation.slides.each do |slide|
-        h3= "Slide #{slide.sort_order}"
-        .panel.panel-default
-          .panel-body
-            fieldset
-              / = link_to 'Edit', edit_presentation_slide_path(@presentation, slide), :data => { 'no-turbolink' => true }
-
-              - slide.contents.each do |content|
-                .editable data-mercury="full" id="presentation_slide_#{slide.sort_order}_content_#{content.sort_order}"= content.safe_body
+  });

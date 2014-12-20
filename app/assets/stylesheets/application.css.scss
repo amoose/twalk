@@ -60,12 +60,21 @@ body {
       text-decoration: none;
     }
   }
-
+  #login-modal {
+    iframe {
+      width: 100%;
+      height: 100%;
+    }
+  }
   header {
     nav.navbar-default {
       background: white;
       border-radius: 0;
     }
+  }
+
+  .small-detail {
+    margin-bottom: 2.0em;
   }
 
   footer {
