@@ -10,9 +10,10 @@ html
 
     = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/headjs/1.0.3/head.core.min.js'
     = javascript_include_tag 'reveal.min', 'presentations'
-    
+
     
     = stylesheet_link_tag "presentation", :media => "all"
+    = stylesheet_link_tag @presentation_theme
     = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Voces|Chango'
     meta name="apple-mobile-web-app-capable" content="yes"
     meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"
@@ -39,9 +40,5 @@ html
 
   body class="#{controller_name} #{action_name} #{@presentation_mode}"
     = render 'layouts/presentation_navigation'
-    //= render 'layouts/navigation'
-    //#main role="main" 
     = render 'layouts/messages'
-    //  = yield
-    //footer
     == yield

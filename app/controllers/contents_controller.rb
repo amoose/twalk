@@ -7,8 +7,6 @@ class ContentsController < ApplicationController
   def index
     @contents = @slide.contents
     redirect_to new_presentation_slide_content_path(@presentation, @slide) unless @contents.any?
-
-    add_breadcrumb "Slide #{@slide.sort_order} Contents"
   end
 
   # GET /contents/1
@@ -91,6 +89,7 @@ class ContentsController < ApplicationController
     def set_presentation_and_slide
       @presentation = current_user.presentations.friendly.find(params[:presentation_id])
       @slide = @presentation.slides.friendly.find(params[:slide_id])
+      @presentation_theme = "revealjs/theme/#{@presentation.theme.name.downcase}"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

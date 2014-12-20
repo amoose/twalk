@@ -1,7 +1,7 @@
 
 .media
-  = link_to image_tag(presentation.image(:thumb)), presentation_path(presentation), class: 'media-left'
+  = link_to image_tag(presentation.image(:thumb)), presentation_path(presentation), class: 'media-left', data: { 'no-turbolink' => true }
   .media-body
-    h4.media-heading= link_to presentation.name, presentation_path(presentation)
+    h4.media-heading= link_to presentation.name, presentation_path(presentation), data: { 'no-turbolink' => true }
     p= presentation.description
   .media-footer

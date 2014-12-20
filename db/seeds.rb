@@ -17,8 +17,11 @@ end
 html_content = ContentType.create(:name => 'HTML')
 image = ContentType.create(:name => 'image')
 
-# DEFAULT THEME
+
+# THEMES
 theme = Theme.create(:name => 'Default')
+themes = %w{beige blood moon night serif simple sky solarized}
+themes.each {|t| Theme.create(name: t.titleize) }
 
 # TEST ONE
 pres = Presentation.create(:name => 'What is Twalk?', :description => "An in-depth explanation of Twalk.")
@@ -38,3 +41,7 @@ Slide.create(:sort_order => 2, :theme => theme, :presentation => pres)
 pres.slides.each do |slide|
 	slide.contents << Content.create(:body => '<img src="http://lorempixel.com/600/300/" />', :sort_order => 1, :content_type => html_content)
 end
+
+
+
+

@@ -57,7 +57,7 @@ class Presentation < ActiveRecord::Base
   end
   
   def self.for(user_id)
-    Presentation.where(:user_id => user_id)
+    Presentation.where(:user_id => user_id).order(:created_at => :desc)
   end
 
   def default_image
