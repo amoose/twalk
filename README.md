@@ -18,7 +18,7 @@ Why Twitter?
 
 ## Getting Started
 
-# Register your application with Twitter
+### Register your application with Twitter
 
 - The callback URL will resemble: http://localhost:3000/auth/twitter/callback
 - Be sure to enable 'Sign in with Twitter'

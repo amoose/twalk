@@ -63,15 +63,14 @@ class PresentationsController < ApplicationController
         :name => "A New Twalk by #{current_user.nickname}",
         :description => "created #{Time.zone.now.strftime('%Y-%m-%d - %H:%M')}",
         :user => current_user,
-        :theme => Theme.default,
-        :image => current_user.image
+        :theme => Theme.default
       )
     redirect_to "/editor" + presentation_path(@presentation)
   end
 
   # GET /presentations/1/edit
   def edit
-    # redirect_to "/editor/dashboard/#{@presentation.slug}"
+    redirect_to "/editor" + presentation_path(@presentation)
   end
 
 
@@ -108,15 +107,15 @@ class PresentationsController < ApplicationController
 
   def save_presentation
     @presentation = current_user.presentations.friendly.find(params[:presentation_id])
-    binding.pry
-    @presentation.name = params[:content][:presentation_name][:value]
-    @presentation.description = params[:content][:presentation_description][:value]
+    @presentation.name = mercury_params[:presentation_name][:value]
+    @presentation.description = mercury_params[:presentation_description][:value]
+    @presentation.image = mercury_params[:presentation_image][:attributes][:src]
 
     @presentation.slides.each do |slide|
       unless slide.nil?
         slide.contents.each do |content|
-          unless content.nil?
-            content.body = params[:content]["presentation_slide_#{slide.slug}_content_#{content.slug}"][:value]
+          unless content.nil? and params[:content]["presentation_slide_#{slide.slug}_content_#{content.slug}"][:value]
+            content.body = params[:content]["presentation_slide_#{slide.slug}_content_#{content.slug}"]
           end
         end
       end
@@ -157,6 +156,10 @@ class PresentationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def presentation_params
       params.require(:presentation).permit(:name, :slug, :description, :is_public, :latitude, :longitude, :theme_id, :image)
+    end
+
+    def mercury_params
+      params.require(:content).permit(:presentation_name => [:value], :presentation_description => [:value], :presentation_image => { :attributes => [:src] } )
     end
 
     def check_access

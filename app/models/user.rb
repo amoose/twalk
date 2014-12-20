@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
     :url => ":s3_domain_url",
     :s3_protocol => :https,
     :path => "/:class/images/:id_:basename.:style.:extension",
-    :styles => { :medium => "1024x768>", :thumb => "512x512>" }
+    :styles => { :medium => "1024x768>", :thumb => "256x256#" }
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
   has_many :presentations

@@ -11,6 +11,9 @@
  *= require_self
  *= require revealjs/reveal.min
  *= require revealjs/theme/default
+ *= require revealjs/theme/moon
+ 
+
  *= require revealjs/lib/css/zenburn
 */
 
@@ -46,9 +49,8 @@ body {
     }
   }
   #mercury_image {
-    padding: 100px 50px;
-    min-height: 100px;
-    min-width: 100px;
+    // min-height: 250px;
+    // min-width: 250px;
   }
 }
 .brand {
@@ -57,4 +59,18 @@ body {
   font-weight: normal !important;
   letter-spacing: -1px !important;
   font-size: 4.0em !important;
+}
+.img-circle {
+  border-radius: 50%;
+  vertical-align: middle;
+  margin: 5px;
+}
+
+body {
+  section {
+    .img-circle {
+      width: 128px;
+      height: 128px;
+    }
+  }
 }

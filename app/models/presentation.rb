@@ -22,7 +22,8 @@ class Presentation < ActiveRecord::Base
     :url => ":s3_domain_url",
     :s3_protocol => :https,
     :path => "/:class/images/:id_:basename.:style.:extension",
-    :styles => { :medium => "1024x768>", :thumb => "512x512>" }
+    :default_url => :default_image,
+    :styles => { :medium => "1024x768>", :thumb => "256x256#" }
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
   acts_as_taggable
@@ -57,6 +58,10 @@ class Presentation < ActiveRecord::Base
   
   def self.for(user_id)
     Presentation.where(:user_id => user_id)
+  end
+
+  def default_image
+    user.image(:thumb)
   end
 
   def slug_candidates
