@@ -2,8 +2,9 @@
   .state-background
   .slides
     section class="slide" data-slide-num="0"
-      h1= @presentation.name
-      / h4= "http://twitter.com/#{@presentation.user.nickname}"
+      img.img-circle id="presentation_image" data-mercury="image" src="#{@presentation.image(:thumb) || @current_user.image(:thumb)}"
+      h1 id="presentation_name" data-mercury="full"= @presentation.name
+      div id="presentation_description" data-mercury="full"= @presentation.safe_description
 
     - @presentation.slides.each_with_index do |slide,i|
       section data-slide-num="#{i+1}"

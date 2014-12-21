@@ -19,9 +19,9 @@ image = ContentType.create(:name => 'image')
 
 
 # THEMES
-theme = Theme.create(:name => 'Default')
-themes = %w{beige blood moon night serif simple sky solarized}
-themes.each {|t| Theme.create(name: t.titleize) }
+theme = Theme.find_or_create_by(:name => 'Default')
+themes = %w{beige blood moon night serif simple sky solarized eighteeneff}
+themes.each {|t| Theme.find_or_create_by(name: t.titleize) }
 
 # TEST ONE
 pres = Presentation.create(:name => 'What is Twalk?', :description => "An in-depth explanation of Twalk.")

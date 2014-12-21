@@ -148,7 +148,7 @@ class PresentationsController < ApplicationController
           @user = current_user
         end
         @presentation = @user.presentations.friendly.find(params[:id])
-        @presentation_theme = "revealjs/theme/#{@presentation.theme.name.downcase}"
+        @presentation_theme = begin; "revealjs/theme/#{@presentation.theme.name.downcase}"; rescue; "default"; end
         add_breadcrumb "Dashboard", root_url
         add_breadcrumb @presentation.name, presentation_path(@presentation)
       rescue ActiveRecord::RecordNotFound

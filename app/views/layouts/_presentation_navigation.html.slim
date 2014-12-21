@@ -1,15 +1,17 @@
-- if user_signed_in?
-  .container-fluid
-    nav role="navigation"
-      = render_breadcrumbs
+.presentation-navigation
+  - if user_signed_in?
+    .container-fluid
+      nav role="navigation"
+        = render_breadcrumbs
 
 
-nav.navbar-default
-  ul.nav
-    li= link_to "New Presentation", new_presentation_path, data: { 'no-turbolink' => true }
-    li= link_to "New Slide", new_presentation_slide_path(@presentation) if @presentation
+  nav.navbar-default
+    ul.nav
+      li= link_to "New Presentation", new_presentation_path, data: { 'no-turbolink' => true }
+      li= link_to "New Slide", new_presentation_slide_path(@presentation) if @presentation
+      li= link_to "Launch", presentation_launch_path(@presentation.user, @presentation)
 
 
-  / handlebars:
-  /   {{ party-info }}
+    / handlebars:
+    /   {{ party-info }}
 

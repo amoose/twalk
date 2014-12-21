@@ -22,7 +22,7 @@ html
     / = render partial: 'video'
     header
       = render 'layouts/navigation'
-      = render 'layouts/presentation_navigation'
+      = render 'layouts/presentation_navigation' if @presentation
     #main role="main"
       .container-fluid
         = render 'layouts/messages'
