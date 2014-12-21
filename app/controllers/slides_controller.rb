@@ -12,7 +12,6 @@ class SlidesController < ApplicationController
   # GET /slides/1
   # GET /slides/1.json
   def show
-    add_breadcrumb 'Edit', params[:mercury_frame].nil? ? edit_presentation_slide_path(@presentation, @slide) : nil
     render :layout => 'presentation'
     @contents = @slide.contents
   end
@@ -75,15 +74,12 @@ class SlidesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_slide
-      @slide = @presentation.slides.friendly.find(params[:id])      
-      add_breadcrumb @slide.slug, presentation_slide_path(@presentation, @slide)
+      @slide = @presentation.slides.friendly.find(params[:id])
     end
 
     def set_presentation
       @presentation = current_user.presentations.friendly.find(params[:presentation_id])
       @presentation_theme = "revealjs/theme/#{@presentation.theme.name.downcase}"
-      add_breadcrumb "Dashboard", :presentations_url
-      add_breadcrumb @presentation.name, presentation_path(@presentation)
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def slide_params

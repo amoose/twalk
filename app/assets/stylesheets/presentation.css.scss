@@ -16,6 +16,10 @@
  *= require revealjs/lib/css/zenburn
 */
 
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
 #main {
 	// height: 100%
 }
@@ -51,6 +55,7 @@ body {
     // min-width: 250px;
   }
   .presentation-navigation {
+    font-family: 'Voces', cursive !important;
     position: absolute;
     z-index: 1;
     left: 0;
@@ -67,7 +72,7 @@ body {
     border-right: 1px solid #f2f2f2;
   }
 }
-.brand {
+.brand, .navbar-brand {
   font-family: 'Chango', cursive !important;
   text-transform: lowercase !important;
   font-weight: normal !important;
@@ -96,12 +101,34 @@ html {
         img.img-circle {
           width: 128px;
           height: 128px;
-        }  
+        }
       }
-      
+    }
+    a:hover .main-image .presenter {
+      transition: color 0.5s ease;
+      color: #55ACEE;
     }
     .fadeIn {
       display: none;
+    }
+    nav.navbar-presenter,
+    nav.navbar-default {
+      background: #545454;
+      .divider {
+        color: white;
+      }
+    }
+    i.fa {
+      font-family: 'FontAwesome';
+      font-size: 1.2em;
+      line-height: 0.8em;
+      font-style: normal !important;
+      color: #55ACEE;
+    }
+    a {
+      &:hover i.fa {
+        transition: color .15s ease;
+      }
     }
   }
 }

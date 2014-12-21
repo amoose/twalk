@@ -5,7 +5,8 @@
       <a href="https://twitter.com/#{@presentation.user.nickname}">
         .main-image
           img.img-circle.fadeIn id="presentation_image" data-mercury="image" src="#{@presentation.image(:thumb) || @current_user.image(:thumb)}"
-          h5.presenter.fadeIn= "@"+@presentation.user.nickname
+          span.big= 
+          h5.presenter.fadeIn= raw('<i class="fa fa-twitter"></i>') + "@"+@presentation.user.nickname
       </a>
       
       br clear="both"

@@ -79,7 +79,6 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.3.1.0)
       sass (~> 3.2)
-    breadcrumbs_on_rails (2.3.0)
     builder (3.2.2)
     byebug (3.5.1)
       columnize (~> 0.8)
@@ -399,7 +398,6 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-sass (~> 3.3.1)
-  breadcrumbs_on_rails
   byebug
   cancan
   capistrano (~> 3.2.0)

@@ -14,7 +14,6 @@ class PresentationsController < ApplicationController
   # GET /presentations/1
   # GET /presentations/1.json
   def show
-    add_breadcrumb "Edit", params[:mercury_frame].nil? ? edit_presentation_path(@presentation) : nil
     render :layout => "presentation"
   end
 
@@ -161,8 +160,6 @@ class PresentationsController < ApplicationController
         end
         @presentation = @user.presentations.friendly.find(params[:id])
         @presentation_theme = begin; "revealjs/theme/#{@presentation.theme.name.downcase}"; rescue; "default"; end
-        add_breadcrumb "Dashboard", root_url
-        add_breadcrumb @presentation.name, presentation_path(@presentation)
       rescue ActiveRecord::RecordNotFound
         redirect_to '/404.html'
       end

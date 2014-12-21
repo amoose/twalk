@@ -11,5 +11,7 @@ $(function () {
   $('.fadeIn').each(function(i) {
     $(this).delay((i++) * 500).fadeTo(500, 1);
   });
+
+  $('.presentation-navigation').width(parseInt($(window).width() * 0.18)+"px");
     
 });
