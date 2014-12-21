@@ -167,7 +167,7 @@ class PresentationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def presentation_params
-      params.require(:presentation).permit(:name, :slug, :description, :is_public, :latitude, :longitude, :theme_id, :image)
+      params.require(:presentation).permit(:name, :slug, :description, :is_public, :latitude, :longitude, :theme_id, :image, :hashtag, :live_tweeting)
     end
 
     def mercury_params

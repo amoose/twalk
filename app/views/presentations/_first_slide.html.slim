@@ -19,15 +19,16 @@
         - slide.contents.each do |content|
           div class="slide-content #{content.content_type.name.downcase}"
             = output_content(content)
-  aside class="controls"
-    a class="left" href="#"
-      | &#x25C4;
-    a class="right" href="#"
-      | &#x25BA;
-    a class="up" href="#"
-      | &#x25B2;
-    a class="down" href="#"
-      | &#x25BC;
+            
+aside class="controls"
+  a class="left" href="#"
+    | &#x25C4;
+  a class="right" href="#"
+    | &#x25BA;
+  a class="up" href="#"
+    | &#x25B2;
+  a class="down" href="#"
+    | &#x25BC;
 
-  .progress
-    span
+.progress
+  span

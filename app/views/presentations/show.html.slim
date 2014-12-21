@@ -1,5 +1,21 @@
+- if params[:mercury_frame]
+  - content_for(:nav)
+    .presentation-mini-form
+      = simple_form_for(@presentation, {:multipart => true}) do |f|
+        = f.error_notification
+
+        .form-inputs
+          = f.association :theme
+
+          = f.input :live_tweeting
+
+          = f.input :hashtag
+
+        .form-actions
+          = f.button :submit
+
 = render 'first_slide'
-  
+
 aside class="controls"
   a class="left" href="#"
     | &#x25C4;

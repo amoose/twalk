@@ -1,9 +1,9 @@
-.presentation-navigation
+.presentation-navigation class="#{ @presentation.mine?(current_user) ? "expanded" : ""}"
   nav.navbar-default.navbar-presenter
       ul.nav.nav-pills.nav-stacked
         = nav_link_to 'twalk', root_url, :class => 'navbar-brand'
 
-  - if @presentation_mode
+  - if @presentation_mode == "boss"
     nav.navbar-default.navbar-presenter
       ul.nav.nav-pills.nav-stacked
         = link_to "Toggle LiveChat", "#"
@@ -12,6 +12,23 @@
     nav.navbar-default
       ul.nav.nav-pills.nav-stacked
         li= nav_link_to "New presentation", new_presentation_path, data: { 'no-turbolink' => true }
+        - if @presentation.mine?(current_user) and !@presentation_mode
+          li.divider
+          li= nav_link_to @presentation.name, presentation_path(@presentation)
+          li.divider
+          li= nav_link_to "Edit presentation", edit_presentation_path(@presentation), data: { 'no-turbolink' => true }
+          li= link_to "Delete presentation", presentation_path(@presentation), :method => :delete
+          li= link_to "Launch!" , presentation_launch_path(@presentation.user, @presentation)
+  
+  = content_for?(:nav) ? yield(:nav) : ''
+          
+          
+
+- if @presentation and @presentation.mine?(current_user) and !@presentation_mode
+  .slide-navigation.expanded
+    nav.navbar-default.navbar-slides
+      span Slide Nav
+      ul.nav.nav-pills.nav-stacked
         - if @presentation.slides.size == 0
           li= nav_link_to "Add first slide", new_presentation_slide_path(@presentation)
         - else
@@ -20,21 +37,10 @@
           li.divider
           li= nav_link_to "Edit slide", edit_presentation_slide_path(@presentation, @slide), data: { 'no-turbolink' => true }
           li= link_to "Delete slide", presentation_slide_path(@presentation, @slide), :method => :delete
-        - if @presentation
-          li.divider
-          li= nav_link_to "Edit presentation", edit_presentation_path(@presentation), data: { 'no-turbolink' => true }
-          li= link_to "Delete presentation", presentation_path(@presentation), :method => :delete
-          li= link_to "Launch!" , presentation_launch_path(@presentation.user, @presentation)
-          
-          
-
-    nav.navbar-default
-      span Slide Nav
-      ul.nav.nav-pills.nav-stacked
+        li.divider
         - @presentation.slides.each do |slide|
-          = nav_link_to "Slide #{slide.sort_order}", presentation_slide_path(@presentation, slide),  { data: { 'no-turbolink' => true }}, {:wrapper => 'li'}
+          = nav_link_to "Slide #{slide.sort_order}", edit_presentation_slide_path(@presentation, slide),  { data: { 'no-turbolink' => true }}, {:wrapper => 'li', :controller_segment => 1}
 
-          
 
 
 

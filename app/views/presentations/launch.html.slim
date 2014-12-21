@@ -1,6 +1,5 @@
 = render 'first_slide'
 
-
 - if current_user.id == @presentation.user_id
   javascript:
 
@@ -18,7 +17,7 @@
       });
 
       Reveal.initialize({
-          controls: false,
+          controls: true,
           progress: true,
           history: true,
           
@@ -35,6 +34,8 @@
         }
         dispatcher.trigger('control_show', _message);
       });
+
+      $('.presentation-navigation, .slide-navigation').removeClass('expanded');
     });
 
 
