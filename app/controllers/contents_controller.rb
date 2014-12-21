@@ -18,7 +18,7 @@ class ContentsController < ApplicationController
   # GET /contents/new
   def new
     @content = Content.new(
-        :body => '<h1>New Content</h1>',
+        :body => "<h3>#{Faker::Hacker.ingverb} #{Faker::Hacker.noun}</h3>",
         :sort_order => @slide.contents.size + 1,
         :presentation_id => @presentation.id,
         :slide_id => @slide.id,

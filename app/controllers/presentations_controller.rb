@@ -60,8 +60,9 @@ class PresentationsController < ApplicationController
   # GET /presentations/new
   def new
     @presentation = Presentation.create(
-        :name => "A New Twalk by #{current_user.nickname}",
-        :description => "created #{Time.zone.now.strftime('%Y-%m-%d - %H:%M')}",
+        :name => Faker::Company.catch_phrase,
+        # :description => Faker::Lorem.paragraph,
+        :description => "<i>"+Faker::Company.bs.capitalize+"</i>",
         :user => current_user,
         :theme => Theme.default
       )
@@ -109,13 +110,24 @@ class PresentationsController < ApplicationController
     @presentation = current_user.presentations.friendly.find(params[:presentation_id])
     @presentation.name = mercury_params[:presentation_name][:value]
     @presentation.description = mercury_params[:presentation_description][:value]
-    @presentation.image = mercury_params[:presentation_image][:attributes][:src]
+    
+    if !mercury_params[:presentation_image][:attributes][:src].nil?
+      if mercury_params[:presentation_image][:attributes][:src] != @presentation.image(:thumb)
+        @presentation.image = mercury_params[:presentation_image][:attributes][:src] if mercury_params[:presentation_image][:attributes][:src] != @presentation.image(:thumb)
+        flash[:info] = "Updated image!"
+      end
+    end
+
 
     @presentation.slides.each do |slide|
       unless slide.nil?
         slide.contents.each do |content|
-          unless content.nil? and params[:content]["presentation_slide_#{slide.slug}_content_#{content.slug}"][:value]
-            content.body = params[:content]["presentation_slide_#{slide.slug}_content_#{content.slug}"]
+          begin
+            unless content.nil? or params[:content]["presentation_slide_#{slide.slug}_content_#{content.slug}"][:value].blank?
+              content.body = params[:content]["presentation_slide_#{slide.slug}_content_#{content.slug}"]
+            end
+          rescue
+
           end
         end
       end

@@ -26,7 +26,7 @@ $default-text-color: #000;
 }
 
 .big {
-  font-size: 4.0em;
+  font-size: 2.0em;
 }
 
 
@@ -73,9 +73,6 @@ body {
     }
   }
 
-  .presentation-navigation {
-    position: absolute;
-  }
   .small-detail {
     margin-bottom: 2.0em;
   }
@@ -169,7 +166,12 @@ input, textarea, select {
     width: 250px;
     height: 125px;
     img {
-      max-width: 250px;
+      width: 128px;
+      height: 128px;
+      opacity: 0.9;
+      &:hover {
+        opacity: 1.0;
+      }
     }
   }
   .media-body {

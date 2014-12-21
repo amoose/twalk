@@ -1,0 +1,32 @@
+.reveal
+  .state-background
+  .slides
+    section class="slide" data-slide-num="0"
+      <a href="https://twitter.com/#{@presentation.user.nickname}">
+        .main-image
+          img.img-circle.fadeIn id="presentation_image" data-mercury="image" src="#{@presentation.image(:thumb) || @current_user.image(:thumb)}"
+          h5.presenter.fadeIn= "@"+@presentation.user.nickname
+      </a>
+      
+      br clear="both"
+      br
+      h2 id="presentation_name" data-mercury="full"= @presentation.name
+      div id="presentation_description" data-mercury="full"= @presentation.safe_description
+
+    - @presentation.slides.each_with_index do |slide,i|
+      section data-slide-num="#{i+1}"
+        - slide.contents.each do |content|
+          div class="slide-content #{content.content_type.name.downcase}"
+            = output_content(content)
+  aside class="controls"
+    a class="left" href="#"
+      | &#x25C4;
+    a class="right" href="#"
+      | &#x25BA;
+    a class="up" href="#"
+      | &#x25B2;
+    a class="down" href="#"
+      | &#x25BC;
+
+  .progress
+    span

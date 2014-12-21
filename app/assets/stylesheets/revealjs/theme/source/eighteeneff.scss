@@ -28,8 +28,8 @@ $headingColor: #000;
 $headingTextShadow: none;
 $headingTextTransform: none;
 $backgroundColor: #fff;
-$linkColor: #00008B;
-$linkColorHover: lighten( $linkColor, 20% );
+$linkColor: #18f; //#00008B
+$linkColorHover: darken( $linkColor, 20% );
 $selectionBackgroundColor: rgba(0, 0, 0, 0.99);
 
 
@@ -40,7 +40,7 @@ $selectionBackgroundColor: rgba(0, 0, 0, 0.99);
 // 
 
 body {
-  background: white image-url('18f.png') no-repeat right bottom;
+  background: white image-url('18f-bw.png') no-repeat bottom 2.0em right 2.0em;
   color: #545454;
   a,
   nav a,

@@ -2,8 +2,8 @@ doctype html
 html
   head
     meta content="width=device-width, initial-scale=1.0" name="viewport" 
-      title= content_for?(:title) ? yield(:title) : "Twalk.io"
-    meta content=(content_for?(:description) ? yield(:description) : "Twalk.io") name="description" 
+      title= content_for?(:title) ? yield(:title) : "twalk"
+    meta content=(content_for?(:description) ? yield(:description) : "twalk") name="description" 
     meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
     / = stylesheet_link_tag    'mercury'
     / = javascript_include_tag 'jquery-1.7', 'mercury'
@@ -13,8 +13,9 @@ html
 
     
     = stylesheet_link_tag "presentation", :media => "all"
-    = stylesheet_link_tag @presentation_theme
-    = stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Voces|Chango'
+    = stylesheet_link_tag '//fonts.googleapis.com/css?family=Voces|Chango'
+    = stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'
+    = stylesheet_link_tag @presentation_theme if @presentation_theme
     meta name="apple-mobile-web-app-capable" content="yes"
     meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"
     = stylesheet_link_tag "https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"

@@ -23,7 +23,7 @@ class Presentation < ActiveRecord::Base
     :s3_protocol => :https,
     :path => "/:class/images/:id_:basename.:style.:extension",
     :default_url => :default_image,
-    :styles => { :medium => "1024x768>", :thumb => "256x256#" }
+    :styles => { :large => "1024x768>", :medium => "512x384#", :thumb => "128x128#" }
   validates_attachment :image, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif"] }
 
   acts_as_taggable
@@ -47,9 +47,9 @@ class Presentation < ActiveRecord::Base
   def has_party?
     self.parties.any?
   end
-
+  
   def short_description
-    description.to_s.split.first(10).join(' ')
+    description.to_s.split.first(10).join(' ').html_safe
   end
 
   def safe_description

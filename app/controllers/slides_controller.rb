@@ -65,8 +65,9 @@ class SlidesController < ApplicationController
   # DELETE /slides/1.json
   def destroy
     @slide.destroy
+    flash[:success] = "Slide successfully removed."
     respond_to do |format|
-      format.html { redirect_to slides_url }
+      format.html { redirect_to presentation_url(@presentation) }
       format.json { head :no_content }
     end
   end

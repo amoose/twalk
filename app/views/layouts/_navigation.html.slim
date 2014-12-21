@@ -32,6 +32,7 @@ nav.navbar.navbar-default role="navigation"
 
       ul.nav.navbar-nav.navbar-right
         - if user_signed_in?
+          li.big= nav_link_to raw('<i class="fa fa-plus-square"></i>'), new_presentation_path, data: { 'no-turbolink' => true }
           / li= nav_link_to raw('My <span class="brand">twalk</span>s'), presentations_path
           / li= nav_link_to raw('Join a <span class="brand">twalk</span>'), nearby_path
           li.dropdown

@@ -1,14 +1,27 @@
 .presentation-navigation
   - if user_signed_in?
-    .container-fluid
-      nav role="navigation"
-        = render_breadcrumbs
+    nav role="navigation"
+      = render_breadcrumbs
 
 
   nav.navbar-default
+    span Slide Nav
+    ul.nav
+      - @presentation.slides.each do |slide|
+        li= nav_link_to "Slide #{slide.sort_order}", presentation_slide_path(@presentation, slide), data: { 'no-turbolink' => true }
+
+      - if @presentation
+        - if @presentation.slides.size == 0
+          li= link_to "Add first slide", new_presentation_slide_path(@presentation)
+        - else
+          li= link_to "Add slide", new_presentation_slide_path(@presentation)
+        - if @slide
+          = link_to "Delete slide", presentation_slide_path(@presentation, @slide), :method => :delete
+  nav.navbar-default
+    span Pres Nav
     ul.nav
       li= link_to "New Presentation", new_presentation_path, data: { 'no-turbolink' => true }
-      li= link_to "New Slide", new_presentation_slide_path(@presentation) if @presentation
+      
       li= link_to "Launch", presentation_launch_path(@presentation.user, @presentation)
 
 

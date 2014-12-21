@@ -33,6 +33,7 @@ gem 'owlcarousel-rails'
 gem 'sucker_punch', '~> 1.0'
 gem 'paperclip', '~> 4.2'
 gem 'aws-sdk', '~> 1.5.7'
+gem 'faker'
 
 group :development do
   gem 'guard-bundler'

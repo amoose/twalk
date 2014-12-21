@@ -36,7 +36,6 @@ body.boss, body.kibitz {
 		position: relative;
 		top: 0;
 		width: 100%;
-		height: 20px;
 	}
 }
 
@@ -50,6 +49,22 @@ body {
   #mercury_image {
     // min-height: 250px;
     // min-width: 250px;
+  }
+  .presentation-navigation {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    width: 120px;
+    height: 100%;
+    padding: 10px 15px;
+    background: -moz-linear-gradient(top,  rgba(255,255,255,0.21) 0%, rgba(255,255,255,0.21) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.21)), color-stop(100%,rgba(255,255,255,0.21))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(255,255,255,0.21) 0%,rgba(255,255,255,0.21) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(255,255,255,0.21) 0%,rgba(255,255,255,0.21) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(255,255,255,0.21) 0%,rgba(255,255,255,0.21) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(255,255,255,0.21) 0%,rgba(255,255,255,0.21) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#36ffffff', endColorstr='#36ffffff',GradientType=0 ); /* IE6-9 */
+    border-right: 1px solid #f2f2f2;
   }
 }
 .brand {
@@ -65,11 +80,29 @@ body {
   margin: 5px;
 }
 
-body {
-  section {
-    .img-circle {
-      width: 128px;
-      height: 128px;
+html {
+  body {
+    section {
+      .main-image {
+        width: 485px;
+        margin: 0 auto;
+        img,
+        h5 {
+          float: left;
+        }
+        h5 {
+          margin: 1.75em 0 1.0em 1.0em;
+        }
+        img.img-circle {
+          width: 128px;
+          height: 128px;
+        }  
+      }
+      
+    }
+    .fadeIn {
+      display: none;
     }
   }
 }
+

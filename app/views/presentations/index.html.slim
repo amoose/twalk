@@ -5,7 +5,7 @@
       - if @presentations.any?
         - @presentations.each do |presentation|
           .small-detail
-            = render partial: 'small_detail', locals: { presentation: presentation }
+            = render partial: 'small_detail', locals: { presentation: presentation, pres_link: presentation_path(presentation) }
             .nav
               = link_to 'Destroy', presentation, :method => :delete, :data => { :confirm => 'Are you sure?' }
       - else
@@ -17,6 +17,6 @@
       - if @nearby.any?
 
           - @nearby.each do |nearby_presentation|
-            = render partial: 'small_detail', locals: { presentation: nearby_presentation }
+            = render partial: 'small_detail', locals: { presentation: nearby_presentation, pres_link: presentation_launch_path(nearby_presentation.user, nearby_presentation) }
       - else
         h3 Nothing going on nearby.
