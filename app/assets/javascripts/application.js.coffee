@@ -30,6 +30,10 @@ $ ->
     windowHeightz0r()
     return
 
+  $('.flash-messages').find('.alert').each ->
+    $(this).delay(4000).fadeOut();
+    return
+
   return
 
   
