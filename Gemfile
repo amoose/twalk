@@ -33,6 +33,7 @@ gem 'sucker_punch', '~> 1.0'
 gem 'paperclip', '~> 4.2'
 gem 'aws-sdk', '~> 1.5.7'
 gem 'faker'
+gem 'twitter'
 
 group :development do
   gem 'guard-bundler'
@@ -48,10 +49,10 @@ group :development do
   gem 'html2haml'
   gem 'rails_layout'
   gem 'pry'
-  gem 'capistrano', '~> 3.2.0'
+  gem 'capistrano', '~> 3.1'
   gem 'capistrano-bundler', '~> 1.1.2'
-  gem 'capistrano-rails', '~> 1.1.1'
-  gem 'capistrano-rbenv', github: "capistrano/rbenv"
+  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-rvm'
   gem 'byebug'
 end
 group :development, :test do

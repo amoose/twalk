@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/capistrano/rbenv.git
-  revision: 2332dba20ec1f8c8cb7a9cd38770d71f5c4bf5a9
-  specs:
-    capistrano-rbenv (2.0.2)
-      capistrano (~> 3.1)
-      sshkit (~> 1.3)
-
-GIT
   remote: git://github.com/depili/websocket-rails.git
   revision: b2650d81751ef79f2f86c3c61b21a86435339e3b
   specs:
@@ -79,6 +71,7 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-sass (3.3.1.0)
       sass (~> 3.2)
+    buftok (0.2.0)
     builder (3.2.2)
     byebug (3.5.1)
       columnize (~> 0.8)
@@ -95,6 +88,9 @@ GEM
     capistrano-rails (1.1.1)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    capistrano-rvm (0.1.2)
+      capistrano (~> 3.0)
+      sshkit (~> 1.2)
     capybara (2.4.1)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -122,6 +118,8 @@ GEM
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
+    domain_name (0.5.25)
+      unf (>= 0.0.5, < 1.0.0)
     em-synchrony (1.0.3)
       eventmachine (>= 1.0.0.beta.1)
     email_spec (1.6.0)
@@ -140,6 +138,7 @@ GEM
       railties (>= 3.1)
     ember-source (1.8.0)
       handlebars-source (~> 1.0)
+    equalizer (0.0.10)
     erubis (2.7.0)
     eventmachine (1.0.3)
     execjs (2.2.2)
@@ -204,6 +203,15 @@ GEM
       haml (>= 4.0.0.rc.1)
       hpricot (~> 0.8.6)
       ruby_parser (~> 3.1.1)
+    http (0.9.8)
+      addressable (~> 2.3)
+      http-cookie (~> 1.0)
+      http-form_data (~> 1.0.1)
+      http_parser.rb (~> 0.6.0)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
+    http-form_data (1.0.1)
+    http_parser.rb (0.6.0)
     httparty (0.13.3)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -228,6 +236,8 @@ GEM
     lumberjack (1.0.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    memoizable (0.4.2)
+      thread_safe (~> 0.3, >= 0.3.1)
     method_source (0.8.2)
     mime-types (2.4.3)
     mini_portile (0.6.0)
@@ -236,6 +246,7 @@ GEM
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    naught (1.1.0)
     nav_lynx (1.1.1)
       rails (>= 3.1.0)
     net-scp (1.2.1)
@@ -341,6 +352,7 @@ GEM
     simple_form (3.0.2)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
+    simple_oauth (0.3.1)
     slim (2.0.3)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
@@ -377,11 +389,25 @@ GEM
       hitimes
     turbolinks (2.2.2)
       coffee-rails
+    twitter (5.15.0)
+      addressable (~> 2.3)
+      buftok (~> 0.2.0)
+      equalizer (= 0.0.10)
+      faraday (~> 0.9.0)
+      http (>= 0.4, < 0.10)
+      http_parser.rb (~> 0.6.0)
+      json (~> 1.8)
+      memoizable (~> 0.4.0)
+      naught (~> 1.0)
+      simple_oauth (~> 0.3.0)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.1)
     uuidtools (2.1.5)
     websocket-driver (0.5.0)
       websocket-extensions (>= 0.1.0)
@@ -400,10 +426,10 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.1)
   byebug
   cancan
-  capistrano (~> 3.2.0)
+  capistrano (~> 3.1)
   capistrano-bundler (~> 1.1.2)
-  capistrano-rails (~> 1.1.1)
-  capistrano-rbenv!
+  capistrano-rails (~> 1.1)
+  capistrano-rvm
   capybara
   coffee-rails
   database_cleaner (= 1.0.1)
@@ -450,5 +476,9 @@ DEPENDENCIES
   therubyracer
   thin
   turbolinks
+  twitter
   uglifier (>= 1.3.0)
   websocket-rails!
+
+BUNDLED WITH
+   1.10.6
