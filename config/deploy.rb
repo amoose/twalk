@@ -41,6 +41,8 @@ set :keep_releases, 5
 # set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 # set :rbenv_roles, :all # default value
 
+# set :rvm_ruby_version, '2.2.0'      # Defaults to: 'default'
+# set :rvm_custom_path, '~/.myveryownrvm'  # only needed if not detected
 
 namespace :deploy do
 
