@@ -15,7 +15,6 @@ require 'capistrano/deploy'
 #   https://github.com/capistrano/rails
 #
 
-# require 'capistrano/rbenv'
 require 'capistrano/rvm'
 require 'capistrano/rails'
 
