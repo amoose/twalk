@@ -1,7 +1,7 @@
 class PresentationsController < ApplicationController
   before_action :require_auth
   before_action :set_presentation, only: [:show, :edit, :update, :destroy, :launch]
-  before_action :check_access, only: [:launch, :create, :update, :destroy, :edit, :new]
+  before_action :check_access
 
 
   # GET /presentations
