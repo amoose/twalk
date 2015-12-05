@@ -10,7 +10,7 @@
 # server list. The second argument is a, or duck-types, Hash and is
 # used to set extended properties on the server.
 
-server 'twalk.io', user: 'root', roles: %w{web app}
+server 'twalk.io', user: 'deploy', roles: %w{web app}
 
 
 # Custom SSH Options

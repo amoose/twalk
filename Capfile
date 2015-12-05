@@ -15,7 +15,8 @@ require 'capistrano/deploy'
 #   https://github.com/capistrano/rails
 #
 
-require 'capistrano/rbenv'
+# require 'capistrano/rbenv'
+require 'capistrano/rvm'
 require 'capistrano/rails'
 
 # Loads custom tasks from `lib/capistrano/tasks' if you have any defined.
