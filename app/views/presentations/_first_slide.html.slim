@@ -2,12 +2,10 @@
   .state-background
   .slides
     section class="slide" data-slide-num="0"
-      <a href="https://twitter.com/#{@presentation.user.nickname}">
-        .main-image
-          img.img-circle.fadeIn id="presentation_image" data-mercury="image" src="#{@presentation.image(:thumb) || @current_user.image(:thumb)}"
-          / span.big= 
-          / h5.presenter.fadeIn= raw('<i class="fa fa-twitter"></i>') + "@"+@presentation.user.nickname
-      </a>
+      .main-image
+        img.img-circle.fadeIn id="presentation_image" data-mercury="image" src="#{@presentation.image(:thumb) || @current_user.image(:thumb)}"
+        / span.big=
+        / h5.presenter.fadeIn= raw('<i class="fa fa-twitter"></i>') + "@"+@presentation.user.nickname
       
       br clear="both"
       br
