@@ -16,3 +16,5 @@ WEBSOCKET_STANDALONE: false
 ACCESS_KEY_ID: xxxxxx
 SECRET_ACCESS_KEY: xxxxx
 S3_BUCKET: twalk
+
+SECRET_KEY_BASE: 'rake secret'
