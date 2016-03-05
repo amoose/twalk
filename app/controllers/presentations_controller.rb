@@ -1,13 +1,18 @@
 class PresentationsController < ApplicationController
-  before_action :require_auth
+  before_action :require_auth, except: :index
   before_action :set_presentation, only: [:show, :edit, :update, :destroy, :launch]
   before_action :check_access
 
   # GET /presentations
   # GET /presentations.json
   def index
-    @presentations = Presentation.for(current_user.id)
-    @nearby = Presentation.where('user_id != ?', current_user.id).near(current_user_latlon)
+    if user_signed_in?
+      @presentations = Presentation.for(current_user.id)
+      @nearby = Presentation.where('user_id != ?', current_user.id).near(current_user_latlon)
+    else
+      @presentations = Presentation.latest
+      @nearby = []
+    end
   end
 
   # GET /presentations/1

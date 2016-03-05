@@ -60,6 +60,10 @@ class Presentation < ActiveRecord::Base
     Presentation.where(:user_id => user_id).order(:created_at => :desc)
   end
 
+  def self.latest
+    Presentation.order(:created_at => :desc).limit(10)
+  end
+
   def default_image
     user.image(:thumb)
   end

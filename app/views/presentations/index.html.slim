@@ -1,23 +1,36 @@
+
 .container-fluid
   .row
-    .col-md-6
-      h2 My Twalks
-      - if @presentations.any?
+    - if user_signed_in?
+      .col-md-6
+        h2 My Twalks
+        - if @presentations.any?
+          - @presentations.each do |presentation|
+            .small-detail
+              = render partial: 'small_detail', locals: { presentation: presentation, pres_link: presentation_path(presentation.user, presentation) }
+              .nav
+                = link_to 'Destroy', presentation_path(presentation.user, presentation), :method => :delete, :data => { :confirm => 'Are you sure?' }
+        - else
+          p ...
+          h3 You haven't created any <span class="brand">twalk</span>s
+          / p You have no <span class="brand">twalk</span>s
+          / # h3= link_to "Create my first <span class='brand'>twalk</span>".html_safe, new_presentation_path(current_user), data: { 'no-turbolink' => true }
+
+
+      .col-md-6
+        h2 Twalks Nearby
+        - if @nearby.any?
+
+            - @nearby.each do |nearby_presentation|
+              = render partial: 'small_detail', locals: { presentation: nearby_presentation, pres_link: presentation_launch_path(nearby_presentation.user, nearby_presentation) }
+        - else
+          h3 Nothing going on nearby.
+    - else
+      .col-sm-3
+        h2 Latest <span class="brand">twalk</span>s
+      .col-sm-1
+        p
+      .col-sm-5
         - @presentations.each do |presentation|
           .small-detail
             = render partial: 'small_detail', locals: { presentation: presentation, pres_link: presentation_path(presentation.user, presentation) }
-            .nav
-              = link_to 'Destroy', presentation_path(presentation.user, presentation), :method => :delete, :data => { :confirm => 'Are you sure?' }
-      - else
-        / p You have no <span class="brand">twalk</span>s
-        h3= link_to "Create my first <span class='brand'>twalk</span>".html_safe, new_presentation_path(current_user), data: { 'no-turbolink' => true }
-
-
-    .col-md-6
-      h2 Twalks Nearby
-      - if @nearby.any?
-
-          - @nearby.each do |nearby_presentation|
-            = render partial: 'small_detail', locals: { presentation: nearby_presentation, pres_link: presentation_launch_path(nearby_presentation.user, nearby_presentation) }
-      - else
-        h3 Nothing going on nearby.
