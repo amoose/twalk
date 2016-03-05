@@ -1,0 +1,42 @@
+= link_to 'Back', presentation_slide_contents_path(@presentation, @slide)
+
+.reveal
+  .state-background
+  .slides
+    section class="slide" data-slide-num="0"
+      div id="mercury_content" data-mercury="full"= @content.body.html_safe
+
+  
+  aside class="controls"
+    a class="left" href="#"
+      | &#x25C4;
+    a class="right" href="#"
+      | &#x25BA;
+    a class="up" href="#"
+      | &#x25B2;
+    a class="down" href="#"
+      | &#x25BC;
+
+  .progress
+    span
+
+javascript:
+  // var presentation_id = $('body').data('presentation_id');
+  $(function() {
+
+    // REVEAL
+    var reveal = Reveal.initialize({
+      controls: false,
+      progress: true,
+      history: true,
+      keyboard: false,
+      theme: Reveal.getQueryHash().theme || 'default', // available themes are in /css/theme
+      transition: Reveal.getQueryHash().transition || 'default' // default/cube/page/concave/linear(2d)
+    });
+
+    var currentSlide = 0;
+    Reveal.addEventListener( 'ready', function( event ) {
+      currentSlide = event.currentSlide;
+    });
+
+  });

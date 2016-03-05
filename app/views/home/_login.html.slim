@@ -1,5 +1,24 @@
-.login-box
-  a href="/signin"
-    h1 Push to Twalk
-    = image_tag 'twitter-white.png'
+.modal.fade#login-modal tabindex="-1"
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button type="button" class="close" data-dismiss="modal"
+          span aria-hidden="true" &times;
+          span class="sr-only" Close
+        h4 class="modal-title" Login with Twitter
+      .modal-body
+        div style="width: 700px; height: 500px;"
+          a.replace href="#go" Login with twitter
+      .ajax-loader
+      .modal-footer
+        button.btn.btn-default type="button" data-dismiss="modal" Close
 
+
+javascript:
+  $(function () {
+    $('#go').click(function (e) {
+      e.preventDefault();
+      window.open('/signin','Signin','width=600,height=600,toolbar=0,menubar=0,location=250,status=0,scrollbars=1,resizable=1,left=0,top=0');
+      return false;
+    });
+  });

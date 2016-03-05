@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :check_admin_access, :only => [:index]
   before_filter :correct_user?, :except => [:index]
 
   def index
@@ -14,7 +15,7 @@ class UsersController < ApplicationController
     @user = User.friendly.find(params[:id])
     if @user.update_attributes(user_params)
       if session[:new_signup]
-        flash[:success] = "Welcome to Twalk.io!"
+        flash[:success] = "Welcome to Twalk!"
         session.delete(:new_signup)
         redirect_to root_url 
       else
@@ -33,6 +34,6 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:user).permit(:id, :email, :role_ids)
+      params.require(:user).permit(:email, :name, :geolocate_me, :image)
     end
 end

@@ -3,9 +3,15 @@
   %head
     %meta{:name => "viewport", :content => "width=device-width, maximum-scale=1.0, initial-scale=1.0"}
     = csrf_meta_tags
-    %title Mercury Editor
+    %title twalk - Edit Mode
+    = javascript_include_tag 'jquery-1.7', 'mercury', 'reveal.min.new'
     = stylesheet_link_tag    'mercury'
-    = javascript_include_tag 'jquery-1.7', 'mercury'
+
+    = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/headjs/1.0.3/head.core.min.js'
+
+    = stylesheet_link_tag "presentation", :media => "all"
+    = stylesheet_link_tag "//fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
+    <!--[if lt IE 9]><script src="lib/html5shiv.js"></script><![endif]-->
   %body
     :javascript
       // Set to the url that you want to save any given page to, leave null for default handling.

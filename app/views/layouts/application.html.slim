@@ -2,8 +2,8 @@ doctype html
 html
   head
     meta content="width=device-width, initial-scale=1.0" name="viewport" 
-      title= content_for?(:title) ? yield(:title) : "Twalk.io"
-      meta content=(content_for?(:description) ? yield(:description) : "Twalk.io") name="description" 
+      title= content_for?(:title) ? yield(:title) : "twalk"
+      meta content=(content_for?(:description) ? yield(:description) : "twalk") name="description" 
       meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
       = stylesheet_link_tag "application", :media => "all"
       = stylesheet_link_tag '//fonts.googleapis.com/css?family=Voces|Chango'
@@ -18,13 +18,28 @@ html
             $('body').data("presentation_id","#{current_user.id}")
           })
 
-  body class=("#{controller_name} #{action_name}")
+  body class="#{controller_name} #{action_name}"
     header
       = render 'layouts/navigation'
-      = render 'layouts/presentation_navigation'
-    #main role="main" 
-      = render 'layouts/messages'
-      / = render_breadcrumbs :tag => :li, :separator => ""
-      = yield
+      = render 'layouts/presentation_navigation' if @presentation
+    #main role="main"
+      .container-fluid
+        = render 'layouts/messages'
+        == yield
     footer
-      | &copy; #{Time.now.year} Twalk.io
+      .container-fluid
+        .row
+          .col-md-12
+            | &copy; #{Time.now.year} <span class="brand" style="font-size: 1.0em">twalk</span>.io
+            .git.pull-right
+              | rev 
+              = link_to(Git::REVISION, 'https://github.com/amoose/twalk/commit/' + Git::REVISION)
+              / |&nbsp;|&nbsp;v 
+              / = link_to(Git::VERSION, 'https://github.com/amoose/twalk/releases/tag/' + Git::VERSION)
+
+    / GEOLOCATION
+    - if current_user && current_user.geolocate_me?
+      javascript:
+        $(function() {
+          getLocation()
+        })

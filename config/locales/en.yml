@@ -21,3 +21,25 @@
 
 en:
   hello: "Hello world"
+
+  simple_form:
+    labels:
+      user:
+        name: 'Name'
+        email: 'Email address'
+      presentation:
+        name: Title
+
+    placeholders:
+      user:
+        email: Your email address
+
+      presentation:
+        name: Give your Twalk a title... (e.g. How magnets work)
+        description: What are we even twalking about here?
+
+  helpers:
+    submit:
+      presentation:
+        create: Create
+        update: Update

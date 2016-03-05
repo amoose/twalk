@@ -25,7 +25,7 @@ class PartyController <  WebsocketRails::BaseController
     #   pres.geolocation_updated_at = nil
     #   pres.save
     # end
-    WebsocketRails["party_#{@presentation.id}"].trigger(:lost_client, { :user_id => current_user.id, :nickname => current_user.nickname })
+    # WebsocketRails["party_#{@presentation.id}"].trigger(:lost_client, { :user_id => current_user.id, :nickname => current_user.nickname })
     # WebsocketRails[]
     # binding.pry
   end
@@ -37,7 +37,9 @@ class PartyController <  WebsocketRails::BaseController
       slide = message[:slide]
       party.slide_num = slide
       party.save
-      WebsocketRails[party_str].trigger(:move_deck, { :slide => slide })
+      Fiber.new{ 
+        WebsocketRails[party_str].trigger(:move_deck, { :slide => slide })
+      }.resume
     end
   end
 

@@ -1,25 +1,24 @@
 class PresentationsController < ApplicationController
+  before_action :require_auth
   before_action :set_presentation, only: [:show, :edit, :update, :destroy, :launch]
-  before_action :check_access, only: [:launch, :create, :update, :destroy, :edit, :new]
+  before_action :check_access
 
-  add_breadcrumb "Home", :root_path
-  add_breadcrumb "All Twalks", :presentations_url
 
   # GET /presentations
   # GET /presentations.json
   def index
-    # @presentations = Presentation.all
     @presentations = Presentation.for(current_user.id)
+    @nearby = Presentation.near(current_user_latlon)
   end
 
   # GET /presentations/1
   # GET /presentations/1.json
   def show
-    add_breadcrumb @presentation.name
+    render :layout => "presentation"
   end
 
   def launch
-    @websocket_path = Rails.env == "development" ? "localhost:5000#{websocket_path}" : websocket_path
+    @websocket_path = Rails.env == "development" ? "localhost:#{ENV['PORT']}#{websocket_path}" : "twalk.io:443#{websocket_path}"
     # TODO: cleanup this logic. Create model methods for some of this shit
     if @presentation.user_id == current_user.id
       if current_user.party
@@ -45,13 +44,11 @@ class PresentationsController < ApplicationController
       else
 
       end
-      WebsocketRails["party_#{@presentation.id}"].trigger(:new_client, { :user_id => current_user.id, :nickname => current_user.nickname })
+      Fiber.new{
+        WebsocketRails["party_#{@presentation.id}"].trigger(:new_client, { :user_id => current_user.id, :nickname => current_user.nickname })
+      }.resume
     end
     render :layout => "presentation"
-  end
-
-  def mine
-    @presentations = Presentation.for(current_user.id)
   end
 
   def nearby
@@ -61,12 +58,21 @@ class PresentationsController < ApplicationController
 
   # GET /presentations/new
   def new
-    @presentation = Presentation.new
+    @presentation = Presentation.create(
+        :name => Faker::Company.catch_phrase,
+        # :description => Faker::Lorem.paragraph,
+        :description => "<i>"+Faker::Company.bs.capitalize+"</i>",
+        :user => current_user,
+        :theme => Theme.default
+      )
+    redirect_to "/editor" + presentation_path(@presentation)
   end
 
   # GET /presentations/1/edit
   def edit
+    redirect_to "/editor" + presentation_path(@presentation)
   end
+
 
   # POST /presentations
   # POST /presentations.json
@@ -99,6 +105,40 @@ class PresentationsController < ApplicationController
     end
   end
 
+  def save_presentation
+    @presentation = current_user.presentations.friendly.find(params[:presentation_id])
+    @presentation.name = mercury_params[:presentation_name][:value]
+    @presentation.description = mercury_params[:presentation_description][:value]
+    
+    if !mercury_params[:presentation_image][:attributes][:src].nil?
+      if mercury_params[:presentation_image][:attributes][:src] != @presentation.image(:thumb)
+        @presentation.image = mercury_params[:presentation_image][:attributes][:src] if mercury_params[:presentation_image][:attributes][:src] != @presentation.image(:thumb)
+        flash[:info] = "Updated image!"
+      end
+    end
+
+
+    @presentation.slides.each do |slide|
+      unless slide.nil?
+        slide.contents.each do |content|
+          begin
+            unless content.nil? or params[:content]["presentation_slide_#{slide.slug}_content_#{content.slug}"][:value].blank?
+              content.body = params[:content]["presentation_slide_#{slide.slug}_content_#{content.slug}"]
+            end
+          rescue
+
+          end
+        end
+      end
+    end
+
+    if @presentation.save!
+      render text: ''
+    else
+      render text: 'ERROR'
+    end
+  end
+
   # DELETE /presentations/1
   # DELETE /presentations/1.json
   def destroy
@@ -113,7 +153,13 @@ class PresentationsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_presentation
       begin
-        @presentation = Presentation.friendly.find(params[:id])
+        if params[:nickname]
+          @user = User.friendly.find(params[:nickname])
+        else
+          @user = current_user
+        end
+        @presentation = @user.presentations.friendly.find(params[:id])
+        @presentation_theme = begin; "revealjs/theme/#{@presentation.theme.name.downcase}"; rescue; "default"; end
       rescue ActiveRecord::RecordNotFound
         redirect_to '/404.html'
       end
@@ -121,13 +167,14 @@ class PresentationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def presentation_params
-      params.require(:presentation).permit(:name, :slug, :description, :is_public, :latitude, :longitude)
+      params.require(:presentation).permit(:name, :slug, :description, :is_public, :latitude, :longitude, :theme_id, :image, :hashtag, :live_tweeting)
+    end
+
+    def mercury_params
+      params.require(:content).permit(:presentation_name => [:value], :presentation_description => [:value], :presentation_image => { :attributes => [:src] } )
     end
 
     def check_access
-      unless user_signed_in?
-        cookies[:redirect_to] = request.fullpath
-        redirect_to signin_path, :notice => 'You must be logged in to launch a presentation.'
-      end
+      # current_user.has_role?(:collaborator, @presentation)
     end
 end

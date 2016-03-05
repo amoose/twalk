@@ -1,4 +1,4 @@
-h1 New presentation
+h1= "#{current_user.presentations.any? ? 'New' : 'My First Twalk' }"
 
 = render 'form'
 

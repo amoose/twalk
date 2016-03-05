@@ -1,0 +1,20 @@
+# Configure application environment variables here.
+
+TWITTER_KEY: xxxxxx
+TWITTER_SECRET: xxxxxx
+GITHUB_KEY: xxxxxx
+GITHUB_SECRET: xxxxxx
+ROLES: [admin, user, member]
+
+GMAIL_USERNAME: xxxxxx
+GMAIL_PASSWORD: xxxxxx
+
+PORT: 3000
+
+WEBSOCKET_STANDALONE: false
+
+ACCESS_KEY_ID: xxxxxx
+SECRET_ACCESS_KEY: xxxxx
+S3_BUCKET: twalk
+
+SECRET_KEY_BASE: 'rake secret'

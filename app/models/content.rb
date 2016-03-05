@@ -12,4 +12,8 @@ class Content < ActiveRecord::Base
 	def should_generate_new_friendly_id?
     sort_order_changed?
   end
+
+  def safe_body
+    body.html_safe if body
+  end
 end

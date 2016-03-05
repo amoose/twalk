@@ -1,21 +1,27 @@
 Twalk2::Application.routes.draw do
+  
+    namespace :mercury do
+      resources :images
+    end
   mount Mercury::Engine => '/'
   namespace :mercury do
     resources :images
   end
   Mercury::Engine.routes
-  resources :themes
 
-  resources :presentations do
+  namespace :admin do
+    resources :themes
+  end
+  
+
+  resources :presentations, :path => "dashboard" do
     resources :slides do
       resources :contents
     end
+    put '/', to: 'presentations#save_presentation'
   end
 
   get '/nearby' => 'presentations#nearby'
-
-  get '/dashboard' => 'presentations#mine'
-
   root :to => "home#index"
   resources :users, :only => [:index, :show, :edit, :update ]
   
@@ -24,8 +30,8 @@ Twalk2::Application.routes.draw do
   get '/signout' => 'sessions#destroy', :as => :signout
   get '/auth/failure' => 'sessions#failure'
 
-  get '/go/:id/' => 'presentations#launch', :as => :presentation_launch
-
   get '/sessions/update_geolocation'
   
+
+  get '/:nickname/:id/' => 'presentations#launch', :as => :presentation_launch
 end

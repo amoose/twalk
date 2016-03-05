@@ -5,9 +5,9 @@ set :application, 'twalk'
 set :repo_url, 'git@github.com:amoose/twalk.git'
 
 # Default branch is :master
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
+ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
-set :branch, 'master'
+# set :branch, 'feature/creation'
 # Default deploy_to directory is /var/www/my_app
 # set :deploy_to, '/var/www/my_app'
 
@@ -27,7 +27,7 @@ set :branch, 'master'
 set :linked_files, %w{config/database.yml config/application.yml config/thin.yml}
 
 # Default value for linked_dirs is []
-# set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
+set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/assets}
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
@@ -41,6 +41,8 @@ set :keep_releases, 5
 # set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 # set :rbenv_roles, :all # default value
 
+# set :rvm_ruby_version, '2.2.0'      # Defaults to: 'default'
+# set :rvm_custom_path, '~/.myveryownrvm'  # only needed if not detected
 
 namespace :deploy do
 
@@ -54,8 +56,6 @@ namespace :deploy do
       end
     end
   end
-
-  after :publishing, :restart
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
@@ -82,10 +82,23 @@ namespace :deploy do
     on roles(:app), in: :sequence, wait: 5 do
       within release_path do
         with rails_env: fetch(:rails_env) do
-          execute :bundle, :exec, :thin, "stop -C config/thin.yml2"
+          execute :bundle, :exec, :thin, "stop -C config/thin.yml"
         end
       end
     end
   end
 
+
+  desc "build missing paperclip styles"
+  task :build_missing_paperclip_styles do
+    on roles(:app) do
+      execute "cd #{current_path}; RAILS_ENV=production bundle exec rake paperclip:refresh:missing_styles"
+    end
+  end
+
 end
+
+
+after 'deploy:publishing', 'deploy:restart'
+# after("deploy:compile_assets", "deploy:build_missing_paperclip_styles")
+#

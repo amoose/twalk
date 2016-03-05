@@ -6,21 +6,35 @@ class ContentsController < ApplicationController
   # GET /contents.json
   def index
     @contents = @slide.contents
-    add_breadcrumb "Slide #{@slide.sort_order} Contents"
+    redirect_to new_presentation_slide_content_path(@presentation, @slide) unless @contents.any?
   end
 
   # GET /contents/1
   # GET /contents/1.json
   def show
+    # render :layout => 'presentation'
   end
 
   # GET /contents/new
   def new
-    @content = Content.new
+    @content = Content.new(
+        :body => "<h3>#{Faker::Hacker.ingverb} #{Faker::Hacker.noun}</h3>",
+        :sort_order => @slide.contents.size + 1,
+        :presentation_id => @presentation.id,
+        :slide_id => @slide.id,
+        :content_type => ContentType.default
+      )
+
+    if @content.save
+      redirect_to "/editor" + presentation_slide_path(@presentation, @slide)
+    else
+      flash[:error] = "ERROR"
+    end
   end
 
   # GET /contents/1/edit
   def edit
+    redirect_to "/editor" + presentation_slide_path(@presentation, @slide)
   end
 
   # POST /contents
@@ -73,8 +87,9 @@ class ContentsController < ApplicationController
     end
 
     def set_presentation_and_slide
-      @presentation = Presentation.friendly.find(params[:presentation_id])
+      @presentation = current_user.presentations.friendly.find(params[:presentation_id])
       @slide = @presentation.slides.friendly.find(params[:slide_id])
+      @presentation_theme = "revealjs/theme/#{@presentation.theme.name.downcase}"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

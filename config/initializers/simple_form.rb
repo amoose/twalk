@@ -67,7 +67,7 @@ SimpleForm.setup do |config|
 
   # CSS class to add for error notification helper.
   # config.error_notification_class = 'alert alert-error'
-  config.error_notification_class = 'alert'
+  config.error_notification_class = 'alert alert-error'
 
   # ID to add for error notification helper.
   # config.error_notification_id = nil

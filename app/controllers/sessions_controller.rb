@@ -5,7 +5,7 @@ class SessionsController < ApplicationController
     #   setup_signed_in_session(user)
     #   redirect_to root_url, :notice => "Welcome back, #{user.name}"
     # else
-    redirect_to '/auth/twitter'
+      redirect_to '/auth/twitter'
     # end
   end
 

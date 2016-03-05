@@ -1,18 +1,22 @@
-= link_to 'New Presentation', new_presentation_path
-
-table.table.table-hover
-  tr
-    th Name
-    th
-    th
-
-  - @presentations.each do |presentation|
-    tr
-      td= link_to presentation.name, "/go/#{presentation.slug}", { 'data-no-turbolink' => true }
-      - if presentation.mine?(current_user)
-        td= link_to 'Edit', edit_presentation_path(presentation)
-        td= link_to 'Destroy', presentation, :method => :delete, :data => { :confirm => 'Are you sure?' }
+.container-fluid
+  .row
+    .col-md-6
+      h2 My Twalks
+      - if @presentations.any?
+        - @presentations.each do |presentation|
+          .small-detail
+            = render partial: 'small_detail', locals: { presentation: presentation, pres_link: presentation_path(presentation) }
+            .nav
+              = link_to 'Destroy', presentation, :method => :delete, :data => { :confirm => 'Are you sure?' }
       - else
-        td &nbsp;
-        td &nbsp;
+        h3 You have no <span class="brand">twalk</span>s.
 
+
+    .col-md-6
+      h2 Twalks Nearby
+      - if @nearby.any?
+
+          - @nearby.each do |nearby_presentation|
+            = render partial: 'small_detail', locals: { presentation: nearby_presentation, pres_link: presentation_launch_path(nearby_presentation.user, nearby_presentation) }
+      - else
+        h3 Nothing going on nearby.

@@ -1,10 +1,13 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
+  protect_from_forgery with: :exception
+  helper_method :require_auth
   helper_method :current_user
   helper_method :user_signed_in?
   helper_method :correct_user?
   helper_method :current_user_latlon
-
+  helper_method :check_admin_access
+  include Mercury::Authentication
+  
   private
     def current_user
       begin
@@ -21,13 +24,19 @@ class ApplicationController < ActionController::Base
     def correct_user?
       @user = User.friendly.find(params[:id])
       unless current_user == @user or current_user.has_role? :admin
-        redirect_to root_url, :alert => "Access denied."
+        access_denied
+      end
+    end
+
+    def check_admin_access
+      unless current_user and current_user.has_role? :admin
+        access_denied
       end
     end
 
     def authenticate_user!
       if !current_user
-        redirect_to root_url, :alert => 'You need to sign in for access to this page.'
+        access_denied
       end
     end
 
@@ -35,7 +44,17 @@ class ApplicationController < ActionController::Base
       session[:geolocation] ? "#{session[:geolocation][:latitude]},#{session[:geolocation][:longitude]}" : nil
     end
 
+    def access_denied
+      redirect_to root_url, :alert => "Access denied."
+    end
 
+    def require_auth
+      unless user_signed_in?
+        cookies[:redirect_to] = "/#{request.fullpath}"
+        redirect_to signin_path, :notice => 'You must be logged in to do that.'
+      end
+    end
+    
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to root_path, :alert => exception.message
   end
