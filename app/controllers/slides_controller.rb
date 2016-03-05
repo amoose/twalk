@@ -49,7 +49,8 @@ class SlidesController < ApplicationController
   def update
     respond_to do |format|
       @content = @slide.contents.first
-      @content.body = slide_params[:mercury_content][:value]
+      # TODO FIX CONTENT
+      # @content.body = slide_params[:mercury_content][:value]
       if @content.save
         format.html { redirect_to presentation_slide_url(@presentation, @slide), notice: 'Slide was successfully updated.' }
         format.json { head :no_content }
@@ -83,7 +84,8 @@ class SlidesController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def slide_params
-      valid_params = params.require(:content).permit(:mercury_content => [:value, :snippets, :data, :type])
+      # TODO FIX PARAMS
+      # valid_params = params.require(:content).permit(:mercury_content => [:value, :snippets, :data, :type])
       valid_params[:presentation_id] = @presentation.id
       valid_params
     end

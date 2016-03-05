@@ -1,14 +1,4 @@
 Twalk2::Application.routes.draw do
-  
-    namespace :mercury do
-      resources :images
-    end
-  mount Mercury::Engine => '/'
-  namespace :mercury do
-    resources :images
-  end
-  Mercury::Engine.routes
-
   namespace :admin do
     resources :themes
   end

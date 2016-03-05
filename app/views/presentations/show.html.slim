@@ -1,18 +1,20 @@
-- if params[:mercury_frame]
-  - content_for(:nav)
-    .presentation-mini-form
-      = simple_form_for(@presentation, {:multipart => true}) do |f|
-        = f.error_notification
+/ TODO FIX PRESENTATION FORM
 
-        .form-inputs
-          = f.association :theme
+/ - if params[:mercury_frame]
+/   - content_for(:nav)
+/     .presentation-mini-form
+/       = simple_form_for(@presentation, {:multipart => true}) do |f|
+/         = f.error_notification
 
-          = f.input :live_tweeting
+/         .form-inputs
+/           = f.association :theme
 
-          = f.input :hashtag
+/           = f.input :live_tweeting
 
-        .form-actions
-          = f.button :submit
+/           = f.input :hashtag
+
+/         .form-actions
+/           = f.button :submit
 
 = render 'first_slide'
 

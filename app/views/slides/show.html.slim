@@ -4,7 +4,7 @@
     section class="slide" data-slide-num="0"
       - @slide.contents.each do |content|
         - if content.content_type.name == "HTML"
-          div id="mercury_content" data-mercury="full"= content.safe_body
+          div= content.safe_body
 
   
   aside class="controls"
@@ -37,10 +37,6 @@ javascript:
     var currentSlide = 0;
     Reveal.addEventListener( 'ready', function( event ) {
       currentSlide = event.currentSlide;
-    });
-
-    $("#mercury_image").load(function(){ 
-      $('#mercury_content').append($('#mercury_image').attr('src'));
     });
 
   });

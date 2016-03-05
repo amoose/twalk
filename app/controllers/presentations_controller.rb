@@ -105,39 +105,39 @@ class PresentationsController < ApplicationController
     end
   end
 
-  def save_presentation
-    @presentation = current_user.presentations.friendly.find(params[:presentation_id])
-    @presentation.name = mercury_params[:presentation_name][:value]
-    @presentation.description = mercury_params[:presentation_description][:value]
+  # def save_presentation
+  #   @presentation = current_user.presentations.friendly.find(params[:presentation_id])
+  #   @presentation.name = mercury_params[:presentation_name][:value]
+  #   @presentation.description = mercury_params[:presentation_description][:value]
     
-    if !mercury_params[:presentation_image][:attributes][:src].nil?
-      if mercury_params[:presentation_image][:attributes][:src] != @presentation.image(:thumb)
-        @presentation.image = mercury_params[:presentation_image][:attributes][:src] if mercury_params[:presentation_image][:attributes][:src] != @presentation.image(:thumb)
-        flash[:info] = "Updated image!"
-      end
-    end
+  #   if !mercury_params[:presentation_image][:attributes][:src].nil?
+  #     if mercury_params[:presentation_image][:attributes][:src] != @presentation.image(:thumb)
+  #       @presentation.image = mercury_params[:presentation_image][:attributes][:src] if mercury_params[:presentation_image][:attributes][:src] != @presentation.image(:thumb)
+  #       flash[:info] = "Updated image!"
+  #     end
+  #   end
 
 
-    @presentation.slides.each do |slide|
-      unless slide.nil?
-        slide.contents.each do |content|
-          begin
-            unless content.nil? or params[:content]["presentation_slide_#{slide.slug}_content_#{content.slug}"][:value].blank?
-              content.body = params[:content]["presentation_slide_#{slide.slug}_content_#{content.slug}"]
-            end
-          rescue
+  #   @presentation.slides.each do |slide|
+  #     unless slide.nil?
+  #       slide.contents.each do |content|
+  #         begin
+  #           unless content.nil? or params[:content]["presentation_slide_#{slide.slug}_content_#{content.slug}"][:value].blank?
+  #             content.body = params[:content]["presentation_slide_#{slide.slug}_content_#{content.slug}"]
+  #           end
+  #         rescue
 
-          end
-        end
-      end
-    end
+  #         end
+  #       end
+  #     end
+  #   end
 
-    if @presentation.save!
-      render text: ''
-    else
-      render text: 'ERROR'
-    end
-  end
+  #   if @presentation.save!
+  #     render text: ''
+  #   else
+  #     render text: 'ERROR'
+  #   end
+  # end
 
   # DELETE /presentations/1
   # DELETE /presentations/1.json
@@ -168,10 +168,6 @@ class PresentationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def presentation_params
       params.require(:presentation).permit(:name, :slug, :description, :is_public, :latitude, :longitude, :theme_id, :image, :hashtag, :live_tweeting)
-    end
-
-    def mercury_params
-      params.require(:content).permit(:presentation_name => [:value], :presentation_description => [:value], :presentation_image => { :attributes => [:src] } )
     end
 
     def check_access
