@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery
+  protect_from_forgery with: :exception
   helper_method :require_auth
   helper_method :current_user
   helper_method :user_signed_in?
