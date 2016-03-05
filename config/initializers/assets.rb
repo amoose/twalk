@@ -1,0 +1,1 @@
+Rails.application.config.assets.precompile += %w( reveal.min.js presentations.js presentation.css revealjs/theme/default.css reveal.min.new.js revealjs/theme/eighteeneff.css revealjs/theme/beige.css revealjs/theme/blood.css revealjs/theme/moon.css revealjs/theme/night.css revealjs/theme/serif.css revealjs/theme/simple.css revealjs/theme/sky.css revealjs/theme/solarized.css )
