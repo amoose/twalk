@@ -140,7 +140,7 @@ GEM
       handlebars-source (~> 1.0)
     equalizer (0.0.10)
     erubis (2.7.0)
-    eventmachine (1.0.3)
+    eventmachine (1.0.9.1)
     execjs (2.2.2)
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
