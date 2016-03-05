@@ -1,5 +1,9 @@
-[twalk](https://twalk.io)
-=========
+![twalk](http://anony.ws/i/2016/03/05/logo-on-black.png)
+
+![version](https://img.shields.io/badge/version-beta-green.svg)
+[![security](https://hakiri.io/github/amoose/twalk/feature%252Fcreation.svg)](https://hakiri.io/github/amoose/twalk/feature%252Fcreation)
+[![Code Climate](https://codeclimate.com/github/amoose/twalk/badges/gpa.svg)](https://codeclimate.com/github/amoose/twalk)
+[![Test Coverage](https://codeclimate.com/github/amoose/twalk/badges/coverage.svg)](https://codeclimate.com/github/amoose/twalk/coverage)
 
 Slide decks presented on the web. All you need to present: a browser. All you need to participate: a browser.
 
@@ -15,10 +19,15 @@ Why Twitter?
 - Presentations are public engagements, it makes sense to keep the conversation open.
 - Real-time.
 
-
 ## Getting Started
 
-### Register your application with Twitter
+#### Requirements
+
+- Ruby 2.0+
+- Bundler
+- Redis
+
+##### Register your application with Twitter
 
 - The callback URL will resemble: http://localhost:3000/auth/twitter/callback
 - Be sure to enable 'Sign in with Twitter'
@@ -28,7 +37,7 @@ Why Twitter?
 1. Clone the repo `git clone git@github.com:amoose/twalk.git`
 2. Bundle `bundle install`
 3. Copy and configure parameters `cp config/application.yml.example config/application.yml`
-3. `thin start`
+3. Start the server with `bin/rails s`
 
 
 
