@@ -5,11 +5,12 @@
       - if @presentations.any?
         - @presentations.each do |presentation|
           .small-detail
-            = render partial: 'small_detail', locals: { presentation: presentation, pres_link: presentation_path(presentation) }
+            = render partial: 'small_detail', locals: { presentation: presentation, pres_link: presentation_path(presentation.user, presentation) }
             .nav
-              = link_to 'Destroy', presentation, :method => :delete, :data => { :confirm => 'Are you sure?' }
+              = link_to 'Destroy', presentation_path(presentation.user, presentation), :method => :delete, :data => { :confirm => 'Are you sure?' }
       - else
-        h3 You have no <span class="brand">twalk</span>s.
+        / p You have no <span class="brand">twalk</span>s
+        h3= link_to "Create my first <span class='brand'>twalk</span>".html_safe, new_presentation_path(current_user), data: { 'no-turbolink' => true }
 
 
     .col-md-6

@@ -1,16 +1,18 @@
-= simple_form_for(@presentation, {:multipart => true}) do |f|
-  = f.error_notification
+h3 THIS WILL BE REPLACEDL
 
-  .form-inputs
-    = f.input :name, autofocus: true
+/ = simple_form_for(@presentation, {:multipart => true}) do |f|
+/   = f.error_notification
 
-    = f.input :description
+/   .form-inputs
+/     = f.input :name, autofocus: true
 
-    = image_tag(@presentation.image(:thumb))
+/     = f.input :description
+
+/     = image_tag(@presentation.image(:thumb))
     
-    = f.input :image, as: :file
+/     = f.input :image, as: :file
 
-    = f.input :hashtag
+/     = f.input :hashtag
 
-  .form-actions
-    = f.button :submit
+/   .form-actions
+/     = f.button :submit

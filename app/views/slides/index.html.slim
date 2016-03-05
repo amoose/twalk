@@ -10,7 +10,7 @@ table
       td= slide.sort_order
       / %td= link_to 'View', "/presentations/#{slide.presentation.slug}/slides/#{slide.sort_order}"
       / # %td= link_to 'Edit', edit_presentation_slide_path([slide.presentation, slide])
-      td= link_to 'View', presentation_slide_path(slide.presentation, slide), { 'data-no-turbolink' => true }
+      td= link_to 'View', presentation_slide_path(slide.presentation.user, slide.presentation, slide), { 'data-no-turbolink' => true }
       / %td= link_to 'Edit', edit_presentation_slide_path(slide)
       / %td= link_to 'Show', slide
       / %td= link_to 'Edit', edit_presentation_slide_path(slide)

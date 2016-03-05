@@ -1,6 +1,7 @@
 class SlidesController < ApplicationController
   before_action :set_presentation
   before_action :set_slide, only: [:show, :edit, :update, :destroy]
+  layout 'presentation'
 
   # GET /slides
   # GET /slides.json
@@ -19,7 +20,7 @@ class SlidesController < ApplicationController
   # GET /slides/new
   def new
     @slide = Slide.create(:presentation_id => @presentation.id, :sort_order => @presentation.slides.count + 1)
-    redirect_to new_presentation_slide_content_path(@presentation,@slide)
+    redirect_to new_presentation_slide_content_path(@presentation.user, @presentation, @slide)
   end
 
   # GET /slides/1/edit
@@ -67,7 +68,7 @@ class SlidesController < ApplicationController
     @slide.destroy
     flash[:success] = "Slide successfully removed."
     respond_to do |format|
-      format.html { redirect_to presentation_url(@presentation) }
+      format.html { redirect_to presentation_url(@presentation.user, @presentation) }
       format.json { head :no_content }
     end
   end

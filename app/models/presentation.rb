@@ -65,7 +65,7 @@ class Presentation < ActiveRecord::Base
   end
 
   def thumbnail
-    URI.decode(image(:thumb))
+    URI.decode(image(:thumb) || user.image(:thumb))
   end
 
   def slug_candidates

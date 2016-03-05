@@ -2,7 +2,8 @@ class HomeController < ApplicationController
 	before_action :set_presentations
   
   def index
-    redirect_to presentations_path if user_signed_in?
+    # redirect_to presentations_path(current_user) if user_signed_in?
+    
   end
 
   private

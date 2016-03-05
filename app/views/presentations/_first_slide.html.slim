@@ -3,7 +3,7 @@
   .slides
     section class="slide" data-slide-num="0"
       .main-image
-        img.img-circle.fadeIn id="presentation_image" src="#{@presentation.image(:thumb) || @current_user.image(:thumb)}"
+        img.img-circle.fadeIn id="presentation_image" src="#{@presentation.thumbnail}"
         h5.presenter.fadeIn= raw('<i class="fa fa-twitter"></i>') + "@"+@presentation.user.nickname
       
       br clear="both"

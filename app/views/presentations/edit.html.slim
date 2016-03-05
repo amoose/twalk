@@ -2,6 +2,6 @@ h1 Editing presentation
 
 = render 'form'
 
-= link_to 'Show', @presentation
+= link_to 'Show', presentation_path(@presentation.user, @presentation)
 | &nbsp;|&nbsp;
 = link_to 'Back', presentations_path

@@ -3,12 +3,11 @@ class PresentationsController < ApplicationController
   before_action :set_presentation, only: [:show, :edit, :update, :destroy, :launch]
   before_action :check_access
 
-
   # GET /presentations
   # GET /presentations.json
   def index
     @presentations = Presentation.for(current_user.id)
-    @nearby = Presentation.near(current_user_latlon)
+    @nearby = Presentation.where('user_id != ?', current_user.id).near(current_user_latlon)
   end
 
   # GET /presentations/1
@@ -53,7 +52,7 @@ class PresentationsController < ApplicationController
 
   def nearby
     add_breadcrumb "Nearby", "/nearby"
-    @presentations = Presentation.near(current_user_latlon)
+    @presentations = Presentation.where('user_id != ?', current_user.id).near(current_user_latlon)
   end
 
   # GET /presentations/new
@@ -65,12 +64,13 @@ class PresentationsController < ApplicationController
         :user => current_user,
         :theme => Theme.default
       )
-    redirect_to "/editor" + presentation_path(@presentation)
+    # redirect_to "/editor" + presentation_path(@presentation)
+    redirect_to presentation_path(@presentation.user, @presentation)
   end
 
   # GET /presentations/1/edit
   def edit
-    redirect_to "/editor" + presentation_path(@presentation)
+    # redirect_to "/editor" + presentation_path(@presenation.user, @presentation)
   end
 
 
