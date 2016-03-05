@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.2.3'
-gem 'rails', '4.1.6'
+gem 'rails', '4.2.5.2'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails'
 gem 'jquery-rails'
