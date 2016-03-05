@@ -26,7 +26,8 @@ class ContentsController < ApplicationController
       )
 
     if @content.save
-      redirect_to "/editor" + presentation_slide_path(@presentation, @slide)
+      # redirect_to "/editor" + presentation_slide_path(@presentation, @slide)
+      redirect_to presentation_slide_path(@presentation, @slide)
     else
       flash[:error] = "ERROR"
     end
@@ -34,7 +35,7 @@ class ContentsController < ApplicationController
 
   # GET /contents/1/edit
   def edit
-    redirect_to "/editor" + presentation_slide_path(@presentation, @slide)
+    # redirect_to "/editor" + presentation_slide_path(@presentation, @slide)
   end
 
   # POST /contents

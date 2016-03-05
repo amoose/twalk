@@ -6,7 +6,6 @@
 #= require websocket_rails/main
 #= require geolocation
 #= require jquery
-#= require handlebars
 #= require ember
 #= require ember-data
 #= require owl.carousel

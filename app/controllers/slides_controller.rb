@@ -24,7 +24,7 @@ class SlidesController < ApplicationController
 
   # GET /slides/1/edit
   def edit
-    redirect_to "/editor" + presentation_slide_path(@presentation, @slide)
+    # redirect_to "/editor" + presentation_slide_path(@presentation, @slide)
   end
 
   # POST /slides

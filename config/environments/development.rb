@@ -41,7 +41,5 @@ Twalk2::Application.configure do
 
   config.ember.variant = :development
 
-  config.assets.precompile += %w( jquery-1.7.js )
-
   config.time_zone = 'Pacific Time (US & Canada)'
 end
