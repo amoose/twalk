@@ -21,6 +21,10 @@ class PresentationsController < ApplicationController
     render :layout => "presentation"
   end
 
+  def edit
+    render :layout => "presentation"
+  end
+
   def launch
     @websocket_path = Rails.env == "development" ? "localhost:#{ENV['PORT']}#{websocket_path}" : "twalk.io:443#{websocket_path}"
     # TODO: cleanup this logic. Create model methods for some of this shit
@@ -74,9 +78,9 @@ class PresentationsController < ApplicationController
   end
 
   # GET /presentations/1/edit
-  def edit
+  # def edit
     # redirect_to "/editor" + presentation_path(@presenation.user, @presentation)
-  end
+  # end
 
 
   # POST /presentations

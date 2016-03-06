@@ -1,7 +1,26 @@
 
 .media
-  = link_to image_tag(presentation.thumbnail, :class => 'img-circle'), pres_link, class: 'media-left', data: { 'no-turbolink' => true }
+  .media-image
+    = link_to image_tag(presentation.thumbnail, :class => 'img-circle'), pres_link, data: { 'no-turbolink' => true }
+
   .media-body
     h4.media-heading= link_to presentation.name, pres_link, data: { 'no-turbolink' => true }
     p= presentation.short_description
+    - if presentation.live_tweeting?
+      p
+        i.fa.fa-globe.live-tweeting-icon alt="Live tweeting enabled" 
   .media-footer
+    .media-nav
+      ul.detail-bar
+        - if user_signed_in? && presentation.mine?(current_user)
+          li.launch
+            = link_to '<i class="fa fa-rocket"></i>'.html_safe, pres_link, data: { 'no-turbolink' => true }
+            = link_to 'Launch', pres_link, data: { 'no-turbolink' => true }
+          li.destroy
+            = link_to '<i class="fa fa-trash-o"></i>'.html_safe, presentation_path(presentation.user, presentation), :method => :delete, :data => { :confirm => 'Are you sure?' }
+            = link_to 'Destroy', presentation_path(presentation.user, presentation), :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+        - else
+          li.view
+            = link_to '<i class="fa fa-eye"></i>'.html_safe, pres_link, data: { 'no-turbolink' => true }
+            = link_to 'View', pres_link, data: { 'no-turbolink' => true }

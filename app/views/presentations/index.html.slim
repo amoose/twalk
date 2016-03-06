@@ -8,8 +8,7 @@
           - @presentations.each do |presentation|
             .small-detail
               = render partial: 'small_detail', locals: { presentation: presentation, pres_link: presentation_path(presentation.user, presentation) }
-              .nav
-                = link_to 'Destroy', presentation_path(presentation.user, presentation), :method => :delete, :data => { :confirm => 'Are you sure?' }
+
         - else
           p ...
           h3 You haven't created any <span class="brand">twalk</span>s

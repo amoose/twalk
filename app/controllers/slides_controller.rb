@@ -26,6 +26,8 @@ class SlidesController < ApplicationController
   # GET /slides/1/edit
   def edit
     # redirect_to "/editor" + presentation_slide_path(@presentation, @slide)
+    render :layout => 'presentation'
+    @contents = @slide.contents
   end
 
   # POST /slides

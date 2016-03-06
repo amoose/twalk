@@ -1,7 +1,53 @@
-h1 Editing presentation
+/ TODO FIX PRESENTATION FORM
 
-= render 'form'
+/ - if params[:mercury_frame]
+/   - content_for(:nav)
+/     .presentation-mini-form
+/       = simple_form_for(@presentation, {:multipart => true}) do |f|
+/         = f.error_notification
 
-= link_to 'Show', presentation_path(@presentation.user, @presentation)
-| &nbsp;|&nbsp;
-= link_to 'Back', presentations_path
+/         .form-inputs
+/           = f.association :theme
+
+/           = f.input :live_tweeting
+
+/           = f.input :hashtag
+
+/         .form-actions
+/           = f.button :submit
+
+= render 'first_slide'
+
+aside class="controls"
+  a class="left" href="#"
+    | &#x25C4;
+  a class="right" href="#"
+    | &#x25BA;
+  a class="up" href="#"
+    | &#x25B2;
+  a class="down" href="#"
+    | &#x25BC;
+
+.progress
+  span
+
+javascript:
+  var presentation_id = $('body').data('presentation_id');
+  $(function() {
+
+    // REVEAL
+    var reveal = Reveal.initialize({
+      controls: true,
+      progress: true,
+      history: true,
+      keyboard: true,
+      theme: Reveal.getQueryHash().theme || 'default', // available themes are in /css/theme
+      transition: Reveal.getQueryHash().transition || 'default' // default/cube/page/concave/linear(2d)
+    });
+
+    var currentSlide = 0;
+    Reveal.addEventListener( 'ready', function( event ) {
+      currentSlide = event.currentSlide;
+    });
+
+  });

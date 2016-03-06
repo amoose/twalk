@@ -18,6 +18,11 @@
 
 $default-text-color: #000;
 
+$launch-button-color: #0b5109;
+$destroy-button-color: #d1d1d1;
+$detail-buttons-lighten-amount: 20%;
+
+
 .main-login {
   display: block;
   margin: 0 auto;
@@ -74,7 +79,63 @@ body {
   }
 
   .small-detail {
-    margin-bottom: 2.0em;
+    margin-bottom: 4.0em;
+    border: 1px solid #cecece;
+    padding: 2.0em 2.5em;
+    background: rgba(255, 255, 255, 0.5);
+    .detail-bar {
+      font-size: 2.0em;
+      list-style-type: none;
+      list-style-position: outside;
+      margin: 1.0em 0 0 0;
+      padding: 0;
+      li {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        float: right;
+        &:hover {
+          box-shadow: 0 0 0.8em 0.1em #000;
+        }
+        .fa {
+          // margin-right: 0.5em;
+          margin-right: -1.5em;
+          padding-right: 0;
+          // padding: 0.5em 0 0.5em 0;
+        }
+        a {
+          padding: 0.5em 1.0em;
+          line-height: 2.0em;
+        }
+      }
+      .launch {
+        background-color: $launch-button-color;
+        a {
+          color: white;
+        }
+        &:active {
+          background-color: lighten($launch-button-color, $detail-buttons-lighten-amount);
+        }
+      }
+      .destroy {
+        background-color: $destroy-button-color;
+        a {
+          color: #545454;
+        }
+        &:active {
+          background-color: lighten($destroy-button-color, $detail-buttons-lighten-amount);
+        }
+      }
+      .view {
+        background-color: #1f5bb5;
+        a {
+          color: #ffffff;
+        }
+        &:active {
+          background-color: lighten(#1f5bb5, $detail-buttons-lighten-amount);
+        }
+      }
+    }
   }
 
   footer {
@@ -162,16 +223,32 @@ input, textarea, select {
 }
 
 .media {
-  .media-left {
-    width: 250px;
-    height: 125px;
+  // .media-left {
+  //   width: 250px;
+  //   height: 125px;
+  //   img {
+  //     width: 128px;
+  //     height: 128px;
+  //     opacity: 0.9;
+  //     &:hover {
+  //       opacity: 1.0;
+  //     }
+  //   }
+  // }
+  .media-image {
     img {
-      width: 128px;
-      height: 128px;
-      opacity: 0.9;
-      &:hover {
-        opacity: 1.0;
-      }
+      max-width: 128px;
+    }
+    margin-right: 2.0em;
+    float: left;
+    position: relative;
+    i {
+      position: absolute;
+      bottom: -5px;
+      right: -5px;
+      font-size: 2.0em;
+      color: #ffffff;
+      text-shadow: 1px 2px 4px #545454;
     }
   }
   .media-body {
@@ -179,6 +256,7 @@ input, textarea, select {
   }
   .media-footer {
     font-size: 0.8em;
+    clear: both;
     a {
       color: #c1c1c1;
     }
