@@ -1,8 +1,8 @@
 
 .media
   .media-image
-    = link_to image_tag(presentation.thumbnail, :class => 'img-circle'), pres_link, data: { 'no-turbolink' => true }
-
+    = link_to image_tag('overlay-white.png', class: 'overlay'), pres_link, data: { 'no-turbolink' => true }
+    = link_to image_tag(presentation.medium_image, :class => ''), pres_link, data: { 'no-turbolink' => true }
   .media-body
     h4.media-heading= link_to presentation.name, pres_link, data: { 'no-turbolink' => true }
     p= presentation.short_description
@@ -14,13 +14,18 @@
       ul.detail-bar
         - if user_signed_in? && presentation.mine?(current_user)
           li.launch
-            = link_to '<i class="fa fa-rocket"></i>'.html_safe, pres_link, data: { 'no-turbolink' => true }
-            = link_to 'Launch', pres_link, data: { 'no-turbolink' => true }
+            = link_to '<i class="fa fa-rocket"></i>'.html_safe, pres_launch_link, data: { 'no-turbolink' => true }
+            = link_to 'Launch', pres_link, data: { 'no-turbolink' => true }, class: 'text-link'
+
+          li.edit
+            = link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_presentation_path(presentation.user, presentation), data: { 'no-turbolink' => true }
+            = link_to 'Edit', edit_presentation_path(presentation.user, presentation), data: { 'no-turbolink' => true }, class: 'text-link'
+          
           li.destroy
             = link_to '<i class="fa fa-trash-o"></i>'.html_safe, presentation_path(presentation.user, presentation), :method => :delete, :data => { :confirm => 'Are you sure?' }
-            = link_to 'Destroy', presentation_path(presentation.user, presentation), :method => :delete, :data => { :confirm => 'Are you sure?' }
+            = link_to 'Destroy', presentation_path(presentation.user, presentation), :method => :delete, :data => { :confirm => 'Are you sure?' }, class: 'text-link'
 
         - else
           li.view
             = link_to '<i class="fa fa-eye"></i>'.html_safe, pres_link, data: { 'no-turbolink' => true }
-            = link_to 'View', pres_link, data: { 'no-turbolink' => true }
+            = link_to 'View', pres_link, data: { 'no-turbolink' => true }, class: 'text-link'

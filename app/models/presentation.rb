@@ -65,11 +65,15 @@ class Presentation < ActiveRecord::Base
   end
 
   def default_image
-    user.image(:thumb)
+    user.image(:medium)
   end
 
-  def thumbnail
-    URI.decode(image(:thumb) || user.image(:thumb))
+  def thumbnail_image
+    URI.decode(image(:thumb))
+  end
+
+  def medium_image
+    URI.decode(image(:medium))
   end
 
   def slug_candidates

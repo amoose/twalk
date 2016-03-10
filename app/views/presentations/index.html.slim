@@ -7,7 +7,7 @@
         - if @presentations.any?
           - @presentations.each do |presentation|
             .small-detail
-              = render partial: 'small_detail', locals: { presentation: presentation, pres_link: presentation_path(presentation.user, presentation) }
+              = render partial: 'small_detail', locals: { presentation: presentation, pres_link: presentation_path(presentation.user, presentation), pres_launch_link: presentation_launch_path(presentation) }
 
         - else
           p ...

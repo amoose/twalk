@@ -29,9 +29,7 @@ class SessionsController < ApplicationController
     if user.email.blank?
       redirect_to edit_user_path(user), :notice => "Please enter your email address."
     elsif cookies[:redirect_to]
-      path = cookies[:redirect_to]
-      cookies.delete(:redirect_to)
-      redirect_to path, :notice => "Welcome back, #{user.name}"
+      session_redirector
     else
       cookies.delete(:redirect_to)
       redirect_to root_url, :notice => "Welcome back, #{user.name}"

@@ -17,7 +17,9 @@ class UsersController < ApplicationController
       if session[:new_signup]
         flash[:success] = "Welcome to Twalk!"
         session.delete(:new_signup)
-        redirect_to root_url 
+        redirect_to root_url
+      elsif cookies[:redirect_to]
+        session_redirector("Welcome to <span class=\"brand\">twalk</span>, #{@user.name}".html_safe)
       else
         flash[:success] = "Successfully updated your account!"
         redirect_to @user

@@ -1,7 +1,7 @@
 ![twalk](http://anony.ws/i/2016/03/05/logo-on-black.png)
 
 ![version](https://img.shields.io/badge/version-beta-green.svg)
-[![security](https://hakiri.io/github/amoose/twalk/feature%252Fcreation.svg)](https://hakiri.io/github/amoose/twalk/feature%252Fcreation)
+[![security](https://hakiri.io/github/amoose/twalk/master.svg)](https://hakiri.io/github/amoose/twalk/feature%252Fcreation)
 [![Code Climate](https://codeclimate.com/github/amoose/twalk/badges/gpa.svg)](https://codeclimate.com/github/amoose/twalk)
 [![Test Coverage](https://codeclimate.com/github/amoose/twalk/badges/coverage.svg)](https://codeclimate.com/github/amoose/twalk/coverage)
 
