@@ -43,6 +43,7 @@ set :keep_releases, 5
 
 # set :rvm_ruby_version, '2.2.0'      # Defaults to: 'default'
 # set :rvm_custom_path, '~/.myveryownrvm'  # only needed if not detected
+set :rails_env, "production"
 
 namespace :deploy do
 
