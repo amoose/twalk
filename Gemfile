@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-ruby '2.2.3'
+ruby '2.3.1'
+
 gem 'rails', '4.2.5.2'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails'
@@ -23,7 +24,7 @@ gem 'websocket-rails', github: 'depili/websocket-rails'
 gem 'redis', :require => ["redis", "redis/connection/hiredis"]
 gem 'geocoder'
 gem 'ember-rails'
-gem 'ember-source', '1.8.0'
+gem 'ember-source', '~> 1.11.4'
 gem 'therubyracer'
 gem 'nav_lynx'
 gem 'mercury-rails', github: 'jejacks0n/mercury'
@@ -34,6 +35,7 @@ gem 'paperclip', '~> 4.2'
 gem 'aws-sdk', '~> 1.5.7'
 gem 'faker'
 gem 'twitter'
+gem 'responders', '~> 2.0'
 
 group :development do
   gem 'guard-bundler'
