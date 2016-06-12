@@ -24,7 +24,7 @@ gem 'websocket-rails', github: 'depili/websocket-rails'
 gem 'redis', :require => ["redis", "redis/connection/hiredis"]
 gem 'geocoder'
 gem 'ember-rails'
-gem 'ember-source', '1.8.0'
+gem 'ember-source', '~> 1.11.4'
 gem 'therubyracer'
 gem 'nav_lynx'
 gem 'mercury-rails', github: 'jejacks0n/mercury'
