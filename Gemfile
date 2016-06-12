@@ -35,6 +35,7 @@ gem 'paperclip', '~> 4.2'
 gem 'aws-sdk', '~> 1.5.7'
 gem 'faker'
 gem 'twitter'
+gem 'responders', '~> 2.0'
 
 group :development do
   gem 'guard-bundler'

@@ -359,6 +359,8 @@ GEM
     redis-objects (1.0.1)
       redis (>= 3.0.2)
     ref (2.0.0)
+    responders (2.2.0)
+      railties (>= 4.2.0, < 5.1)
     rolify (3.4.0)
     rspec (3.0.0)
       rspec-core (~> 3.0.0)
@@ -505,6 +507,7 @@ DEPENDENCIES
   rails (= 4.2.5.2)
   rails_layout
   redis
+  responders (~> 2.0)
   rolify
   rspec-rails
   sass-rails (>= 3.2)
