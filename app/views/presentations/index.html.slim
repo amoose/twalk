@@ -1,7 +1,7 @@
 .container-fluid
   .row
-    .col-md-6
-      h2 My Twalks
+    .col-sm-12
+      h1= title 'What is everyone twalkin\' about?'
       - if @presentations.any?
         - @presentations.each do |presentation|
           .small-detail

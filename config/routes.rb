@@ -1,8 +1,5 @@
 Twalk2::Application.routes.draw do
   
-    namespace :mercury do
-      resources :images
-    end
   mount Mercury::Engine => '/'
   namespace :mercury do
     resources :images
@@ -22,7 +19,7 @@ Twalk2::Application.routes.draw do
   end
 
   get '/nearby' => 'presentations#nearby'
-  root :to => "home#index"
+  root :to => "presentations#index"
   resources :users, :only => [:index, :show, :edit, :update ]
   
   get '/auth/:provider/callback' => 'sessions#create'

@@ -2,8 +2,7 @@ doctype html
 html
   head
     meta content="width=device-width, initial-scale=1.0" name="viewport" 
-      title= content_for?(:title) ? yield(:title) : "twalk"
-      meta content=(content_for?(:description) ? yield(:description) : "twalk") name="description" 
+      = display_meta_tags site: 'twalk'
       meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
       = stylesheet_link_tag "application", :media => "all"
       = stylesheet_link_tag '//fonts.googleapis.com/css?family=Voces|Chango'
@@ -37,9 +36,9 @@ html
               / |&nbsp;|&nbsp;v 
               / = link_to(Git::VERSION, 'https://github.com/amoose/twalk/releases/tag/' + Git::VERSION)
 
-    / GEOLOCATION
-    - if current_user && current_user.geolocate_me?
+    
+    - unless session[:no_locate]
       javascript:
         $(function() {
-          getLocation()
+          getLocation();
         })

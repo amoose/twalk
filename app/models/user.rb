@@ -39,6 +39,10 @@ class User < ActiveRecord::Base
     end
   end
 
+  def twitter_url
+    'https://twitter.com/' + nickname
+  end
+
   def set_default_role
     add_role :user
   end
