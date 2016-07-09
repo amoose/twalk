@@ -265,6 +265,8 @@ GEM
       mime-types (>= 1.16, < 3)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
+    meta-tags (2.1.0)
+      actionpack (>= 3.0.0)
     method_source (0.8.2)
     mime-types (2.99.1)
     mimemagic (0.3.0)
@@ -490,6 +492,7 @@ DEPENDENCIES
   jquery-rails
   letter_opener
   mercury-rails!
+  meta-tags
   modernizr-rails
   nav_lynx
   omniauth
