@@ -3,7 +3,7 @@
   .row
     - if user_signed_in?
       .col-md-6
-        h2 My Twalks
+        h2 My <span class="brand">twalk</span>s
         - if @presentations.any?
           - @presentations.each do |presentation|
             .small-detail
@@ -19,13 +19,14 @@
       .col-md-6
         h2 Twalks Nearby
         - if @nearby.any?
-
+          .small-detail
             - @nearby.each do |nearby_presentation|
               = render partial: 'small_detail', locals: { presentation: nearby_presentation, pres_link: presentation_launch_path(nearby_presentation.user, nearby_presentation) }
         - else
           h3 Nothing going on nearby.
     - else
       .col-sm-3
+        h2 
         h2 Latest <span class="brand">twalk</span>s
       .col-sm-1
         p

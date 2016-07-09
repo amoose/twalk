@@ -1,14 +1,19 @@
 class PresentationsController < ApplicationController
   before_action :require_auth, except: :index
-  before_action :set_presentation, only: [:show, :edit, :update, :destroy, :launch]
   before_action :check_access
+  before_action :set_presentation, only: [:show, :edit, :update, :destroy, :launch]
+  before_action :set_meta, only: [:show, :launch]
 
   # GET /presentations
   # GET /presentations.json
   def index
+    set_meta_tags title: 'welcome'
     if user_signed_in?
       @presentations = Presentation.for(current_user.id)
       @nearby = Presentation.where('user_id != ?', current_user.id).near(current_user_latlon)
+      if @nearby.empty?
+        @nearby = Presentation.latest(current_user.id)
+      end
     else
       @presentations = Presentation.latest
       @nearby = []
@@ -181,5 +186,18 @@ class PresentationsController < ApplicationController
 
     def check_access
       # current_user.has_role?(:collaborator, @presentation)
+    end
+
+    def set_meta
+      set_meta_tags og: {
+        title: @presentation.name,
+        type: 'article',
+        url: presentation_url(@presentation.user, @presentation),
+        image: @presentation.image(:thumb),
+        article: {
+          published_time: @presentation.updated_at,
+          author: @presentation.user.twitter_url
+        }
+      }
     end
 end

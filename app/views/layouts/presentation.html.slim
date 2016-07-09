@@ -2,8 +2,7 @@ doctype html
 html
   head
     meta content="width=device-width, initial-scale=1.0" name="viewport" 
-      title= content_for?(:title) ? yield(:title) : "twalk"
-    meta content=(content_for?(:description) ? yield(:description) : "twalk") name="description" 
+    = display_meta_tags site: 'twalk'
     meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"
 
     = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/headjs/1.0.3/head.core.min.js'

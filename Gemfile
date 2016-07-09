@@ -33,6 +33,7 @@ gem 'paperclip', '~> 4.2'
 gem 'aws-sdk', '~> 1.5.7'
 gem 'faker'
 gem 'twitter'
+gem 'meta-tags'
 
 group :development do
   gem 'guard-bundler'

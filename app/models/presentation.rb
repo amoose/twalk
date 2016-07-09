@@ -60,8 +60,12 @@ class Presentation < ActiveRecord::Base
     Presentation.where(:user_id => user_id).order(:created_at => :desc)
   end
 
-  def self.latest
-    Presentation.order(:created_at => :desc).limit(10)
+  def self.latest(exclude_id=nil)
+    if exclude_id
+      Presentation.where('user_id != ?',exclude_id).order(:created_at => :desc).limit(10)
+    else
+      Presentation.order(:created_at => :desc).limit(10)
+    end
   end
 
   def default_image

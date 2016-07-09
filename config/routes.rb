@@ -1,8 +1,4 @@
 Twalk2::Application.routes.draw do
-  # namespace :admin do
-  #   resources :themes
-  # end
-  
   # resources :presentations, param: :user_slug do
   #   resources :slides do
   #     resources :contents
@@ -12,7 +8,10 @@ Twalk2::Application.routes.draw do
   resources :users, :only => [:index, :show, :edit, :update ], path: :profile
   get '/signin' => 'sessions#new', :as => :signin
   get '/signout' => 'sessions#destroy', :as => :signout
-  
+
+  namespace :admin do
+    resources :themes
+  end
   scope ':nickname' do
     resources :presentations, path: '' do
       resources :slides do
@@ -25,7 +24,9 @@ Twalk2::Application.routes.draw do
 
   get '/nearby' => 'presentations#nearby'
   root :to => "presentations#index"
-  
+
+  resources :users, :only => [:index, :show, :edit, :update ]
+
   
   get '/auth/:provider/callback' => 'sessions#create'
   
