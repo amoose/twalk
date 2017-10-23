@@ -1,4 +1,4 @@
-![twalk](http://anony.ws/i/2016/03/05/logo-on-black.png)
+![twalk](https://i.imgur.com/iozPbVn.png)
 
 ![version](https://img.shields.io/badge/version-beta-green.svg)
 [![security](https://hakiri.io/github/amoose/twalk/feature%252Fcreation.svg)](https://hakiri.io/github/amoose/twalk/feature%252Fcreation)
