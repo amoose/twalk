@@ -33,7 +33,7 @@ class Presentation < ActiveRecord::Base
   accepts_nested_attributes_for :slides, :theme
 
   def mine?(who)
-    user_id == who.id
+    user_id == who.try(:id)
   end
 
   def should_generate_new_friendly_id?
@@ -55,18 +55,6 @@ class Presentation < ActiveRecord::Base
   def safe_description
     description.try(:html_safe)
   end
-  
-  def self.for(user_id)
-    Presentation.where(:user_id => user_id).order(:created_at => :desc)
-  end
-
-  def self.latest(exclude_id=nil)
-    if exclude_id
-      Presentation.where('user_id != ?',exclude_id).order(:created_at => :desc).limit(10)
-    else
-      Presentation.order(:created_at => :desc).limit(10)
-    end
-  end
 
   def default_image
     user.image(:medium)
@@ -87,5 +75,17 @@ class Presentation < ActiveRecord::Base
       [:name, :short_description, Time.now.strftime('%y%m%d')],
       [:name, :short_description, Time.now.strftime('%y%m%d-%H%M')]
     ]
+  end
+
+  def self.for(user_id)
+    Presentation.where(user_id: user_id).order(:created_at => :desc)
+  end
+
+  def self.latest(exclude_id=nil)
+    if exclude_id
+      Presentation.where('user_id != ?',exclude_id).order(:created_at => :desc).limit(10)
+    else
+      Presentation.order(:created_at => :desc).limit(10)
+    end
   end
 end

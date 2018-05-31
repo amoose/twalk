@@ -1,5 +1,5 @@
 class PresentationsController < ApplicationController
-  before_action :require_auth, except: :index
+  before_action :require_auth, except: [ :index, :show ]
   before_action :check_access
   before_action :set_presentation, only: [:show, :edit, :update, :destroy, :launch]
   before_action :set_meta, only: [:show, :launch]
@@ -7,12 +7,12 @@ class PresentationsController < ApplicationController
   # GET /presentations
   # GET /presentations.json
   def index
-    set_meta_tags title: 'welcome'
+    set_meta_tags title: 'presentations for the 21st century'
     if user_signed_in?
       @presentations = Presentation.for(current_user.id)
       @nearby = Presentation.where('user_id != ?', current_user.id).near(current_user_latlon)
       if @nearby.empty?
-        @nearby = Presentation.latest(current_user.id)
+        @latest = Presentation.latest(current_user.id)
       end
     else
       @presentations = Presentation.latest
@@ -73,7 +73,6 @@ class PresentationsController < ApplicationController
   def new
     @presentation = Presentation.create(
         :name => Faker::Company.catch_phrase,
-        # :description => Faker::Lorem.paragraph,
         :description => "<i>"+Faker::Company.bs.capitalize+"</i>",
         :user => current_user,
         :theme => Theme.default
@@ -175,7 +174,7 @@ class PresentationsController < ApplicationController
         @presentation = @user.presentations.friendly.find(params[:id])
         @presentation_theme = begin; "revealjs/theme/#{@presentation.theme.name.downcase}"; rescue; "default"; end
       rescue ActiveRecord::RecordNotFound
-        redirect_to '/404.html'
+        render 'shared/404'
       end
     end
 

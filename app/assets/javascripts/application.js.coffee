@@ -1,19 +1,19 @@
+#= require websocket_rails/main
 #= require jquery
 #= require jquery_ujs
 #= require bootstrap-sprockets
 #= require modernizr
 #= require turbolinks
-#= require websocket_rails/main
 #= require geolocation
 #= require jquery
-#= require ember
-#= require ember-data
 #= require owl.carousel
 #= require_self
-#= require twalk2
 
 # for more details see: http://emberjs.com/guides/application/
-window.Twalk2 = Ember.Application.create()
+# // #= require ember
+# // #= require ember-data
+# // #= require twalk2
+# window.Twalk2 = Ember.Application.create()
 
 $ ->
 

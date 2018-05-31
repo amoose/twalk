@@ -60,6 +60,14 @@ body {
   font-family: 'Voces', cursive !important;
   padding: 0;
   margin: 0;
+  .nav {
+    .img-circle {
+      width: 3.0em;
+    }
+    .profile-link {
+      padding: 0.5em 0 0.5em 15px;
+    }
+  }
   a, a:link {
 
     &:hover {
@@ -84,7 +92,7 @@ body {
     border: 1px solid #cecece;
     // padding: 2.0em 2.5em;
     padding: 0;
-    background: rgba(255, 255, 255, 0.5);
+    // background: rgba(255, 255, 255, 0.5);
     .media-body {
       padding: 2.0em 2.5em;
     }

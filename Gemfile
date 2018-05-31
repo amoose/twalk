@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
-ruby '2.2.3'
-gem 'rails', '4.2.5.2'
+ruby '2.5.1'
+
+gem 'rails', '~> 4.2'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails'
 gem 'jquery-rails', '~> 4.0.5'
@@ -20,6 +21,7 @@ gem 'slim'
 gem 'acts-as-taggable-on'
 gem 'friendly_id'
 gem 'websocket-rails', github: 'depili/websocket-rails'
+gem 'faye-websocket', '0.10.0'
 gem 'redis', :require => ["redis", "redis/connection/hiredis"]
 gem 'geocoder'
 gem 'ember-rails'
@@ -34,6 +36,7 @@ gem 'aws-sdk', '~> 1.5.7'
 gem 'faker'
 gem 'twitter'
 gem 'meta-tags'
+gem 'thin'
 
 group :development do
   gem 'guard-bundler'
@@ -61,7 +64,6 @@ group :development, :test do
   gem 'sqlite3'
 end
 group :production do
-  gem 'thin'
   gem 'pg'
 end
 group :test do

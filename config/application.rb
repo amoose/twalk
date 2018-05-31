@@ -20,6 +20,10 @@ module Twalk2
       g.helper_specs false
     end
 
+    # remove rack log middleware for websockets
+    # https://github.com/websocket-rails/websocket-rails/wiki/Installation-and-Setup
+    config.middleware.delete Rack::Lock
+    
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.

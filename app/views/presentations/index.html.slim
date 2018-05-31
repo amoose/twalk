@@ -7,13 +7,11 @@
         - if @presentations.any?
           - @presentations.each do |presentation|
             .small-detail
-              = render partial: 'small_detail', locals: { presentation: presentation, pres_link: presentation_path(presentation.user, presentation), pres_launch_link: presentation_launch_path(presentation) }
+              = render partial: 'small_detail', locals: { presentation: presentation, pres_link: presentation_path(presentation.user, presentation), pres_launch_link: presentation_launch_path(presentation.user, presentation) }
 
         - else
-          p ...
-          h3 You haven't created any <span class="brand">twalk</span>s
-          / p You have no <span class="brand">twalk</span>s
-          / # h3= link_to "Create my first <span class='brand'>twalk</span>".html_safe, new_presentation_path(current_user), data: { 'no-turbolink' => true }
+          p You have no <span class="brand">twalk</span>s
+          / h3= link_to "Create my first <span class='brand'>twalk</span>".html_safe, new_presentation_path(current_user), data: { 'no-turbolink' => true }
 
 
       .col-md-6
