@@ -9,12 +9,6 @@
 #= require owl.carousel
 #= require_self
 
-# for more details see: http://emberjs.com/guides/application/
-# // #= require ember
-# // #= require ember-data
-# // #= require twalk2
-# window.Twalk2 = Ember.Application.create()
-
 $ ->
 
   windowHeightz0r = ->

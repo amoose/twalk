@@ -24,8 +24,6 @@ gem 'websocket-rails', github: 'depili/websocket-rails'
 gem 'faye-websocket', '0.10.0'
 gem 'redis', :require => ["redis", "redis/connection/hiredis"]
 gem 'geocoder'
-gem 'ember-rails'
-gem 'ember-source'#, '1.8.0'
 gem 'therubyracer'
 gem 'nav_lynx'
 gem 'font-awesome-rails'

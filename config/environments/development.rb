@@ -37,9 +37,5 @@ Twalk2::Application.configure do
     :enable_starttls_auto => true  
   }
 
-  config.middleware.delete Rack::Lock
-
-  config.ember.variant = :development
-
   config.time_zone = 'Pacific Time (US & Canada)'
 end

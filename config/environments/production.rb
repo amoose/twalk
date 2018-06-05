@@ -78,10 +78,6 @@ Twalk2::Application.configure do
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
 
-  config.middleware.delete Rack::Lock
-  
-  config.ember.variant = :production
-
   config.assets.precompile += %w(
       jquery-1.7.js
       reveal.min.js

@@ -1,10 +1,6 @@
 //= require jquery2
 //= require jquery_ujs
-//= require ember
-//= require ember-data
 //= require websocket_rails/main
-
-window.Twalk2 = Ember.Application.create()
 
 $(function () {
   

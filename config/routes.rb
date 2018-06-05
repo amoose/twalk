@@ -6,7 +6,7 @@ Twalk2::Application.routes.draw do
   namespace :admin do
     resources :themes
   end
-  scope ':nickname' do
+  scope ':nickname', except: 'websocket' do
     resources :presentations, path: '' do
       resources :slides do
         resources :contents
